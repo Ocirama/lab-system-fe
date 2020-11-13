@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AshListComponent } from './ash-list.component';
 
@@ -6,7 +6,7 @@ describe('TotalMoistureListComponent', () => {
   let component: AshListComponent;
   let fixture: ComponentFixture<AshListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AshListComponent ]
     })

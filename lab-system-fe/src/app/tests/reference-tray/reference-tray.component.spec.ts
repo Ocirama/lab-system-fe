@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ReferenceTrayComponent } from './reference-tray.component';
 
@@ -6,7 +6,7 @@ describe('TotalMoistureTestSecondComponent', () => {
   let component: ReferenceTrayComponent;
   let fixture: ComponentFixture<ReferenceTrayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ReferenceTrayComponent ]
     })
