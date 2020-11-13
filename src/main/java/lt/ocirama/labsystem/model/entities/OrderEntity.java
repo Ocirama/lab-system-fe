@@ -32,6 +32,8 @@ public class OrderEntity extends AbstractEntity {
     private String sampleType;
     @Column(name = "order_amount", nullable = false)
     private int orderAmount;
+    @Column(name = "year", nullable = false)
+    private int year;
 
     @OneToMany(cascade = {CascadeType.ALL},mappedBy = "order",orphanRemoval = true)
     private List<SampleEntity> samples = new ArrayList<>();

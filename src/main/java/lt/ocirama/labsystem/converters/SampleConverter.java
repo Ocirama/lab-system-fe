@@ -24,8 +24,8 @@ public class SampleConverter {
             sample.getId(),
             sample.getOrder().getProtocolId(),
             sample.getSampleId(),
-            sample.getSampleWeight()
-            //order.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+            sample.getSampleWeight(),
+            sample.getDate()
         );
     }
 }

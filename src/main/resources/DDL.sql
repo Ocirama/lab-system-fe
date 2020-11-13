@@ -1,4 +1,4 @@
-
+select * from order_log;
 create table user
 (
     id int unsigned auto_increment primary key,
@@ -14,6 +14,12 @@ create table customers
         title varchar(100),
             date date
 );
+create table sample_types
+(
+    id int unsigned auto_increment primary key,
+    title varchar(100),
+    date date
+);
 select * from customers;
 insert into customers (title)
 values('Anykščių šiluma, UAB'), ('Axioma servisas, UAB'), ('Arctodus, UAB'), ('Agrolitpa, UAB'), ('Aukštaitijos vandenys, UAB'),
@@ -26,6 +32,7 @@ values('Anykščių šiluma, UAB'), ('Axioma servisas, UAB'), ('Arctodus, UAB'),
        ('Ukmergės šilumos tinklai, UAB'),('Vakarų Baltijos technologijos, UAB');
 
 select * from user;
+show tables;
 insert into user(email, password, name)
 values('info.lei@gmail.com','$2a$10$fVUXkCPkUPD9nIXeKzZXgeMf2B4PE.5njFNoOAWHIG5wKUGnkdbSO','justas');
 
@@ -42,7 +49,9 @@ sample_type varchar(50) not null,
 order_amount int not null,
 date date not null
 );
-
+ALTER TABLE order_log
+    ADD year int NOT NULL;
+ALTER TABLE order_log DROP year;
 CREATE TABLE  sample_log (
 id int PRIMARY KEY AUTO_INCREMENT,
 sample_id varchar(50) not null,
@@ -104,4 +113,5 @@ FOREIGN KEY (tray_id) REFERENCES tray_log (id)
  date date,
  FOREIGN KEY (tray_id) REFERENCES tray_log (id)
  );
-
+select * from Order_log oe where oe.protocol_Id='687' and oe.year= '2020';
+select * from order_log;

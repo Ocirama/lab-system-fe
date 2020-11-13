@@ -28,6 +28,8 @@ public class OrderConverter {
                 order.getTest(),
                 order.getSampleType(),
                 order.getOrderAmount(),
+                order.getYear(),
                 order.getDate());
+
     }
 }

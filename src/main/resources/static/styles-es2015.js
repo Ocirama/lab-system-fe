@@ -369,7 +369,7 @@ if (content.locals) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 6:
 /*!***********************************************************************************************!*\
   !*** multi ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ./src/styles.css ***!
   \***********************************************************************************************/
@@ -382,5 +382,5 @@ module.exports = __webpack_require__(/*! C:\Users\lei12\IdeaProjects\lab-system\
 
 /***/ })
 
-},[[3,"runtime"]]]);
+},[[6,"runtime"]]]);
 //# sourceMappingURL=styles-es2015.js.map

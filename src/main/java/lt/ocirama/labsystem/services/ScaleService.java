@@ -54,7 +54,7 @@ public class ScaleService {
                 }
                 sg = sg.replaceAll("\\s+", "");
                 sg = sg.replaceAll("[^\\d.]", "");
-                if ((sg.length() != 7) && (sg.length() != 8)) {
+                if ((sg.length() != 5) && (sg.length() != 6) && (sg.length() != 7) && (sg.length() != 8)) {
                     ScaleService s = new ScaleService();
                     return s.Pasverti(serialPort);
                 }

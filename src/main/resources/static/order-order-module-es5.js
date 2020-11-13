@@ -620,7 +620,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\">\r\n  <div [hidden]=\"submitted\">\r\n    <h1>Užsakymo forma</h1>\r\n\r\n    <form (ngSubmit)=\"onSubmit(); onSubmit2()\" #orderForm=\"ngForm\" novalidate id=\"orderForm\">\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"protocolId\">Protokolas</label>\r\n        <input\r\n          (ngModelChange)=\"protocolChange($event)\"\r\n          [(ngModel)]=\"orders.protocolId\"\r\n          required\r\n          pattern=\"^[0-9]*$\"\r\n          name=\"protocolId\"\r\n          #protocol=\"ngModel\"\r\n          id=\"protocolId\"\r\n          class=\"form-control\"\r\n          tabIndex=\"1\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"protocol.touched && !protocol.valid\">\r\n          <small\r\n            *ngIf=\"protocol.errors.required\">\r\n            Įveskite užsakymo numerį\r\n          </small>\r\n          <div\r\n            *ngIf=\"protocol.errors.maxlength\">\r\n            Max {{protocol.errors.maxlength.requiredLength}} chars allowed\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <label for=\"customer\"> Užsakovas </label>\r\n        <input [(ngModel)]=\"orders.customer\" name=\"customer\" type=\"text\" class=\"form-control\" id=\"customer\"\r\n               #customer=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup\">\r\n\r\n        <mat-autocomplete #autoGroup=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of customerGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              {{name}}\r\n              <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete(name)\">\r\n                <mat-icon>delete</mat-icon>\r\n              </button>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"openDialog()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują užsakovą</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"customer.touched && !customer.valid\">\r\n          <small\r\n            *ngIf=\"customer.errors.required\">\r\n            Įveskite užsakovą\r\n          </small>\r\n        </div>\r\n        <div>\r\n          <label>Tyrimai</label>\r\n        <ng-multiselect-dropdown\r\n          name=\"tests\"\r\n          #tests=\"ngModel\"\r\n          id=\"tests\"\r\n          [placeholder]=\"'-'\"\r\n          [data]=\"dropdownList\"\r\n          [(ngModel)]=\"selectedItems\"\r\n          [settings]=\"dropdownSettings\"\r\n          (onDropDownClose)=\"onDropDownClose(selectedItems)\"\r\n        >\r\n        </ng-multiselect-dropdown>\r\n        </div>\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"tests.touched && !tests.valid\">\r\n          <small\r\n            *ngIf=\"tests.errors.required\">\r\n            Įveskite daromus tyrimus\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"orderType\"> Kuro rūšis </label>\r\n        <br>\r\n        <select (blur)=\"validateType(sampleTypeS.value)\" (change)=\"validateType(sampleTypeS.value)\"\r\n                #sampleTypeS=\"ngModel\"\r\n                [(ngModel)]=\"orders.sampleType\" name=\"sampleType\" class=\"form-control\" required id=\"orderType\">\r\n\r\n          <option *ngFor=\"let sampleType of sampleTypes\">{{sampleType}}\r\n          </option>\r\n        </select>\r\n        <small class=\"text-danger\" *ngIf=\"sampleTypeS.touched &&!sampleTypeS.valid\">Pasirinkitę kuro rūšį</small>\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"sampleAmount\"> Kiekis </label>\r\n        <input\r\n          (focusout)=\"toggleChild();childFunction(orders)\"\r\n          required\r\n          [(ngModel)]=\"orders.orderAmount\"\r\n          name=\"orderAmount\"\r\n          #sampleAmount=\"ngModel\"\r\n          pattern=\"^[0-9]*$\"\r\n          class=\"form-control\"\r\n          id=\"sampleAmount\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"sampleAmount.touched && !sampleAmount.valid\">\r\n          <small\r\n            *ngIf=\"sampleAmount.errors.required\">\r\n            Įveskite mėginių kiekį\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n      <button mat-button [disabled]=\"orderForm.form.invalid || typeHasError\" type=\"submit\" class=\"btn btn-primary\"\r\n              (click)=\"swalOrderRegister()\">\r\n        Registruoti\r\n      </button>\r\n\r\n      <button mat-button type=\"button\" class=\" btn btn-secondary\" (click)=\"clear()\">Valyti</button>\r\n\r\n      <ol class=\"form-group\">\r\n        <label *ngIf=\"showVar\"> Mėginių sąrašas </label>\r\n\r\n        <li *ngFor=\"let sample of sampleList; let i= index\">\r\n          <td>\r\n            <input type=\"text\" name=\"sampleId-{{i}}\" [(ngModel)]=\"sampleList[i].sampleId\" #ft01=\"ngModel\"\r\n                   class=\"form-control\" #samplesS=\"ngModel\" required\r\n            ></td>\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"samplesS.touched && !samplesS.valid\">\r\n            <small\r\n              *ngIf=\"samplesS.errors.required\">\r\n              Įveskite mėginio ID\r\n            </small>\r\n          </div>\r\n      </ol>\r\n\r\n    </form>\r\n  </div>\r\n";
+    __webpack_exports__["default"] = "<div   class=\"container-fluid\">\r\n  <div [hidden]=\"submitted\">\r\n    <h1>Užsakymo forma</h1>\r\n\r\n    <form (ngSubmit)=\"onSubmit(); onSubmit2()\" #orderForm=\"ngForm\" novalidate id=\"orderForm\">\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"protocolId\">Protokolas</label>\r\n        <input\r\n          (ngModelChange)=\"protocolChange($event)\"\r\n          [(ngModel)]=\"orders.protocolId\"\r\n          required\r\n          pattern=\"^[0-9]*$\"\r\n          name=\"protocolId\"\r\n          #protocol=\"ngModel\"\r\n          id=\"protocolId\"\r\n          class=\"form-control\"\r\n          tabIndex=\"1\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"protocol.touched && !protocol.valid\">\r\n          <small\r\n            *ngIf=\"protocol.errors.required\">\r\n            Įveskite užsakymo numerį\r\n          </small>\r\n          <div\r\n            *ngIf=\"protocol.errors.maxlength\">\r\n            Max {{protocol.errors.maxlength.requiredLength}} chars allowed\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <label for=\"customer\"> Užsakovas </label>\r\n        <input (click)=\"this.getCustomers();\" [(ngModel)]=\"orders.customer\" name=\"customer\" type=\"text\" class=\"form-control\" id=\"customer\"\r\n               #customer=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup\">\r\n\r\n        <mat-autocomplete #autoGroup=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of customerGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              <div class=\"aParent\">\r\n                <div>\r\n                  {{name}}\r\n                </div>\r\n                <div>\r\n                  <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete(name)\">\r\n                    <mat-icon>delete</mat-icon>\r\n                  </button>\r\n                </div>\r\n              </div>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"addCustomer()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują užsakovą</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"customer.touched && !customer.valid\">\r\n          <small\r\n            *ngIf=\"customer.errors.required\">\r\n            Įveskite užsakovą\r\n          </small>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label for=\"sampleAmount\"> Kiekis </label>\r\n          <input\r\n            (focusout)=\"toggleChild();childFunction(orders)\"\r\n            required\r\n            [(ngModel)]=\"orders.orderAmount\"\r\n            name=\"orderAmount\"\r\n            #sampleAmount=\"ngModel\"\r\n            pattern=\"^[0-9]*$\"\r\n            class=\"form-control\"\r\n            id=\"sampleAmount\"\r\n          >\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"sampleAmount.touched && !sampleAmount.valid\">\r\n            <small\r\n              *ngIf=\"sampleAmount.errors.required\">\r\n              Įveskite mėginių kiekį\r\n            </small>\r\n          </div>\r\n        </div>\r\n\r\n        <div >\r\n          <label>Tyrimai</label>\r\n        <ng-multiselect-dropdown\r\n          name=\"tests\"\r\n          #tests=\"ngModel\"\r\n          id=\"tests\"\r\n          [placeholder]=\"'-'\"\r\n          [data]=\"dropdownList\"\r\n          [(ngModel)]=\"selectedItems\"\r\n          [settings]=\"dropdownSettings\"\r\n          (onDropDownClose)=\"onDropDownClose(selectedItems)\"\r\n        >\r\n        </ng-multiselect-dropdown>\r\n        </div>\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"tests.touched && !tests.valid\">\r\n          <small\r\n            *ngIf=\"tests.errors.required\">\r\n            Įveskite daromus tyrimus\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"sampleType\"> Kuro rūšis </label>\r\n        <input (click)=\"this.getSampleTypes()\" [(ngModel)]=\"orders.sampleType\" name=\"sampleType\" type=\"text\" class=\"form-control\" id=\"sampleType\"\r\n               #sampleType=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup2\">\r\n\r\n        <mat-autocomplete #autoGroup2=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of sampleTypeGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              <div class=\"aParent\">\r\n                <div>\r\n                  {{name}}\r\n                </div>\r\n                <div>\r\n                  <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete2(name)\">\r\n                    <mat-icon>delete</mat-icon>\r\n                  </button>\r\n                </div>\r\n              </div>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"openDialog2()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują rūšį</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"sampleType.touched && !sampleType.valid\">\r\n          <small\r\n            *ngIf=\"sampleType.errors.required\">\r\n            Įveskite kuro rūšį\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n      <button mat-button [disabled]=\"orderForm.form.invalid\" type=\"submit\" class=\"btn btn-primary\"\r\n              (click)=\"swalOrderRegister()\">\r\n        Registruoti\r\n      </button>\r\n\r\n      <button mat-button type=\"button\" class=\" btn btn-secondary\" (click)=\"clear()\">Valyti</button>\r\n\r\n      <ol class=\"form-group\">\r\n        <label *ngIf=\"showVar\"> Mėginių sąrašas </label>\r\n\r\n        <li  *ngFor=\"let sample of sampleList; let i= index\">\r\n          <td>\r\n            <input   tabIndex=\"{{i+1}}\"  type=\"text\" name=\"sampleId-{{i}}\" [(ngModel)]=\"sample.sampleId\" #ft01=\"ngModel\"\r\n                   class=\"form-control\" #samplesS=\"ngModel\" required\r\n            ></td>\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"samplesS.touched && !samplesS.valid\">\r\n            <small\r\n              *ngIf=\"samplesS.errors.required\">\r\n              Įveskite mėginio ID\r\n            </small>\r\n          </div>\r\n      </ol>\r\n    </form>\r\n  </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -640,7 +640,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Užsakovas\" [(ngModel)]=\"data.title\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Cancel</button>\r\n  <button mat-button [mat-dialog-close]=\"data\">Save</button>\r\n</div>\r\n\r\n";
+    __webpack_exports__["default"] = "\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Užsakovas\" [(ngModel)]=\"data.title\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Cancel</button>\r\n  <button mat-button (click)=\"success()\" [mat-dialog-close]=\"data\">Save</button>\r\n</div>\r\n\r\n";
     /***/
   },
 
@@ -787,6 +787,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/tslib/tslib.es6.js");
 
     var DropdownList = [{
+      item_id: 0,
+      item_text: 'Miksas'
+    }, {
       item_id: 1,
       item_text: 'Drėgmė'
     }, {
@@ -836,97 +839,205 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       item_text: 'P'
     }, {
       item_id: 17,
-      item_text: 'As'
+      item_text: 'Cl'
     }, {
       item_id: 18,
-      item_text: 'Be'
+      item_text: 'F'
     }, {
       item_id: 19,
-      item_text: 'Ca'
+      item_text: 'Br'
     }, {
       item_id: 20,
-      item_text: 'Cd'
+      item_text: 'As'
     }, {
       item_id: 21,
-      item_text: 'Co'
+      item_text: 'Be'
     }, {
       item_id: 22,
-      item_text: 'Cr'
+      item_text: 'Ca'
     }, {
       item_id: 23,
-      item_text: 'Cu'
+      item_text: 'Cd'
     }, {
       item_id: 24,
-      item_text: 'Fe'
+      item_text: 'Co'
     }, {
       item_id: 25,
-      item_text: 'Li'
+      item_text: 'Cr'
     }, {
       item_id: 26,
-      item_text: 'Mg'
+      item_text: 'Cu'
     }, {
       item_id: 27,
-      item_text: 'Mn'
+      item_text: 'Fe'
     }, {
       item_id: 28,
-      item_text: 'Mo'
+      item_text: 'Li'
     }, {
       item_id: 29,
-      item_text: 'Ni'
+      item_text: 'Mg'
     }, {
       item_id: 30,
-      item_text: 'Pb'
+      item_text: 'Mn'
     }, {
       item_id: 31,
-      item_text: 'Sb'
+      item_text: 'Mo'
     }, {
       item_id: 32,
-      item_text: 'Se'
+      item_text: 'Ni'
     }, {
       item_id: 33,
-      item_text: 'Sr'
+      item_text: 'Pb'
     }, {
       item_id: 34,
-      item_text: 'Ti'
+      item_text: 'Sb'
     }, {
       item_id: 35,
-      item_text: 'Tl'
+      item_text: 'Se'
     }, {
       item_id: 36,
-      item_text: 'V'
+      item_text: 'Sr'
     }, {
       item_id: 37,
-      item_text: 'Zn'
+      item_text: 'Ti'
     }, {
       item_id: 38,
-      item_text: 'K'
+      item_text: 'Tl'
     }, {
       item_id: 39,
-      item_text: 'Si'
+      item_text: 'V'
     }, {
       item_id: 40,
-      item_text: 'Al'
+      item_text: 'Zn'
     }, {
       item_id: 41,
-      item_text: 'B'
+      item_text: 'K'
     }, {
       item_id: 42,
-      item_text: 'Ba'
+      item_text: 'Si'
     }, {
       item_id: 43,
-      item_text: 'Na'
+      item_text: 'Al'
     }, {
       item_id: 44,
-      item_text: 'Ag'
+      item_text: 'B'
     }, {
       item_id: 45,
-      item_text: 'Fiksuota C'
+      item_text: 'Ba'
     }, {
       item_id: 46,
-      item_text: 'Hg'
+      item_text: 'Na'
     }, {
       item_id: 47,
+      item_text: 'Ag'
+    }, {
+      item_id: 48,
+      item_text: 'Fiksuota C'
+    }, {
+      item_id: 49,
+      item_text: 'Hg'
+    }, {
+      item_id: 50,
       item_text: 'Benzapirenas'
+    }, {
+      item_id: 51,
+      item_text: 'Radiacija'
+    }];
+    /***/
+  },
+
+  /***/
+  "./src/app/order/form/SampleType.ts":
+  /*!******************************************!*\
+    !*** ./src/app/order/form/SampleType.ts ***!
+    \******************************************/
+
+  /*! exports provided: sampleTypeGroups */
+
+  /***/
+  function srcAppOrderFormSampleTypeTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "sampleTypeGroups", function () {
+      return sampleTypeGroups;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var sampleTypeGroups = [{
+      letter: 'A',
+      names: []
+    }, {
+      letter: 'B',
+      names: []
+    }, {
+      letter: 'C',
+      names: []
+    }, {
+      letter: 'D',
+      names: ['']
+    }, {
+      letter: 'E',
+      names: []
+    }, {
+      letter: 'F',
+      names: []
+    }, {
+      letter: 'G',
+      names: []
+    }, {
+      letter: 'H',
+      names: []
+    }, {
+      letter: 'I',
+      names: []
+    }, {
+      letter: 'J',
+      names: []
+    }, {
+      letter: 'K',
+      names: []
+    }, {
+      letter: 'L',
+      names: []
+    }, {
+      letter: 'M',
+      names: []
+    }, {
+      letter: 'N',
+      names: []
+    }, {
+      letter: 'O',
+      names: []
+    }, {
+      letter: 'P',
+      names: []
+    }, {
+      letter: 'R',
+      names: []
+    }, {
+      letter: 'S',
+      names: []
+    }, {
+      letter: 'Š',
+      names: []
+    }, {
+      letter: 'T',
+      names: []
+    }, {
+      letter: 'U',
+      names: []
+    }, {
+      letter: 'V',
+      names: []
     }];
     /***/
   },
@@ -947,7 +1058,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n\r\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\r\nh1 {\r\n  text-align: center;\r\n}\r\n.example-form {\r\n  min-width: 150px;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n\r\n}\r\n.example-full-width {\r\n  width: 100%;\r\n padding-bottom: 50px;\r\n}\r\ntd {\r\n  padding-right: 8px;\r\n}\r\nh3 {\r\n  text-align: center;\r\n}\r\ndiv{\r\n\r\n}\r\n.example-margin{\r\nmargin-right: 50px;\r\n}\r\n.form-control.ng-touched.ng-invalid{\r\n  border:2px solid red;\r\n}\r\n.container-fluid{\r\n  width: 600px;\r\n}\r\nol{\r\n  font-size: 25px;\r\n}\r\n.mat-raised-button {\r\n\r\n  position: absolute;\r\n  right: 0px;\r\n  width: 5px;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXIvZm9ybS9mb3JtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSwyRUFBMkU7QUFDM0U7RUFDRSxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixpQkFBaUI7RUFDakIsV0FBVztFQUNYLGNBQWM7O0FBRWhCO0FBRUE7RUFDRSxXQUFXO0NBQ1osb0JBQW9CO0FBQ3JCO0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBOztBQUVBO0FBQ0E7QUFDQSxrQkFBa0I7QUFDbEI7QUFDQTtFQUNFLG9CQUFvQjtBQUN0QjtBQUNBO0VBQ0UsWUFBWTtBQUNkO0FBQ0E7RUFDRSxlQUFlO0FBQ2pCO0FBQ0E7O0VBRUUsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixVQUFVO0FBQ1oiLCJmaWxlIjoic3JjL2FwcC9vcmRlci9mb3JtL2Zvcm0uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuQGltcG9ydCB1cmwoJ2h0dHBzOi8vdW5wa2cuY29tL2Jvb3RzdHJhcEAzLjMuNy9kaXN0L2Nzcy9ib290c3RyYXAubWluLmNzcycpO1xyXG5oMSB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5leGFtcGxlLWZvcm0ge1xyXG4gIG1pbi13aWR0aDogMTUwcHg7XHJcbiAgbWF4LXdpZHRoOiAxMDAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcblxyXG59XHJcblxyXG4uZXhhbXBsZS1mdWxsLXdpZHRoIHtcclxuICB3aWR0aDogMTAwJTtcclxuIHBhZGRpbmctYm90dG9tOiA1MHB4O1xyXG59XHJcblxyXG50ZCB7XHJcbiAgcGFkZGluZy1yaWdodDogOHB4O1xyXG59XHJcbmgzIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuZGl2e1xyXG5cclxufVxyXG4uZXhhbXBsZS1tYXJnaW57XHJcbm1hcmdpbi1yaWdodDogNTBweDtcclxufVxyXG4uZm9ybS1jb250cm9sLm5nLXRvdWNoZWQubmctaW52YWxpZHtcclxuICBib3JkZXI6MnB4IHNvbGlkIHJlZDtcclxufVxyXG4uY29udGFpbmVyLWZsdWlke1xyXG4gIHdpZHRoOiA2MDBweDtcclxufVxyXG5vbHtcclxuICBmb250LXNpemU6IDI1cHg7XHJcbn1cclxuLm1hdC1yYWlzZWQtYnV0dG9uIHtcclxuXHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwcHg7XHJcbiAgd2lkdGg6IDVweDtcclxufVxyXG5cclxuXHJcbiJdfQ== */";
+    __webpack_exports__["default"] = "\r\n\r\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\r\nh1 {\r\n  text-align: center;\r\n  border-color: #3f51b5;\r\n  border-style: none none double none;\r\n}\r\n.example-form {\r\n  min-width: 150px;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n\r\n}\r\n.example-h2 {\r\n  margin: 10px;\r\n}\r\n.example-section {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  align-content: center;\r\n  -webkit-box-align: center;\r\n          align-items: center;\r\n  height: 60px;\r\n}\r\n.example-margin {\r\n  margin: 10px;\r\n}\r\n.example-full-width {\r\n  width: 100%;\r\n padding-bottom: 50px;\r\n}\r\ntd {\r\n  padding-right: 8px;\r\n}\r\nh3 {\r\n  text-align: center;\r\n}\r\ndiv{\r\n\r\n}\r\n.example-margin{\r\nmargin-right: 50px;\r\n}\r\n.form-control.ng-touched.ng-invalid{\r\n  border:2px solid red;\r\n}\r\n.container-fluid{\r\n  width: 600px;\r\n  border-color: #3f51b5;\r\n  border-style: none none double none;\r\n}\r\nol{\r\n  font-size: 25px;\r\n}\r\n.mat-raised-button {\r\n\r\n  position: absolute;\r\n  right: 0px;\r\n  width: 5px;\r\n}\r\n.aParent div {\r\n  float: left;\r\n  clear: none;\r\n}\r\nlabel{\r\n  font-size: 20px;\r\n\r\n}\r\n\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXIvZm9ybS9mb3JtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSwyRUFBMkU7QUFDM0U7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLG1DQUFtQztBQUNyQztBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGlCQUFpQjtFQUNqQixXQUFXO0VBQ1gsY0FBYzs7QUFFaEI7QUFDQTtFQUNFLFlBQVk7QUFDZDtBQUVBO0VBQ0Usb0JBQWE7RUFBYixhQUFhO0VBQ2IscUJBQXFCO0VBQ3JCLHlCQUFtQjtVQUFuQixtQkFBbUI7RUFDbkIsWUFBWTtBQUNkO0FBRUE7RUFDRSxZQUFZO0FBQ2Q7QUFFQTtFQUNFLFdBQVc7Q0FDWixvQkFBb0I7QUFDckI7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0FBQ3BCO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLGtCQUFrQjtBQUNsQjtBQUNBO0VBQ0Usb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxZQUFZO0VBQ1oscUJBQXFCO0VBQ3JCLG1DQUFtQztBQUNyQztBQUNBO0VBQ0UsZUFBZTtBQUNqQjtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsVUFBVTtBQUNaO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsV0FBVztBQUNiO0FBQ0E7RUFDRSxlQUFlOztBQUVqQiIsImZpbGUiOiJzcmMvYXBwL29yZGVyL2Zvcm0vZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly91bnBrZy5jb20vYm9vdHN0cmFwQDMuMy43L2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzJyk7XHJcbmgxIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYm9yZGVyLWNvbG9yOiAjM2Y1MWI1O1xyXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdWJsZSBub25lO1xyXG59XHJcbi5leGFtcGxlLWZvcm0ge1xyXG4gIG1pbi13aWR0aDogMTUwcHg7XHJcbiAgbWF4LXdpZHRoOiAxMDAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcblxyXG59XHJcbi5leGFtcGxlLWgyIHtcclxuICBtYXJnaW46IDEwcHg7XHJcbn1cclxuXHJcbi5leGFtcGxlLXNlY3Rpb24ge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgaGVpZ2h0OiA2MHB4O1xyXG59XHJcblxyXG4uZXhhbXBsZS1tYXJnaW4ge1xyXG4gIG1hcmdpbjogMTBweDtcclxufVxyXG5cclxuLmV4YW1wbGUtZnVsbC13aWR0aCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiBwYWRkaW5nLWJvdHRvbTogNTBweDtcclxufVxyXG5cclxudGQge1xyXG4gIHBhZGRpbmctcmlnaHQ6IDhweDtcclxufVxyXG5oMyB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbmRpdntcclxuXHJcbn1cclxuLmV4YW1wbGUtbWFyZ2lue1xyXG5tYXJnaW4tcmlnaHQ6IDUwcHg7XHJcbn1cclxuLmZvcm0tY29udHJvbC5uZy10b3VjaGVkLm5nLWludmFsaWR7XHJcbiAgYm9yZGVyOjJweCBzb2xpZCByZWQ7XHJcbn1cclxuLmNvbnRhaW5lci1mbHVpZHtcclxuICB3aWR0aDogNjAwcHg7XHJcbiAgYm9yZGVyLWNvbG9yOiAjM2Y1MWI1O1xyXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdWJsZSBub25lO1xyXG59XHJcbm9se1xyXG4gIGZvbnQtc2l6ZTogMjVweDtcclxufVxyXG4ubWF0LXJhaXNlZC1idXR0b24ge1xyXG5cclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcmlnaHQ6IDBweDtcclxuICB3aWR0aDogNXB4O1xyXG59XHJcbi5hUGFyZW50IGRpdiB7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgY2xlYXI6IG5vbmU7XHJcbn1cclxubGFiZWx7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG5cclxufVxyXG5cclxuXHJcblxyXG4iXX0= */";
     /***/
   },
 
@@ -1047,7 +1158,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var sweetalert2_src_sweetalert2_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! sweetalert2/src/sweetalert2.scss */
-    "./node_modules/sweetalert2/src/sweetalert2.scss"); // tslint:disable-next-line:variable-name
+    "./node_modules/sweetalert2/src/sweetalert2.scss");
+    /* harmony import */
+
+
+    var _tab_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ../../tab.service */
+    "./src/app/tab.service.ts");
+    /* harmony import */
+
+
+    var _SampleType__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ./SampleType */
+    "./src/app/order/form/SampleType.ts"); // tslint:disable-next-line:variable-name
 
 
     var _filter = function _filter(opt, value) {
@@ -1061,18 +1184,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*#__PURE__*/
     function () {
       // tslint:disable-next-line:variable-name
-      function FormComponent(_formBuilder, api, dialog) {
+      function FormComponent(_formBuilder, // tslint:disable-next-line:variable-name
+      _formBuilder2, api, dialog) {
         _classCallCheck(this, FormComponent);
 
         this._formBuilder = _formBuilder;
+        this._formBuilder2 = _formBuilder2;
         this.api = api;
         this.dialog = dialog;
-        this.sampleTypes = ['Skiedros', 'Granulės', 'Atliekos', 'Ligninas', 'Briketai'];
+        this.color = 'accent';
+        this.checked = false;
+        this.disabled = false;
         this.orders = {};
         this.samples = {};
-        this.typeHasError = true;
+        this.typeHasError = false;
         this.customers = [];
-        this.SampleArray = [];
+        this.sampleTypes = [];
         this.sampleList = [];
         this.showVar = false;
         this.dropdownList = Array();
@@ -1081,17 +1208,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.customerForm = this._formBuilder.group({
           customerGroup: ''
         });
+        this.sampleTypeForm = this._formBuilder2.group({
+          sampleTypeGroup: ''
+        });
         this.submitted = false;
       }
 
       _createClass(FormComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          this.orders.year = new Date().getFullYear();
+          this.selectedOption = 'Kuro rūšis';
+          this.samples.sampleWeight = 0;
+          this.dropdownList = _DropdownList__WEBPACK_IMPORTED_MODULE_5__["DropdownList"]; // tslint:disable-next-line:no-unused-expression
+
+          this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'item_id',
+            textField: 'item_text',
+            selectAllText: 'Select All',
+            unSelectAllText: 'UnSelect All',
+            itemsShowLimit: 3,
+            allowSearchFilter: true
+          };
+        }
+      }, {
+        key: "getSampleTypes",
+        value: function getSampleTypes() {
           var _this6 = this;
 
-          this.api.get('/lei/customers').subscribe(function (users) {
-            _this6.customers = users;
-            console.log(_this6.customers);
+          this.sampleTypes = [];
+
+          _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].forEach(function (item) {
+            return item.names = [];
+          });
+
+          this.api.get('/lei/st').subscribe(function (samples) {
+            _this6.sampleTypes = samples;
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -1099,20 +1252,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             try {
               var _loop = function _loop() {
                 var entry = _step.value;
-                console.log(entry);
                 var letteri = entry.title.charAt(0);
                 var name = entry.title;
 
-                var result = _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].find(function (_ref) {
+                var result = _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].find(function (_ref) {
                   var letter = _ref.letter;
                   return letter === letteri;
                 });
 
                 result.names.push(name);
-                console.log(result);
               };
 
-              for (var _iterator = _this6.customers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              for (var _iterator = _this6.sampleTypes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 _loop();
               }
             } catch (err) {
@@ -1129,76 +1280,164 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }
-
-            console.log(_Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"]);
           });
-          this.selectedOption = 'Kuro rūšis';
-          this.samples.sampleWeight = 0; // tslint:disable-next-line:no-non-null-assertion
-
-          this.customerGroupOptions = this.customerForm.get('customerGroup').valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
-            return _this6._filterGroup(value);
+          this.sampleTypeGroupOptions = this.sampleTypeForm.get('sampleTypeGroup').valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
+            return _this6._filterGroup2(value);
           }));
-          this.dropdownList = _DropdownList__WEBPACK_IMPORTED_MODULE_5__["DropdownList"]; // tslint:disable-next-line:no-unused-expression
+        }
+      }, {
+        key: "getCustomers",
+        value: function getCustomers() {
+          var _this7 = this;
 
-          this.dropdownSettings = {
-            singleSelection: false,
-            idField: 'item_id',
-            textField: 'item_text',
-            selectAllText: 'Select All',
-            unSelectAllText: 'UnSelect All',
-            itemsShowLimit: 3,
-            allowSearchFilter: false
-          };
+          this.customers = [];
+
+          _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].forEach(function (item) {
+            return item.names = [];
+          });
+
+          this.api.get('/lei/customers').subscribe(function (users) {
+            _this7.customers = users;
+            console.log(users);
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+              var _loop2 = function _loop2() {
+                var entry = _step2.value;
+                var letteri = entry.title.charAt(0);
+                var name = entry.title;
+
+                var result = _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].find(function (_ref2) {
+                  var letter = _ref2.letter;
+                  return letter === letteri;
+                });
+
+                result.names.push(name);
+              };
+
+              for (var _iterator2 = _this7.customers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                _loop2();
+              }
+            } catch (err) {
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+              } finally {
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
+                }
+              }
+            }
+          });
+          this.customerGroupOptions = this.customerForm.get('customerGroup').valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
+            return _this7._filterGroup(value);
+          }));
         }
       }, {
         key: "onDropDownClose",
         value: function onDropDownClose(items) {
-          var strings = [];
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+          if (items[0].item_text === 'Miksas') {
+            this.orders.test = this.orders.orderAmount + ' - Drėgmė, 1 - Pelenai, Šilumingumas';
+          } else {
+            var strings = [];
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
 
-          try {
-            for (var _iterator2 = items[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var item = _step2.value;
-              strings.push(item.item_text);
-              console.log(strings);
-            }
-          } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-          } finally {
             try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                _iterator2.return();
+              for (var _iterator3 = items[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var item = _step3.value;
+                strings.push(item.item_text);
               }
+            } catch (err) {
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
             } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
+              try {
+                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                  _iterator3.return();
+                }
+              } finally {
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
+                }
               }
             }
-          }
 
-          console.log(strings);
-          console.log(strings.join(', '));
-          this.orders.test = strings.join(', ');
+            this.orders.test = strings.join(', ');
+          }
         }
       }, {
         key: "delete",
         value: function _delete(titlee) {
-          var _this7 = this;
+          var _this8 = this;
 
-          var result = this.customers.find(function (_ref2) {
-            var title = _ref2.title;
-            return title === titlee;
-          });
-          this.api.delete("/lei/customers/".concat(result.title)).subscribe(function () {
-            return _this7.customers = _this7.customers.filter(function (item) {
-              return item.title !== result.title;
-            });
-          });
+          sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+            title: 'Ar tikrai norite ištrinti šį užsakovą?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Atšaukti',
+            confirmButtonText: 'Taip, ištrinti!'
+          }).then(function (result) {
+            if (result.value) {
+              // tslint:disable-next-line:no-shadowed-variable
+              var _result = _this8.customers.find(function (_ref3) {
+                var title = _ref3.title;
+                return title === titlee;
+              });
 
-          _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].push();
+              _this8.api.delete("/lei/customers/".concat(_result.title)).subscribe(function () {
+                return _this8.customers = _this8.customers.filter(function (item) {
+                  return item.title !== _result.title;
+                });
+              });
+
+              _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].push();
+
+              sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Ištrinta!', 'Užsakovas ištrintas.');
+            }
+          });
+        }
+      }, {
+        key: "delete2",
+        value: function delete2(titlee) {
+          var _this9 = this;
+
+          sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+            title: 'Ar tikrai norite ištrinti šį kuro tipą?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Atšaukti',
+            confirmButtonText: 'Taip, ištrinti!'
+          }).then(function (result) {
+            if (result.value) {
+              // tslint:disable-next-line:no-shadowed-variable
+              var _result2 = _this9.sampleTypes.find(function (_ref4) {
+                var title = _ref4.title;
+                return title === titlee;
+              });
+
+              _this9.api.delete("/lei/st/".concat(_result2.title)).subscribe(function () {
+                return _this9.sampleTypes = _this9.sampleTypes.filter(function (item) {
+                  return item.title !== _result2.title;
+                });
+              });
+
+              _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].push();
+
+              sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Ištrinta!');
+            }
+          });
         }
       }, {
         key: "childFunction",
@@ -1258,68 +1497,144 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"];
         }
       }, {
+        key: "_filterGroup2",
+        value: function _filterGroup2(value) {
+          if (value) {
+            return _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].map(function (group) {
+              return {
+                letter: group.letter,
+                names: _filter(group.names, value)
+              };
+            }).filter(function (group) {
+              return group.names.length > 0;
+            });
+          }
+
+          return _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"];
+        }
+      }, {
         key: "onSubmit",
         value: function onSubmit() {
-          console.log('to orders', this.orders);
-          this.api.post('/lei/orders', this.orders).subscribe(function (data) {
-            return console.log('Success!', data);
-          }, function (error) {
-            return console.log('Error', error);
+          try {
+            this.api.post('/lei/orders', this.orders).subscribe(function (data) {
+              return console.log('Success!', data);
+            }, function (error) {
+              return console.log('Error', error);
+            });
+          } catch (e) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Klaida', '', 'error');
+          }
+        }
+      }, {
+        key: "delay",
+        value: function delay(ms) {
+          return new Promise(function (resolve) {
+            return setTimeout(resolve, ms);
           });
         }
       }, {
         key: "onSubmit2",
         value: function onSubmit2() {
-          var _this8 = this;
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee() {
+            var _this10 = this;
 
-          console.log('to samples', this.sampleList);
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
+            var _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, sample;
 
-          try {
-            var _loop2 = function _loop2() {
-              var sample = _step3.value;
-              setTimeout(function () {
-                return _this8.api.post('/lei/samples', sample).subscribe(function (result) {
-                  var row = _this8.sampleList.find(function (item) {
-                    return item.id === result.id;
-                  });
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _iteratorNormalCompletion4 = true;
+                    _didIteratorError4 = false;
+                    _iteratorError4 = undefined;
+                    _context.prev = 3;
+                    _iterator4 = this.sampleList[Symbol.iterator]();
 
-                  if (row) {
-                    row.protocolId = result.protocolId;
-                    row.sampleId = result.sampleId;
-                    row.sampleWeight = result.sampleWeight;
-                  } else {
-                    _this8.sampleList = [].concat(_toConsumableArray(_this8.sampleList), [result]);
-                  }
-                });
-              }, 1000);
-              _this8.SampleArray = [];
-            };
+                  case 5:
+                    if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+                      _context.next = 13;
+                      break;
+                    }
 
-            for (var _iterator3 = this.sampleList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              _loop2();
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
+                    sample = _step4.value;
+                    _context.next = 9;
+                    return this.delay(300);
+
+                  case 9:
+                    this.api.post('/lei/samples', sample).subscribe(function (result) {
+                      var row = _this10.sampleList.find(function (item) {
+                        return item.id === result.id;
+                      });
+
+                      if (row) {
+                        row.protocolId = result.protocolId;
+                        row.sampleId = result.sampleId;
+                        row.sampleWeight = result.sampleWeight;
+                      } else {
+                        _this10.sampleList = [].concat(_toConsumableArray(_this10.sampleList), [result]);
+                      }
+                    });
+
+                  case 10:
+                    _iteratorNormalCompletion4 = true;
+                    _context.next = 5;
+                    break;
+
+                  case 13:
+                    _context.next = 19;
+                    break;
+
+                  case 15:
+                    _context.prev = 15;
+                    _context.t0 = _context["catch"](3);
+                    _didIteratorError4 = true;
+                    _iteratorError4 = _context.t0;
+
+                  case 19:
+                    _context.prev = 19;
+                    _context.prev = 20;
+
+                    if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                      _iterator4.return();
+                    }
+
+                  case 22:
+                    _context.prev = 22;
+
+                    if (!_didIteratorError4) {
+                      _context.next = 25;
+                      break;
+                    }
+
+                    throw _iteratorError4;
+
+                  case 25:
+                    return _context.finish(22);
+
+                  case 26:
+                    return _context.finish(19);
+
+                  case 27:
+                    _context.next = 29;
+                    return this.delay(300);
+
+                  case 29:
+                    this.sampleList = [];
+
+                  case 30:
+                  case "end":
+                    return _context.stop();
+                }
               }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
+            }, _callee, this, [[3, 15, 19, 27], [20,, 22, 26]]);
+          }));
         }
       }, {
-        key: "openDialog",
-        value: function openDialog() {
-          var _this9 = this;
+        key: "addCustomer",
+        value: function addCustomer() {
+          var _this11 = this;
 
           var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
             width: '250px',
@@ -1327,20 +1642,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           dialogRef.afterClosed().subscribe(function (data) {
             if (data) {
-              _this9.api.post('/lei/customers', data).subscribe(function (result) {
-                var row = _this9.customers.find(function (item) {
+              _this11.api.post('/lei/customers', data).subscribe(function (result) {
+                var row = _this11.customers.find(function (item) {
                   return item.id === result.id;
                 });
 
                 if (row) {
                   row.title = result.title;
                 } else {
-                  _this9.customers = [].concat(_toConsumableArray(_this9.customers), [result]);
+                  _this11.customers = [].concat(_toConsumableArray(_this11.customers), [result]);
+                }
+              });
+            }
+          });
+        }
+      }, {
+        key: "openDialog2",
+        value: function openDialog2() {
+          var _this12 = this;
+
+          var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
+            width: '250px',
+            data: {}
+          });
+          dialogRef.afterClosed().subscribe(function (data) {
+            if (data) {
+              _this12.api.post('/lei/st', data).subscribe(function (result) {
+                var row = _this12.sampleTypes.find(function (item) {
+                  return item.id === result.id;
+                });
+
+                if (row) {
+                  row.title = result.title;
+                } else {
+                  _this12.sampleTypes = [].concat(_toConsumableArray(_this12.sampleTypes), [result]);
                 }
               });
             }
 
-            _this9.swalCustomerAdd();
+            _this12.swalCustomerAdd();
           });
         }
       }, {
@@ -1377,6 +1717,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return [{
         type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]
       }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]
+      }, {
         type: _core_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"]
       }, {
         type: _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]
@@ -1389,6 +1731,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./form.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/order/form/form.component.html")).default,
+      providers: [_tab_service__WEBPACK_IMPORTED_MODULE_11__["TabService"]],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./form.component.css */
       "./src/app/order/form/form.component.css")).default]
@@ -1453,6 +1796,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/material/dialog */
     "./node_modules/@angular/material/esm2015/dialog.js");
+    /* harmony import */
+
+
+    var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! sweetalert2 */
+    "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+    /* harmony import */
+
+
+    var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default =
+    /*#__PURE__*/
+    __webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 
     var ModalComponent =
     /*#__PURE__*/
@@ -1472,6 +1827,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "onNoClick",
         value: function onNoClick() {
           this.dialogRef.close();
+        }
+      }, {
+        key: "success",
+        value: function success() {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Užsakovas pridėtas!', '', 'success');
         }
       }]);
 
@@ -1635,6 +1995,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _modal_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./modal/modal.component */
     "./src/app/order/modal/modal.component.ts");
+    /* harmony import */
+
+
+    var _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ../shared/shared.module */
+    "./src/app/shared/shared.module.ts");
 
     var OrderModule = function OrderModule() {
       _classCallCheck(this, OrderModule);
@@ -1642,7 +2008,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     OrderModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_form_form_component__WEBPACK_IMPORTED_MODULE_6__["FormComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_8__["ModalComponent"]],
-      imports: [_order_routing_module__WEBPACK_IMPORTED_MODULE_3__["OrderRoutingModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatAutocompleteModule"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"], ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_7__["NgMultiSelectDropDownModule"]],
+      imports: [_order_routing_module__WEBPACK_IMPORTED_MODULE_3__["OrderRoutingModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatAutocompleteModule"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"], ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_7__["NgMultiSelectDropDownModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__["SharedModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSlideToggleModule"]],
       entryComponents: [_modal_modal_component__WEBPACK_IMPORTED_MODULE_8__["ModalComponent"]]
     })], OrderModule);
     /***/

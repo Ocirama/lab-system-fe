@@ -1,5 +1,6 @@
 package lt.ocirama.labsystem.services;
 
+import java.util.Calendar;
 import java.util.List;
 import lt.ocirama.labsystem.converters.SampleConverter;
 import lt.ocirama.labsystem.converters.SampleEntityConverter;
@@ -47,8 +48,16 @@ public class SampleService {
     }
 
     public List<Sample> getAllByProtocol(String protocolId) {
-        List<SampleEntity> sample = sampleRepository.findAllByProtocol(protocolId);
 
-        return sampleConverter.convert(sample);
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+
+            List<SampleEntity> samples = sampleRepository.findAllByProtocol(protocolId, year);
+            if (samples.size() != 0){
+                return sampleConverter.convert(samples);
+            }else {
+                year = Calendar.getInstance().get(Calendar.YEAR) - 1;
+                samples = sampleRepository.findAllByProtocol(protocolId, year);
+                return sampleConverter.convert(samples);
+            }
     }
 }

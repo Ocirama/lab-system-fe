@@ -92,7 +92,7 @@ class SampleRepositoryTest {
 
     @Test
     void findAllByProtocol() {
-        List<SampleEntity> foundByprotocol = sampleRepository.findAllByProtocol("444");
+        List<SampleEntity> foundByprotocol = sampleRepository.findAllByProtocol("444", 2020);
         assertEquals(foundByprotocol.size(), 2);
     }
 }

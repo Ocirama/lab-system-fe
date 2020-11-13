@@ -16,7 +16,6 @@ public class OrderEntityConverter {
         this.orderRepository = orderRepository;
     }
 
-    LocalDate localDate = LocalDate.now();
 
     public OrderEntity convert(OrderSave order) {
         OrderEntity result;
@@ -28,6 +27,7 @@ public class OrderEntityConverter {
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
             result.setOrderAmount(order.getOrderAmount());
+            result.setYear(order.getYear());
         } else {
             result = orderRepository.findOneById(order.getId());
             result.setProtocolId(order.getProtocolId());
@@ -35,6 +35,7 @@ public class OrderEntityConverter {
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
             result.setOrderAmount(order.getOrderAmount());
+            result.setYear(order.getYear());
         }
 
         return result;

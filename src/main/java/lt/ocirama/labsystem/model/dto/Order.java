@@ -17,5 +17,6 @@ public class Order {
     private String test;
     private String sampleType;
     private int orderAmount;
+    private int year;
     private Date date;
 }

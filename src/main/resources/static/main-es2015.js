@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <img\r\n    alt=\"Lei Logo\"\r\n    src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAulBMVEX///8Aru8And8ApugAouSew+Z+uuTr5fEAoN8AneChw+O3yue9zObS2e0And3I0une3e7/+/2uxOVcrNtvsuBds+E9qt98teH88PTw5vEAo9qYv+MApOUAo+AAk9OZv+Pg2unZ4eyLuNzv8PSpu9rG0up5u+V7rNekv+L86ewAndZ7sNiqvtre1+lTq9zq3eqMsdRgo9H+8/DbzOK0yN8EmczP1eKMt+Hu2uDX4PIkqt87oNWvutEAkdMPuM+DAAADoklEQVR4nO3dbVfaMBiA4TatkhYIFJkgfaEUFEQQ2eacuv3/vzVet53a4hPbhESe+/jN2HOdHmht04BhYNIaJGegfH9oDPu+DxvNkZ8MDc89d0GDk/oGnTAbVtQwahFwLFfRyIihGybtDfrMMmGRunFNgGO5Ii2jQqGDb7ZoG7rtutEQgnY40NY5oj/eqaEDkv1+DezgLTpnLE8BZdYbdODkjKZBFjoYt/yMQ6Xr+u4oTKN7k37x/NaFlULb44mfVd93x3YGmtRyTz+30xTauivnvDajKTSLc8fOnQy0fZY7PmZp9L1XCvopSKEP7LlqFpq6HOgLQWjnAJpl7el8dJMIQnd49jRRBZ1+I/K+PBCNaEQjGtGIRjSiEY1oRGuGLnqNeAx0gmhJ6L6tCLq7qFwBu31QZE97S0YpDd+L0umq7e2246O7OwhPx0f3EI3oUtG2MmjbptA5gWimCLo3qlWBue5QFfTX3M1lpQaafqtAaw5UQVvrEyOwqKoImid7oiGa6LinHS3RRz+5vOiI1vFfU285DXvQVLkIMLwuvN2TAsdH85SkJ/R1QOt5hwnRiEY0ohGNaEQjGtGIRjSiEY1ordGKTDNzNVMF3W93oCWXphro7jSwYAXBbr2NAmgt708jGtGfdkKfUOKAWi8MVgPdG1VnLWCTgSpoHSf0w8Ut9Em3q4oqaCvshe8/6bYt+q4ImictJ/S1PE4j+nTQj8xhkMjqx1YEbfyY1UBd12rzsY4XtspcI/JUeLE7ooHpebMG0YhGNKIRjWhEIxrRiEb0aaHPpV5ulfQpblquG3+Sum68XYpZ7mJ38/5ns94sWry4k/nyMMNHRgrGKJO72L3kEP1Z0A6i92ixiyhrQtBE7JTc8+vLZfm9NoSiDcMTkCFwmpktckcUThjaXiZtAXXay2dxaNOCPr3Gmcg3orBEPg4kLCEr9OOpWLSQk0tMBaNFvDziyCz/3bfepMg9PWx/EdJFTyB6dR488LsPttqk9ysUiRbU/haCVuj9HSZEiw7RskK0rBAtK0TLCtGyQrSsEC0rRMsK0bI6UXT+d8kJ6w360NeyZaFXfyk9N33fg81zx84zv0vuIW7WJbae0X9I32Fio3ne8FEW2rQpo0Vn6bkm9CnbL875izbt3AcFdmNT6OP1H/rdEF2kk0FDv5tZWP9mtwDdbA+WvwloLZ6oiLP+9PqIMAdy0Ik6G/SwIfPwnFVjaHh1oOJ6UPYZTlJ/ACImLxKtAzmPAAAAAElFTkSuQmCC\"\r\n  />\r\n  <button mat-button [matMenuTriggerFor]=\"order\">Užsakymai</button>\r\n\r\n  <mat-menu #order=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"order\">Naujas užsakymas</button>\r\n\r\n    <button mat-menu-item routerLink=\"log\">Užsakymų žurnalas</button>\r\n\r\n    <button mat-menu-item routerLink=\"sample\">Mėginių sąrašas</button>\r\n\r\n    <button mat-menu-item routerLink=\"sample-weight\">Mėginių svoris</button>\r\n  </mat-menu>\r\n\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"tests\">Tyrimai</button>\r\n\r\n  <mat-menu #tests=\"matMenu\">\r\n    <button mat-menu-item [matMenuTriggerFor]=\"total\">Visuminė drėgmė</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"general\">Bendroji drėgmė</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"ash\">Peleningumas</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"quality\">Kokybės kontrolė</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #total=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-test\">Pirmas</button>\r\n    <button mat-menu-item>Antras</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #general=\"matMenu\">\r\n    <button mat-menu-item>Insects</button>\r\n\r\n  </mat-menu>\r\n\r\n  <mat-menu #ash=\"matMenu\">\r\n    <button mat-menu-item>Pirmas</button>\r\n    <button mat-menu-item>Antras</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #quality=\"matMenu\">\r\n    <button mat-menu-item>Pirmas</button>\r\n\r\n  </mat-menu>\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"journals\">Pirminių duomenų žurnalai</button>\r\n  <mat-menu #journals=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-journal\">Visuminė drėgmė</button>\r\n    <button mat-menu-item routerLink=\"general-moisture-journal\">Bendroji drėgmė</button>\r\n    <button mat-menu-item routerLink=\"ash-journal\">Peleningumas</button>\r\n\r\n  </mat-menu>\r\n\r\n  <button mat-button routerLink=\"tray\">Padėklų kalibracija</button>\r\n\r\n\r\n</mat-toolbar>\r\n<router-outlet></router-outlet>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <img\r\n    alt=\"Lei Logo\"\r\n    src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAulBMVEX///8Aru8And8ApugAouSew+Z+uuTr5fEAoN8AneChw+O3yue9zObS2e0And3I0une3e7/+/2uxOVcrNtvsuBds+E9qt98teH88PTw5vEAo9qYv+MApOUAo+AAk9OZv+Pg2unZ4eyLuNzv8PSpu9rG0up5u+V7rNekv+L86ewAndZ7sNiqvtre1+lTq9zq3eqMsdRgo9H+8/DbzOK0yN8EmczP1eKMt+Hu2uDX4PIkqt87oNWvutEAkdMPuM+DAAADoklEQVR4nO3dbVfaMBiA4TatkhYIFJkgfaEUFEQQ2eacuv3/vzVet53a4hPbhESe+/jN2HOdHmht04BhYNIaJGegfH9oDPu+DxvNkZ8MDc89d0GDk/oGnTAbVtQwahFwLFfRyIihGybtDfrMMmGRunFNgGO5Ii2jQqGDb7ZoG7rtutEQgnY40NY5oj/eqaEDkv1+DezgLTpnLE8BZdYbdODkjKZBFjoYt/yMQ6Xr+u4oTKN7k37x/NaFlULb44mfVd93x3YGmtRyTz+30xTauivnvDajKTSLc8fOnQy0fZY7PmZp9L1XCvopSKEP7LlqFpq6HOgLQWjnAJpl7el8dJMIQnd49jRRBZ1+I/K+PBCNaEQjGtGIRjSiEY1oRGuGLnqNeAx0gmhJ6L6tCLq7qFwBu31QZE97S0YpDd+L0umq7e2246O7OwhPx0f3EI3oUtG2MmjbptA5gWimCLo3qlWBue5QFfTX3M1lpQaafqtAaw5UQVvrEyOwqKoImid7oiGa6LinHS3RRz+5vOiI1vFfU285DXvQVLkIMLwuvN2TAsdH85SkJ/R1QOt5hwnRiEY0ohGNaEQjGtGIRjSiEY1ordGKTDNzNVMF3W93oCWXphro7jSwYAXBbr2NAmgt708jGtGfdkKfUOKAWi8MVgPdG1VnLWCTgSpoHSf0w8Ut9Em3q4oqaCvshe8/6bYt+q4ImictJ/S1PE4j+nTQj8xhkMjqx1YEbfyY1UBd12rzsY4XtspcI/JUeLE7ooHpebMG0YhGNKIRjWhEIxrRiEb0aaHPpV5ulfQpblquG3+Sum68XYpZ7mJ38/5ns94sWry4k/nyMMNHRgrGKJO72L3kEP1Z0A6i92ixiyhrQtBE7JTc8+vLZfm9NoSiDcMTkCFwmpktckcUThjaXiZtAXXay2dxaNOCPr3Gmcg3orBEPg4kLCEr9OOpWLSQk0tMBaNFvDziyCz/3bfepMg9PWx/EdJFTyB6dR488LsPttqk9ysUiRbU/haCVuj9HSZEiw7RskK0rBAtK0TLCtGyQrSsEC0rRMsK0bI6UXT+d8kJ6w360NeyZaFXfyk9N33fg81zx84zv0vuIW7WJbae0X9I32Fio3ne8FEW2rQpo0Vn6bkm9CnbL875izbt3AcFdmNT6OP1H/rdEF2kk0FDv5tZWP9mtwDdbA+WvwloLZ6oiLP+9PqIMAdy0Ik6G/SwIfPwnFVjaHh1oOJ6UPYZTlJ/ACImLxKtAzmPAAAAAElFTkSuQmCC\"\r\n  />\r\n  <button mat-button [matMenuTriggerFor]=\"order\">Užsakymai</button>\r\n\r\n  <mat-menu #order=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"order\">Naujas užsakymas</button>\r\n\r\n    <button mat-menu-item routerLink=\"log\">Užsakymų žurnalas</button>\r\n\r\n    <button mat-menu-item routerLink=\"sample\">Mėginių sąrašas</button>\r\n\r\n    <button mat-menu-item routerLink=\"sample-weight\">Mėginių svoris</button>\r\n  </mat-menu>\r\n\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"tests\">Tyrimai</button>\r\n\r\n  <mat-menu #tests=\"matMenu\">\r\n    <button mat-menu-item [matMenuTriggerFor]=\"total\">Visuminė drėgmė</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"general\">Bendroji drėgmė</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"ash\">Peleningumas</button>\r\n    <button mat-menu-item [matMenuTriggerFor]=\"quality\">Kokybės kontrolė</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #total=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-test\">Svėrimas prieš džiovinimą</button>\r\n    <button mat-menu-item routerLink=\"total-moisture-test-second\">Svėrimas po džiovinimo</button>\r\n    <button mat-menu-item routerLink=\"reference-tray\">Pamatinis padėklas</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #general=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"general-moisture-test\">Svėrimas prieš džiovinimą</button>\r\n    <button mat-menu-item routerLink=\"general-moisture-test-second\">Svėrimas po džiovinimo</button>\r\n\r\n  </mat-menu>\r\n\r\n  <mat-menu #ash=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"ash-test\">Svėrimas prieš deginimą</button>\r\n    <button mat-menu-item routerLink=\"ash-test-second\">Svėrimas po deginimo</button>\r\n  </mat-menu>\r\n\r\n  <mat-menu #quality=\"matMenu\">\r\n    <button mat-menu-item>Pirmas</button>\r\n\r\n  </mat-menu>\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"journals\">Pirminių duomenų žurnalai</button>\r\n  <mat-menu #journals=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-journal\">Visuminė drėgmė</button>\r\n    <button mat-menu-item routerLink=\"general-moisture-journal\">Bendroji drėgmė</button>\r\n    <button mat-menu-item routerLink=\"ash-journal\">Peleningumas</button>\r\n<a  ></a>\r\n\r\n  </mat-menu>\r\n\r\n  <button mat-button routerLink=\"tray\">Padėklų kalibracija</button>\r\n\r\n\r\n</mat-toolbar>\r\n<router-outlet></router-outlet>\r\n");
 
 /***/ }),
 
@@ -303,43 +303,67 @@ const routes = [
     },
     {
         path: '',
-        loadChildren: () => Promise.all(/*! import() | log-log-module */[__webpack_require__.e("default~log-log-module~order-order-module~tray-tray-module"), __webpack_require__.e("common"), __webpack_require__.e("log-log-module")]).then(__webpack_require__.bind(null, /*! ./log/log.module */ "./src/app/log/log.module.ts")).then(m => m.LogModule)
+        loadChildren: () => Promise.all(/*! import() | log-log-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~a89fe70e")]).then(__webpack_require__.bind(null, /*! ./log/log.module */ "./src/app/log/log.module.ts")).then(m => m.LogModule)
     },
     {
         path: 'sample',
-        loadChildren: () => Promise.all(/*! import() | sample-sample-module */[__webpack_require__.e("common"), __webpack_require__.e("sample-sample-module")]).then(__webpack_require__.bind(null, /*! ./sample/sample.module */ "./src/app/sample/sample.module.ts")).then(m => m.SampleModule)
+        loadChildren: () => Promise.all(/*! import() | sample-sample-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("sample-sample-module")]).then(__webpack_require__.bind(null, /*! ./sample/sample.module */ "./src/app/sample/sample.module.ts")).then(m => m.SampleModule)
     },
     {
         path: 'order',
-        loadChildren: () => Promise.all(/*! import() | order-order-module */[__webpack_require__.e("default~log-log-module~order-order-module~tray-tray-module"), __webpack_require__.e("order-order-module")]).then(__webpack_require__.bind(null, /*! ./order/order.module */ "./src/app/order/order.module.ts")).then(m => m.OrderModule)
+        loadChildren: () => Promise.all(/*! import() | order-order-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("common"), __webpack_require__.e("order-order-module")]).then(__webpack_require__.bind(null, /*! ./order/order.module */ "./src/app/order/order.module.ts")).then(m => m.OrderModule)
     },
     {
         path: 'log',
-        loadChildren: () => Promise.all(/*! import() | log-log-module */[__webpack_require__.e("default~log-log-module~order-order-module~tray-tray-module"), __webpack_require__.e("common"), __webpack_require__.e("log-log-module")]).then(__webpack_require__.bind(null, /*! ./log/log.module */ "./src/app/log/log.module.ts")).then(m => m.LogModule)
+        loadChildren: () => Promise.all(/*! import() | log-log-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~a89fe70e")]).then(__webpack_require__.bind(null, /*! ./log/log.module */ "./src/app/log/log.module.ts")).then(m => m.LogModule)
     },
     {
         path: 'total-moisture-journal',
-        loadChildren: () => __webpack_require__.e(/*! import() | journal-total-moisture-journal-total-moisture-journal-module */ "journal-total-moisture-journal-total-moisture-journal-module").then(__webpack_require__.bind(null, /*! ./journal/total-moisture-journal/total-moisture-journal.module */ "./src/app/journal/total-moisture-journal/total-moisture-journal.module.ts")).then(m => m.TotalMoistureJournalModule)
+        loadChildren: () => Promise.all(/*! import() | journal-total-moisture-journal-total-moisture-journal-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~a89fe70e"), __webpack_require__.e("journal-total-moisture-journal-total-moisture-journal-module")]).then(__webpack_require__.bind(null, /*! ./journal/total-moisture-journal/total-moisture-journal.module */ "./src/app/journal/total-moisture-journal/total-moisture-journal.module.ts")).then(m => m.TotalMoistureJournalModule)
     },
     {
         path: 'general-moisture-journal',
-        loadChildren: () => __webpack_require__.e(/*! import() | journal-general-moisture-journal-general-moisture-journal-module */ "journal-general-moisture-journal-general-moisture-journal-module").then(__webpack_require__.bind(null, /*! ./journal/general-moisture-journal/general-moisture-journal.module */ "./src/app/journal/general-moisture-journal/general-moisture-journal.module.ts")).then(m => m.GeneralMoistureJournalModule)
+        loadChildren: () => Promise.all(/*! import() | journal-general-moisture-journal-general-moisture-journal-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~a89fe70e"), __webpack_require__.e("journal-general-moisture-journal-general-moisture-journal-module")]).then(__webpack_require__.bind(null, /*! ./journal/general-moisture-journal/general-moisture-journal.module */ "./src/app/journal/general-moisture-journal/general-moisture-journal.module.ts")).then(m => m.GeneralMoistureJournalModule)
     },
     {
         path: 'sample-weight',
-        loadChildren: () => Promise.all(/*! import() | sample-sample-weight-sample-weight-module */[__webpack_require__.e("common"), __webpack_require__.e("sample-sample-weight-sample-weight-module")]).then(__webpack_require__.bind(null, /*! ./sample/sample-weight/sample-weight.module */ "./src/app/sample/sample-weight/sample-weight.module.ts")).then(m => m.SampleWeightModule)
+        loadChildren: () => Promise.all(/*! import() | sample-sample-weight-sample-weight-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("common"), __webpack_require__.e("sample-sample-weight-sample-weight-module")]).then(__webpack_require__.bind(null, /*! ./sample/sample-weight/sample-weight.module */ "./src/app/sample/sample-weight/sample-weight.module.ts")).then(m => m.SampleWeightModule)
     },
     {
         path: 'ash-journal',
-        loadChildren: () => __webpack_require__.e(/*! import() | journal-ash-journal-ash-journal-module */ "journal-ash-journal-ash-journal-module").then(__webpack_require__.bind(null, /*! ./journal/ash-journal/ash-journal.module */ "./src/app/journal/ash-journal/ash-journal.module.ts")).then(m => m.AshJournalModule)
+        loadChildren: () => Promise.all(/*! import() | journal-ash-journal-ash-journal-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~a89fe70e"), __webpack_require__.e("journal-ash-journal-ash-journal-module")]).then(__webpack_require__.bind(null, /*! ./journal/ash-journal/ash-journal.module */ "./src/app/journal/ash-journal/ash-journal.module.ts")).then(m => m.AshJournalModule)
     },
     {
         path: 'total-moisture-test',
-        loadChildren: () => __webpack_require__.e(/*! import() | tests-total-moisture-test-total-moisture-test-module */ "tests-total-moisture-test-total-moisture-test-module").then(__webpack_require__.bind(null, /*! ./tests/total-moisture-test/total-moisture-test.module */ "./src/app/tests/total-moisture-test/total-moisture-test.module.ts")).then(m => m.TotalMoistureTestModule)
+        loadChildren: () => Promise.all(/*! import() | tests-total-moisture-test-total-moisture-test-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-total-moisture-test-total-moisture-test-module")]).then(__webpack_require__.bind(null, /*! ./tests/total-moisture-test/total-moisture-test.module */ "./src/app/tests/total-moisture-test/total-moisture-test.module.ts")).then(m => m.TotalMoistureTestModule)
+    },
+    {
+        path: 'total-moisture-test-second',
+        loadChildren: () => Promise.all(/*! import() | tests-total-moisture-test-second-total-moisture-test-second-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-total-moisture-test-second-total-moisture-test-second-module")]).then(__webpack_require__.bind(null, /*! ./tests/total-moisture-test-second/total-moisture-test-second.module */ "./src/app/tests/total-moisture-test-second/total-moisture-test-second.module.ts")).then(m => m.TotalMoistureTestSecondModule)
+    },
+    {
+        path: 'ash-test',
+        loadChildren: () => Promise.all(/*! import() | tests-ash-ash-test-ash-test-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-ash-ash-test-ash-test-module")]).then(__webpack_require__.bind(null, /*! ./tests/ash/ash-test/ash-test.module */ "./src/app/tests/ash/ash-test/ash-test.module.ts")).then(m => m.AshTestModule)
+    },
+    {
+        path: 'ash-test-second',
+        loadChildren: () => Promise.all(/*! import() | tests-ash-ash-test-second-ash-test-second-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-ash-ash-test-second-ash-test-second-module")]).then(__webpack_require__.bind(null, /*! ./tests/ash/ash-test-second/ash-test-second.module */ "./src/app/tests/ash/ash-test-second/ash-test-second.module.ts")).then(m => m.AshTestSecondModule)
+    },
+    {
+        path: 'general-moisture-test',
+        loadChildren: () => Promise.all(/*! import() | tests-general-moisture-general-moisture-test-general-moisture-test-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-general-moisture-general-moisture-test-general-moisture-test-module")]).then(__webpack_require__.bind(null, /*! ./tests/general-moisture/general-moisture-test/general-moisture-test.module */ "./src/app/tests/general-moisture/general-moisture-test/general-moisture-test.module.ts")).then(m => m.GeneralMoistureTestModule)
+    },
+    {
+        path: 'general-moisture-test-second',
+        loadChildren: () => Promise.all(/*! import() | tests-general-moisture-general-moisture-test-second-general-moisture-test-second-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-general-moisture-general-moisture-test-second-general-moisture-test-second-module")]).then(__webpack_require__.bind(null, /*! ./tests/general-moisture/general-moisture-test-second/general-moisture-test-second.module */ "./src/app/tests/general-moisture/general-moisture-test-second/general-moisture-test-second.module.ts")).then(m => m.GeneralMoistureTestSecondModule)
+    },
+    {
+        path: 'reference-tray',
+        loadChildren: () => Promise.all(/*! import() | tests-reference-tray-reference-tray-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("tests-reference-tray-reference-tray-module")]).then(__webpack_require__.bind(null, /*! ./tests/reference-tray/reference-tray.module */ "./src/app/tests/reference-tray/reference-tray.module.ts")).then(m => m.ReferenceTrayModule)
     },
     {
         path: 'tray',
-        loadChildren: () => Promise.all(/*! import() | tray-tray-module */[__webpack_require__.e("default~log-log-module~order-order-module~tray-tray-module"), __webpack_require__.e("common"), __webpack_require__.e("tray-tray-module")]).then(__webpack_require__.bind(null, /*! ./tray/tray.module */ "./src/app/tray/tray.module.ts")).then(m => m.TrayModule)
+        loadChildren: () => Promise.all(/*! import() | tray-tray-module */[__webpack_require__.e("default~journal-ash-journal-ash-journal-module~journal-general-moisture-journal-general-moisture-jou~47dd1b8b"), __webpack_require__.e("common"), __webpack_require__.e("tray-tray-module")]).then(__webpack_require__.bind(null, /*! ./tray/tray.module */ "./src/app/tray/tray.module.ts")).then(m => m.TrayModule)
     },
     { path: '**', redirectTo: '' }
 ];
@@ -347,7 +371,7 @@ let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { useHash: true })],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
     })
 ], AppRoutingModule);
@@ -420,6 +444,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _auth_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./auth/login/login.component */ "./src/app/auth/login/login.component.ts");
+/* harmony import */ var mat_table_exporter__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! mat-table-exporter */ "./node_modules/mat-table-exporter/fesm2015/mat-table-exporter.js");
+/* harmony import */ var _shared_MatPaginatorIntlCro__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/MatPaginatorIntlCro */ "./src/app/shared/MatPaginatorIntlCro.ts");
+
+
 
 
 
@@ -454,8 +482,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatIconModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
+            mat_table_exporter__WEBPACK_IMPORTED_MODULE_10__["MatTableExporterModule"]
         ],
-        providers: [],
+        providers: [{ provide: _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorIntl"], useClass: _shared_MatPaginatorIntlCro__WEBPACK_IMPORTED_MODULE_11__["MatPaginatorIntlCro"] }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
     })
 ], AppModule);
@@ -603,7 +632,7 @@ __webpack_require__.r(__webpack_exports__);
 let ApiService = class ApiService {
     constructor(http) {
         this.http = http;
-        this.urlPrefix = 'http://192.168.1.84:8080';
+        this.urlPrefix = '';
     }
     get(url) {
         return this.http.get(this.urlPrefix + url, this.getRequestOptions());
@@ -634,6 +663,45 @@ ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], ApiService);
 
+
+
+/***/ }),
+
+/***/ "./src/app/shared/MatPaginatorIntlCro.ts":
+/*!***********************************************!*\
+  !*** ./src/app/shared/MatPaginatorIntlCro.ts ***!
+  \***********************************************/
+/*! exports provided: MatPaginatorIntlCro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatPaginatorIntlCro", function() { return MatPaginatorIntlCro; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+
+
+class MatPaginatorIntlCro extends _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginatorIntl"] {
+    constructor() {
+        super(...arguments);
+        this.itemsPerPageLabel = 'Įrašų kiekis per puslapį';
+        this.nextPageLabel = 'Sekantis puslapis';
+        this.previousPageLabel = 'Buvęs puslapis';
+        // tslint:disable-next-line:only-arrow-functions
+        this.getRangeLabel = function (page, pageSize, length) {
+            if (length === 0 || pageSize === 0) {
+                return '0 iš ' + length;
+            }
+            length = Math.max(length, 0);
+            const startIndex = page * pageSize;
+            // If the start index exceeds the list length, do not try and fix the end index to the end.
+            const endIndex = startIndex < length ?
+                Math.min(startIndex + pageSize, length) :
+                startIndex + pageSize;
+            return startIndex + 1 + ' - ' + endIndex + ' iš ' + length;
+        };
+    }
+}
 
 
 /***/ }),
@@ -708,6 +776,39 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformB
 
 module.exports = __webpack_require__(/*! C:\Users\lei12\IdeaProjects\lab-system\lab-system-fe\src\main.ts */"./src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/*!************************!*\
+  !*** stream (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

@@ -21,8 +21,7 @@ public class OrderService {
         this.orderEntityConverter = orderEntityConverter;
         this.orderRepository = orderRepository;
     }
-
-
+    
     public List<Order> getAll() {
         List<OrderEntity> orders = orderRepository.findAll();
 

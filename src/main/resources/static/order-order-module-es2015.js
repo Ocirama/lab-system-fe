@@ -463,7 +463,7 @@ NgMultiSelectDropDownModule = NgMultiSelectDropDownModule_1 = Object(tslib__WEBP
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n  <div [hidden]=\"submitted\">\r\n    <h1>Užsakymo forma</h1>\r\n\r\n    <form (ngSubmit)=\"onSubmit(); onSubmit2()\" #orderForm=\"ngForm\" novalidate id=\"orderForm\">\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"protocolId\">Protokolas</label>\r\n        <input\r\n          (ngModelChange)=\"protocolChange($event)\"\r\n          [(ngModel)]=\"orders.protocolId\"\r\n          required\r\n          pattern=\"^[0-9]*$\"\r\n          name=\"protocolId\"\r\n          #protocol=\"ngModel\"\r\n          id=\"protocolId\"\r\n          class=\"form-control\"\r\n          tabIndex=\"1\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"protocol.touched && !protocol.valid\">\r\n          <small\r\n            *ngIf=\"protocol.errors.required\">\r\n            Įveskite užsakymo numerį\r\n          </small>\r\n          <div\r\n            *ngIf=\"protocol.errors.maxlength\">\r\n            Max {{protocol.errors.maxlength.requiredLength}} chars allowed\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <label for=\"customer\"> Užsakovas </label>\r\n        <input [(ngModel)]=\"orders.customer\" name=\"customer\" type=\"text\" class=\"form-control\" id=\"customer\"\r\n               #customer=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup\">\r\n\r\n        <mat-autocomplete #autoGroup=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of customerGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              {{name}}\r\n              <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete(name)\">\r\n                <mat-icon>delete</mat-icon>\r\n              </button>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"openDialog()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują užsakovą</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"customer.touched && !customer.valid\">\r\n          <small\r\n            *ngIf=\"customer.errors.required\">\r\n            Įveskite užsakovą\r\n          </small>\r\n        </div>\r\n        <div>\r\n          <label>Tyrimai</label>\r\n        <ng-multiselect-dropdown\r\n          name=\"tests\"\r\n          #tests=\"ngModel\"\r\n          id=\"tests\"\r\n          [placeholder]=\"'-'\"\r\n          [data]=\"dropdownList\"\r\n          [(ngModel)]=\"selectedItems\"\r\n          [settings]=\"dropdownSettings\"\r\n          (onDropDownClose)=\"onDropDownClose(selectedItems)\"\r\n        >\r\n        </ng-multiselect-dropdown>\r\n        </div>\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"tests.touched && !tests.valid\">\r\n          <small\r\n            *ngIf=\"tests.errors.required\">\r\n            Įveskite daromus tyrimus\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"orderType\"> Kuro rūšis </label>\r\n        <br>\r\n        <select (blur)=\"validateType(sampleTypeS.value)\" (change)=\"validateType(sampleTypeS.value)\"\r\n                #sampleTypeS=\"ngModel\"\r\n                [(ngModel)]=\"orders.sampleType\" name=\"sampleType\" class=\"form-control\" required id=\"orderType\">\r\n\r\n          <option *ngFor=\"let sampleType of sampleTypes\">{{sampleType}}\r\n          </option>\r\n        </select>\r\n        <small class=\"text-danger\" *ngIf=\"sampleTypeS.touched &&!sampleTypeS.valid\">Pasirinkitę kuro rūšį</small>\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"sampleAmount\"> Kiekis </label>\r\n        <input\r\n          (focusout)=\"toggleChild();childFunction(orders)\"\r\n          required\r\n          [(ngModel)]=\"orders.orderAmount\"\r\n          name=\"orderAmount\"\r\n          #sampleAmount=\"ngModel\"\r\n          pattern=\"^[0-9]*$\"\r\n          class=\"form-control\"\r\n          id=\"sampleAmount\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"sampleAmount.touched && !sampleAmount.valid\">\r\n          <small\r\n            *ngIf=\"sampleAmount.errors.required\">\r\n            Įveskite mėginių kiekį\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n      <button mat-button [disabled]=\"orderForm.form.invalid || typeHasError\" type=\"submit\" class=\"btn btn-primary\"\r\n              (click)=\"swalOrderRegister()\">\r\n        Registruoti\r\n      </button>\r\n\r\n      <button mat-button type=\"button\" class=\" btn btn-secondary\" (click)=\"clear()\">Valyti</button>\r\n\r\n      <ol class=\"form-group\">\r\n        <label *ngIf=\"showVar\"> Mėginių sąrašas </label>\r\n\r\n        <li *ngFor=\"let sample of sampleList; let i= index\">\r\n          <td>\r\n            <input type=\"text\" name=\"sampleId-{{i}}\" [(ngModel)]=\"sampleList[i].sampleId\" #ft01=\"ngModel\"\r\n                   class=\"form-control\" #samplesS=\"ngModel\" required\r\n            ></td>\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"samplesS.touched && !samplesS.valid\">\r\n            <small\r\n              *ngIf=\"samplesS.errors.required\">\r\n              Įveskite mėginio ID\r\n            </small>\r\n          </div>\r\n      </ol>\r\n\r\n    </form>\r\n  </div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div   class=\"container-fluid\">\r\n  <div [hidden]=\"submitted\">\r\n    <h1>Užsakymo forma</h1>\r\n\r\n    <form (ngSubmit)=\"onSubmit(); onSubmit2()\" #orderForm=\"ngForm\" novalidate id=\"orderForm\">\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"protocolId\">Protokolas</label>\r\n        <input\r\n          (ngModelChange)=\"protocolChange($event)\"\r\n          [(ngModel)]=\"orders.protocolId\"\r\n          required\r\n          pattern=\"^[0-9]*$\"\r\n          name=\"protocolId\"\r\n          #protocol=\"ngModel\"\r\n          id=\"protocolId\"\r\n          class=\"form-control\"\r\n          tabIndex=\"1\"\r\n        >\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"protocol.touched && !protocol.valid\">\r\n          <small\r\n            *ngIf=\"protocol.errors.required\">\r\n            Įveskite užsakymo numerį\r\n          </small>\r\n          <div\r\n            *ngIf=\"protocol.errors.maxlength\">\r\n            Max {{protocol.errors.maxlength.requiredLength}} chars allowed\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <label for=\"customer\"> Užsakovas </label>\r\n        <input (click)=\"this.getCustomers();\" [(ngModel)]=\"orders.customer\" name=\"customer\" type=\"text\" class=\"form-control\" id=\"customer\"\r\n               #customer=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup\">\r\n\r\n        <mat-autocomplete #autoGroup=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of customerGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              <div class=\"aParent\">\r\n                <div>\r\n                  {{name}}\r\n                </div>\r\n                <div>\r\n                  <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete(name)\">\r\n                    <mat-icon>delete</mat-icon>\r\n                  </button>\r\n                </div>\r\n              </div>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"addCustomer()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują užsakovą</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"customer.touched && !customer.valid\">\r\n          <small\r\n            *ngIf=\"customer.errors.required\">\r\n            Įveskite užsakovą\r\n          </small>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label for=\"sampleAmount\"> Kiekis </label>\r\n          <input\r\n            (focusout)=\"toggleChild();childFunction(orders)\"\r\n            required\r\n            [(ngModel)]=\"orders.orderAmount\"\r\n            name=\"orderAmount\"\r\n            #sampleAmount=\"ngModel\"\r\n            pattern=\"^[0-9]*$\"\r\n            class=\"form-control\"\r\n            id=\"sampleAmount\"\r\n          >\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"sampleAmount.touched && !sampleAmount.valid\">\r\n            <small\r\n              *ngIf=\"sampleAmount.errors.required\">\r\n              Įveskite mėginių kiekį\r\n            </small>\r\n          </div>\r\n        </div>\r\n\r\n        <div >\r\n          <label>Tyrimai</label>\r\n        <ng-multiselect-dropdown\r\n          name=\"tests\"\r\n          #tests=\"ngModel\"\r\n          id=\"tests\"\r\n          [placeholder]=\"'-'\"\r\n          [data]=\"dropdownList\"\r\n          [(ngModel)]=\"selectedItems\"\r\n          [settings]=\"dropdownSettings\"\r\n          (onDropDownClose)=\"onDropDownClose(selectedItems)\"\r\n        >\r\n        </ng-multiselect-dropdown>\r\n        </div>\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"tests.touched && !tests.valid\">\r\n          <small\r\n            *ngIf=\"tests.errors.required\">\r\n            Įveskite daromus tyrimus\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"sampleType\"> Kuro rūšis </label>\r\n        <input (click)=\"this.getSampleTypes()\" [(ngModel)]=\"orders.sampleType\" name=\"sampleType\" type=\"text\" class=\"form-control\" id=\"sampleType\"\r\n               #sampleType=\"ngModel\"\r\n               required\r\n               [matAutocomplete]=\"autoGroup2\">\r\n\r\n        <mat-autocomplete #autoGroup2=\"matAutocomplete\">\r\n          <mat-optgroup *ngFor=\"let group of sampleTypeGroupOptions | async\" [label]=\"group.letter\">\r\n            <mat-option *ngFor=\"let name of group.names\" [value]=\"name\">\r\n              <div class=\"aParent\">\r\n                <div>\r\n                  {{name}}\r\n                </div>\r\n                <div>\r\n                  <button type=\"button\" mat-raised-button color=\"primary\" (click)=\"swalCustomerDelete();delete2(name)\">\r\n                    <mat-icon>delete</mat-icon>\r\n                  </button>\r\n                </div>\r\n              </div>\r\n            </mat-option>\r\n          </mat-optgroup>\r\n          <button mat-menu-item (click)=\"openDialog2()\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Pridėti naują rūšį</span>\r\n          </button>\r\n        </mat-autocomplete>\r\n\r\n        <div\r\n          class=\"alert alert-danger\"\r\n          *ngIf=\"sampleType.touched && !sampleType.valid\">\r\n          <small\r\n            *ngIf=\"sampleType.errors.required\">\r\n            Įveskite kuro rūšį\r\n          </small>\r\n        </div>\r\n      </div>\r\n\r\n      <button mat-button [disabled]=\"orderForm.form.invalid\" type=\"submit\" class=\"btn btn-primary\"\r\n              (click)=\"swalOrderRegister()\">\r\n        Registruoti\r\n      </button>\r\n\r\n      <button mat-button type=\"button\" class=\" btn btn-secondary\" (click)=\"clear()\">Valyti</button>\r\n\r\n      <ol class=\"form-group\">\r\n        <label *ngIf=\"showVar\"> Mėginių sąrašas </label>\r\n\r\n        <li  *ngFor=\"let sample of sampleList; let i= index\">\r\n          <td>\r\n            <input   tabIndex=\"{{i+1}}\"  type=\"text\" name=\"sampleId-{{i}}\" [(ngModel)]=\"sample.sampleId\" #ft01=\"ngModel\"\r\n                   class=\"form-control\" #samplesS=\"ngModel\" required\r\n            ></td>\r\n          <div\r\n            class=\"alert alert-danger\"\r\n            *ngIf=\"samplesS.touched && !samplesS.valid\">\r\n            <small\r\n              *ngIf=\"samplesS.errors.required\">\r\n              Įveskite mėginio ID\r\n            </small>\r\n          </div>\r\n      </ol>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -476,7 +476,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Užsakovas\" [(ngModel)]=\"data.title\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Cancel</button>\r\n  <button mat-button [mat-dialog-close]=\"data\">Save</button>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Užsakovas\" [(ngModel)]=\"data.title\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Cancel</button>\r\n  <button mat-button (click)=\"success()\" [mat-dialog-close]=\"data\">Save</button>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -589,6 +589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 const DropdownList = [
+    { item_id: 0, item_text: 'Miksas' },
     { item_id: 1, item_text: 'Drėgmė' },
     { item_id: 2, item_text: 'Pelenai' },
     { item_id: 3, item_text: 'Šilumingumas' },
@@ -605,38 +606,125 @@ const DropdownList = [
     { item_id: 14, item_text: 'LOJ' },
     { item_id: 15, item_text: 'Org. C' },
     { item_id: 16, item_text: 'P' },
-    { item_id: 17, item_text: 'As' },
-    { item_id: 18, item_text: 'Be' },
-    { item_id: 19, item_text: 'Ca' },
-    { item_id: 20, item_text: 'Cd' },
-    { item_id: 21, item_text: 'Co' },
-    { item_id: 22, item_text: 'Cr' },
-    { item_id: 23, item_text: 'Cu' },
-    { item_id: 24, item_text: 'Fe' },
-    { item_id: 25, item_text: 'Li' },
-    { item_id: 26, item_text: 'Mg' },
-    { item_id: 27, item_text: 'Mn' },
-    { item_id: 28, item_text: 'Mo' },
-    { item_id: 29, item_text: 'Ni' },
-    { item_id: 30, item_text: 'Pb' },
-    { item_id: 31, item_text: 'Sb' },
-    { item_id: 32, item_text: 'Se' },
-    { item_id: 33, item_text: 'Sr' },
-    { item_id: 34, item_text: 'Ti' },
-    { item_id: 35, item_text: 'Tl' },
-    { item_id: 36, item_text: 'V' },
-    { item_id: 37, item_text: 'Zn' },
-    { item_id: 38, item_text: 'K' },
-    { item_id: 39, item_text: 'Si' },
-    { item_id: 40, item_text: 'Al' },
-    { item_id: 41, item_text: 'B' },
-    { item_id: 42, item_text: 'Ba' },
-    { item_id: 43, item_text: 'Na' },
-    { item_id: 44, item_text: 'Ag' },
-    { item_id: 45, item_text: 'Fiksuota C' },
-    { item_id: 46, item_text: 'Hg' },
-    { item_id: 47, item_text: 'Benzapirenas' },
+    { item_id: 17, item_text: 'Cl' },
+    { item_id: 18, item_text: 'F' },
+    { item_id: 19, item_text: 'Br' },
+    { item_id: 20, item_text: 'As' },
+    { item_id: 21, item_text: 'Be' },
+    { item_id: 22, item_text: 'Ca' },
+    { item_id: 23, item_text: 'Cd' },
+    { item_id: 24, item_text: 'Co' },
+    { item_id: 25, item_text: 'Cr' },
+    { item_id: 26, item_text: 'Cu' },
+    { item_id: 27, item_text: 'Fe' },
+    { item_id: 28, item_text: 'Li' },
+    { item_id: 29, item_text: 'Mg' },
+    { item_id: 30, item_text: 'Mn' },
+    { item_id: 31, item_text: 'Mo' },
+    { item_id: 32, item_text: 'Ni' },
+    { item_id: 33, item_text: 'Pb' },
+    { item_id: 34, item_text: 'Sb' },
+    { item_id: 35, item_text: 'Se' },
+    { item_id: 36, item_text: 'Sr' },
+    { item_id: 37, item_text: 'Ti' },
+    { item_id: 38, item_text: 'Tl' },
+    { item_id: 39, item_text: 'V' },
+    { item_id: 40, item_text: 'Zn' },
+    { item_id: 41, item_text: 'K' },
+    { item_id: 42, item_text: 'Si' },
+    { item_id: 43, item_text: 'Al' },
+    { item_id: 44, item_text: 'B' },
+    { item_id: 45, item_text: 'Ba' },
+    { item_id: 46, item_text: 'Na' },
+    { item_id: 47, item_text: 'Ag' },
+    { item_id: 48, item_text: 'Fiksuota C' },
+    { item_id: 49, item_text: 'Hg' },
+    { item_id: 50, item_text: 'Benzapirenas' },
+    { item_id: 51, item_text: 'Radiacija' },
 ];
+
+
+/***/ }),
+
+/***/ "./src/app/order/form/SampleType.ts":
+/*!******************************************!*\
+  !*** ./src/app/order/form/SampleType.ts ***!
+  \******************************************/
+/*! exports provided: sampleTypeGroups */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sampleTypeGroups", function() { return sampleTypeGroups; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+let sampleTypeGroups = [{
+        letter: 'A',
+        names: []
+    }, {
+        letter: 'B',
+        names: []
+    }, {
+        letter: 'C',
+        names: []
+    }, {
+        letter: 'D',
+        names: ['']
+    }, {
+        letter: 'E',
+        names: []
+    }, {
+        letter: 'F',
+        names: []
+    }, {
+        letter: 'G',
+        names: []
+    }, {
+        letter: 'H',
+        names: []
+    }, {
+        letter: 'I',
+        names: []
+    }, {
+        letter: 'J',
+        names: []
+    }, {
+        letter: 'K',
+        names: []
+    }, {
+        letter: 'L',
+        names: []
+    }, {
+        letter: 'M',
+        names: []
+    }, {
+        letter: 'N',
+        names: []
+    }, {
+        letter: 'O',
+        names: []
+    }, {
+        letter: 'P',
+        names: []
+    }, {
+        letter: 'R',
+        names: []
+    }, {
+        letter: 'S',
+        names: []
+    }, {
+        letter: 'Š',
+        names: []
+    }, {
+        letter: 'T',
+        names: []
+    }, {
+        letter: 'U',
+        names: []
+    }, {
+        letter: 'V',
+        names: []
+    }];
 
 
 /***/ }),
@@ -650,7 +738,7 @@ const DropdownList = [
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\r\n\r\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\r\nh1 {\r\n  text-align: center;\r\n}\r\n.example-form {\r\n  min-width: 150px;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n\r\n}\r\n.example-full-width {\r\n  width: 100%;\r\n padding-bottom: 50px;\r\n}\r\ntd {\r\n  padding-right: 8px;\r\n}\r\nh3 {\r\n  text-align: center;\r\n}\r\ndiv{\r\n\r\n}\r\n.example-margin{\r\nmargin-right: 50px;\r\n}\r\n.form-control.ng-touched.ng-invalid{\r\n  border:2px solid red;\r\n}\r\n.container-fluid{\r\n  width: 600px;\r\n}\r\nol{\r\n  font-size: 25px;\r\n}\r\n.mat-raised-button {\r\n\r\n  position: absolute;\r\n  right: 0px;\r\n  width: 5px;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXIvZm9ybS9mb3JtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSwyRUFBMkU7QUFDM0U7RUFDRSxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixpQkFBaUI7RUFDakIsV0FBVztFQUNYLGNBQWM7O0FBRWhCO0FBRUE7RUFDRSxXQUFXO0NBQ1osb0JBQW9CO0FBQ3JCO0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBOztBQUVBO0FBQ0E7QUFDQSxrQkFBa0I7QUFDbEI7QUFDQTtFQUNFLG9CQUFvQjtBQUN0QjtBQUNBO0VBQ0UsWUFBWTtBQUNkO0FBQ0E7RUFDRSxlQUFlO0FBQ2pCO0FBQ0E7O0VBRUUsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixVQUFVO0FBQ1oiLCJmaWxlIjoic3JjL2FwcC9vcmRlci9mb3JtL2Zvcm0uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuQGltcG9ydCB1cmwoJ2h0dHBzOi8vdW5wa2cuY29tL2Jvb3RzdHJhcEAzLjMuNy9kaXN0L2Nzcy9ib290c3RyYXAubWluLmNzcycpO1xyXG5oMSB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5leGFtcGxlLWZvcm0ge1xyXG4gIG1pbi13aWR0aDogMTUwcHg7XHJcbiAgbWF4LXdpZHRoOiAxMDAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcblxyXG59XHJcblxyXG4uZXhhbXBsZS1mdWxsLXdpZHRoIHtcclxuICB3aWR0aDogMTAwJTtcclxuIHBhZGRpbmctYm90dG9tOiA1MHB4O1xyXG59XHJcblxyXG50ZCB7XHJcbiAgcGFkZGluZy1yaWdodDogOHB4O1xyXG59XHJcbmgzIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuZGl2e1xyXG5cclxufVxyXG4uZXhhbXBsZS1tYXJnaW57XHJcbm1hcmdpbi1yaWdodDogNTBweDtcclxufVxyXG4uZm9ybS1jb250cm9sLm5nLXRvdWNoZWQubmctaW52YWxpZHtcclxuICBib3JkZXI6MnB4IHNvbGlkIHJlZDtcclxufVxyXG4uY29udGFpbmVyLWZsdWlke1xyXG4gIHdpZHRoOiA2MDBweDtcclxufVxyXG5vbHtcclxuICBmb250LXNpemU6IDI1cHg7XHJcbn1cclxuLm1hdC1yYWlzZWQtYnV0dG9uIHtcclxuXHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwcHg7XHJcbiAgd2lkdGg6IDVweDtcclxufVxyXG5cclxuXHJcbiJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n\r\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\r\nh1 {\r\n  text-align: center;\r\n  border-color: #3f51b5;\r\n  border-style: none none double none;\r\n}\r\n.example-form {\r\n  min-width: 150px;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n\r\n}\r\n.example-h2 {\r\n  margin: 10px;\r\n}\r\n.example-section {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  align-content: center;\r\n  -webkit-box-align: center;\r\n          align-items: center;\r\n  height: 60px;\r\n}\r\n.example-margin {\r\n  margin: 10px;\r\n}\r\n.example-full-width {\r\n  width: 100%;\r\n padding-bottom: 50px;\r\n}\r\ntd {\r\n  padding-right: 8px;\r\n}\r\nh3 {\r\n  text-align: center;\r\n}\r\ndiv{\r\n\r\n}\r\n.example-margin{\r\nmargin-right: 50px;\r\n}\r\n.form-control.ng-touched.ng-invalid{\r\n  border:2px solid red;\r\n}\r\n.container-fluid{\r\n  width: 600px;\r\n  border-color: #3f51b5;\r\n  border-style: none none double none;\r\n}\r\nol{\r\n  font-size: 25px;\r\n}\r\n.mat-raised-button {\r\n\r\n  position: absolute;\r\n  right: 0px;\r\n  width: 5px;\r\n}\r\n.aParent div {\r\n  float: left;\r\n  clear: none;\r\n}\r\nlabel{\r\n  font-size: 20px;\r\n\r\n}\r\n\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXIvZm9ybS9mb3JtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSwyRUFBMkU7QUFDM0U7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLG1DQUFtQztBQUNyQztBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGlCQUFpQjtFQUNqQixXQUFXO0VBQ1gsY0FBYzs7QUFFaEI7QUFDQTtFQUNFLFlBQVk7QUFDZDtBQUVBO0VBQ0Usb0JBQWE7RUFBYixhQUFhO0VBQ2IscUJBQXFCO0VBQ3JCLHlCQUFtQjtVQUFuQixtQkFBbUI7RUFDbkIsWUFBWTtBQUNkO0FBRUE7RUFDRSxZQUFZO0FBQ2Q7QUFFQTtFQUNFLFdBQVc7Q0FDWixvQkFBb0I7QUFDckI7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0FBQ3BCO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLGtCQUFrQjtBQUNsQjtBQUNBO0VBQ0Usb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxZQUFZO0VBQ1oscUJBQXFCO0VBQ3JCLG1DQUFtQztBQUNyQztBQUNBO0VBQ0UsZUFBZTtBQUNqQjtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsVUFBVTtBQUNaO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsV0FBVztBQUNiO0FBQ0E7RUFDRSxlQUFlOztBQUVqQiIsImZpbGUiOiJzcmMvYXBwL29yZGVyL2Zvcm0vZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly91bnBrZy5jb20vYm9vdHN0cmFwQDMuMy43L2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzJyk7XHJcbmgxIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYm9yZGVyLWNvbG9yOiAjM2Y1MWI1O1xyXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdWJsZSBub25lO1xyXG59XHJcbi5leGFtcGxlLWZvcm0ge1xyXG4gIG1pbi13aWR0aDogMTUwcHg7XHJcbiAgbWF4LXdpZHRoOiAxMDAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcblxyXG59XHJcbi5leGFtcGxlLWgyIHtcclxuICBtYXJnaW46IDEwcHg7XHJcbn1cclxuXHJcbi5leGFtcGxlLXNlY3Rpb24ge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgaGVpZ2h0OiA2MHB4O1xyXG59XHJcblxyXG4uZXhhbXBsZS1tYXJnaW4ge1xyXG4gIG1hcmdpbjogMTBweDtcclxufVxyXG5cclxuLmV4YW1wbGUtZnVsbC13aWR0aCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiBwYWRkaW5nLWJvdHRvbTogNTBweDtcclxufVxyXG5cclxudGQge1xyXG4gIHBhZGRpbmctcmlnaHQ6IDhweDtcclxufVxyXG5oMyB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbmRpdntcclxuXHJcbn1cclxuLmV4YW1wbGUtbWFyZ2lue1xyXG5tYXJnaW4tcmlnaHQ6IDUwcHg7XHJcbn1cclxuLmZvcm0tY29udHJvbC5uZy10b3VjaGVkLm5nLWludmFsaWR7XHJcbiAgYm9yZGVyOjJweCBzb2xpZCByZWQ7XHJcbn1cclxuLmNvbnRhaW5lci1mbHVpZHtcclxuICB3aWR0aDogNjAwcHg7XHJcbiAgYm9yZGVyLWNvbG9yOiAjM2Y1MWI1O1xyXG4gIGJvcmRlci1zdHlsZTogbm9uZSBub25lIGRvdWJsZSBub25lO1xyXG59XHJcbm9se1xyXG4gIGZvbnQtc2l6ZTogMjVweDtcclxufVxyXG4ubWF0LXJhaXNlZC1idXR0b24ge1xyXG5cclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcmlnaHQ6IDBweDtcclxuICB3aWR0aDogNXB4O1xyXG59XHJcbi5hUGFyZW50IGRpdiB7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgY2xlYXI6IG5vbmU7XHJcbn1cclxubGFiZWx7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG5cclxufVxyXG5cclxuXHJcblxyXG4iXX0= */");
 
 /***/ }),
 
@@ -677,6 +765,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
 /* harmony import */ var _modal_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../modal/modal.component */ "./src/app/order/modal/modal.component.ts");
 /* harmony import */ var sweetalert2_src_sweetalert2_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! sweetalert2/src/sweetalert2.scss */ "./node_modules/sweetalert2/src/sweetalert2.scss");
+/* harmony import */ var _tab_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../tab.service */ "./src/app/tab.service.ts");
+/* harmony import */ var _SampleType__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./SampleType */ "./src/app/order/form/SampleType.ts");
+
+
 
 
 
@@ -695,16 +787,21 @@ const _filter = (opt, value) => {
 };
 let FormComponent = class FormComponent {
     // tslint:disable-next-line:variable-name
-    constructor(_formBuilder, api, dialog) {
+    constructor(_formBuilder, 
+    // tslint:disable-next-line:variable-name
+    _formBuilder2, api, dialog) {
         this._formBuilder = _formBuilder;
+        this._formBuilder2 = _formBuilder2;
         this.api = api;
         this.dialog = dialog;
-        this.sampleTypes = ['Skiedros', 'Granulės', 'Atliekos', 'Ligninas', 'Briketai'];
+        this.color = 'accent';
+        this.checked = false;
+        this.disabled = false;
         this.orders = {};
         this.samples = {};
-        this.typeHasError = true;
+        this.typeHasError = false;
         this.customers = [];
-        this.SampleArray = [];
+        this.sampleTypes = [];
         this.sampleList = [];
         this.showVar = false;
         this.dropdownList = Array();
@@ -713,28 +810,15 @@ let FormComponent = class FormComponent {
         this.customerForm = this._formBuilder.group({
             customerGroup: '',
         });
+        this.sampleTypeForm = this._formBuilder2.group({
+            sampleTypeGroup: '',
+        });
         this.submitted = false;
     }
     ngOnInit() {
-        this.api.get('/lei/customers')
-            .subscribe((users) => {
-            this.customers = users;
-            console.log(this.customers);
-            for (const entry of this.customers) {
-                console.log(entry);
-                const letteri = entry.title.charAt(0);
-                const name = entry.title;
-                const result = _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].find(({ letter }) => letter === letteri);
-                result.names.push(name);
-                console.log(result);
-            }
-            console.log(_Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"]);
-        });
+        this.orders.year = new Date().getFullYear();
         this.selectedOption = 'Kuro rūšis';
         this.samples.sampleWeight = 0;
-        // tslint:disable-next-line:no-non-null-assertion
-        this.customerGroupOptions = this.customerForm.get('customerGroup').valueChanges
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(value => this._filterGroup(value)));
         this.dropdownList = _DropdownList__WEBPACK_IMPORTED_MODULE_5__["DropdownList"];
         // tslint:disable-next-line:no-unused-expression
         this.dropdownSettings = {
@@ -744,23 +828,91 @@ let FormComponent = class FormComponent {
             selectAllText: 'Select All',
             unSelectAllText: 'UnSelect All',
             itemsShowLimit: 3,
-            allowSearchFilter: false
+            allowSearchFilter: true
         };
     }
+    getSampleTypes() {
+        this.sampleTypes = [];
+        _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].forEach((item => item.names = []));
+        this.api.get('/lei/st')
+            .subscribe((samples) => {
+            this.sampleTypes = samples;
+            for (const entry of this.sampleTypes) {
+                const letteri = entry.title.charAt(0);
+                const name = entry.title;
+                const result = _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].find(({ letter }) => letter === letteri);
+                result.names.push(name);
+            }
+        });
+        this.sampleTypeGroupOptions = this.sampleTypeForm.get('sampleTypeGroup').valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(value => this._filterGroup2(value)));
+    }
+    getCustomers() {
+        this.customers = [];
+        _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].forEach(item => item.names = []);
+        this.api.get('/lei/customers')
+            .subscribe((users) => {
+            this.customers = users;
+            console.log(users);
+            for (const entry of this.customers) {
+                const letteri = entry.title.charAt(0);
+                const name = entry.title;
+                const result = _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].find(({ letter }) => letter === letteri);
+                result.names.push(name);
+            }
+        });
+        this.customerGroupOptions = this.customerForm.get('customerGroup').valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(value => this._filterGroup(value)));
+    }
     onDropDownClose(items) {
-        const strings = [];
-        for (const item of items) {
-            strings.push(item.item_text);
-            console.log(strings);
+        if (items[0].item_text === 'Miksas') {
+            this.orders.test = this.orders.orderAmount + ' - Drėgmė, 1 - Pelenai, Šilumingumas';
         }
-        console.log(strings);
-        console.log(strings.join(', '));
-        this.orders.test = strings.join(', ');
+        else {
+            const strings = [];
+            for (const item of items) {
+                strings.push(item.item_text);
+            }
+            this.orders.test = strings.join(', ');
+        }
     }
     delete(titlee) {
-        const result = this.customers.find(({ title }) => title === titlee);
-        this.api.delete(`/lei/customers/${result.title}`).subscribe(() => this.customers = this.customers.filter(item => item.title !== result.title));
-        _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].push();
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+            title: 'Ar tikrai norite ištrinti šį užsakovą?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Atšaukti',
+            confirmButtonText: 'Taip, ištrinti!'
+        }).then((result) => {
+            if (result.value) {
+                // tslint:disable-next-line:no-shadowed-variable
+                const result = this.customers.find(({ title }) => title === titlee);
+                this.api.delete(`/lei/customers/${result.title}`).subscribe(() => this.customers = this.customers.filter(item => item.title !== result.title));
+                _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"].push();
+                sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Ištrinta!', 'Užsakovas ištrintas.');
+            }
+        });
+    }
+    delete2(titlee) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+            title: 'Ar tikrai norite ištrinti šį kuro tipą?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Atšaukti',
+            confirmButtonText: 'Taip, ištrinti!'
+        }).then((result) => {
+            if (result.value) {
+                // tslint:disable-next-line:no-shadowed-variable
+                const result = this.sampleTypes.find(({ title }) => title === titlee);
+                this.api.delete(`/lei/st/${result.title}`).subscribe(() => this.sampleTypes = this.sampleTypes.filter(item => item.title !== result.title));
+                _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"].push();
+                sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Ištrinta!');
+            }
+        });
     }
     childFunction(value) {
         if (value.orderAmount < 100) {
@@ -800,28 +952,48 @@ let FormComponent = class FormComponent {
         }
         return _Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"];
     }
-    onSubmit() {
-        console.log('to orders', this.orders);
-        this.api.post('/lei/orders', this.orders).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+    _filterGroup2(value) {
+        if (value) {
+            return _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"]
+                .map(group => ({
+                letter: group.letter, names: _filter(group.names, value)
+            }))
+                .filter(group => group.names.length > 0);
+        }
+        return _SampleType__WEBPACK_IMPORTED_MODULE_12__["sampleTypeGroups"];
     }
-    onSubmit2() {
-        console.log('to samples', this.sampleList);
-        for (const sample of this.sampleList) {
-            setTimeout(() => this.api.post('/lei/samples', sample).subscribe((result) => {
-                const row = this.sampleList.find(item => item.id === result.id);
-                if (row) {
-                    row.protocolId = result.protocolId;
-                    row.sampleId = result.sampleId;
-                    row.sampleWeight = result.sampleWeight;
-                }
-                else {
-                    this.sampleList = [...this.sampleList, result];
-                }
-            }), 1000);
-            this.SampleArray = [];
+    onSubmit() {
+        try {
+            this.api.post('/lei/orders', this.orders).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+        }
+        catch (e) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Klaida', '', 'error');
         }
     }
-    openDialog() {
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    onSubmit2() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            for (const sample of this.sampleList) {
+                yield this.delay(300);
+                this.api.post('/lei/samples', sample).subscribe((result) => {
+                    const row = this.sampleList.find(item => item.id === result.id);
+                    if (row) {
+                        row.protocolId = result.protocolId;
+                        row.sampleId = result.sampleId;
+                        row.sampleWeight = result.sampleWeight;
+                    }
+                    else {
+                        this.sampleList = [...this.sampleList, result];
+                    }
+                });
+            }
+            yield this.delay(300);
+            this.sampleList = [];
+        });
+    }
+    addCustomer() {
         const dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
             width: '250px',
             data: {}
@@ -835,6 +1007,25 @@ let FormComponent = class FormComponent {
                     }
                     else {
                         this.customers = [...this.customers, result];
+                    }
+                });
+            }
+        });
+    }
+    openDialog2() {
+        const dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
+            width: '250px',
+            data: {}
+        });
+        dialogRef.afterClosed().subscribe(data => {
+            if (data) {
+                this.api.post('/lei/st', data).subscribe((result) => {
+                    const row = this.sampleTypes.find(item => item.id === result.id);
+                    if (row) {
+                        row.title = result.title;
+                    }
+                    else {
+                        this.sampleTypes = [...this.sampleTypes, result];
                     }
                 });
             }
@@ -861,6 +1052,7 @@ let FormComponent = class FormComponent {
 };
 FormComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: _core_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"] },
     { type: _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialog"] }
 ];
@@ -871,6 +1063,7 @@ FormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-form',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./form.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/order/form/form.component.html")).default,
+        providers: [_tab_service__WEBPACK_IMPORTED_MODULE_11__["TabService"]],
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./form.component.css */ "./src/app/order/form/form.component.css")).default]
     })
 ], FormComponent);
@@ -905,6 +1098,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -918,6 +1114,9 @@ let ModalComponent = class ModalComponent {
     }
     onNoClick() {
         this.dialogRef.close();
+    }
+    success() {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Užsakovas pridėtas!', '', 'success');
     }
 };
 ModalComponent.ctorParameters = () => [
@@ -995,6 +1194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_form_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./form/form.component */ "./src/app/order/form/form.component.ts");
 /* harmony import */ var ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng-multiselect-dropdown */ "./node_modules/ng-multiselect-dropdown/fesm2015/ng-multiselect-dropdown.js");
 /* harmony import */ var _modal_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modal/modal.component */ "./src/app/order/modal/modal.component.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
+
 
 
 
@@ -1025,7 +1226,10 @@ OrderModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"],
-            ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_7__["NgMultiSelectDropDownModule"]
+            ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_7__["NgMultiSelectDropDownModule"],
+            _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__["SharedModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSlideToggleModule"]
         ],
         entryComponents: [
             _modal_modal_component__WEBPACK_IMPORTED_MODULE_8__["ModalComponent"]

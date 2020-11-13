@@ -9,6 +9,7 @@ import lt.ocirama.labsystem.repositories.SampleRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Objects;
 
 @Component
@@ -24,22 +25,20 @@ public class SampleEntityConverter {
 
     LocalDate localDate = LocalDate.now();
 
-    public SampleEntity convert(SampleSave sample
-    ) {
+    public SampleEntity convert(SampleSave sample) {
         SampleEntity result;
 
         if (Objects.isNull(sample.getId())) {
             result = new SampleEntity();
-            result.setOrder(order.findByProtocolId(sample.getProtocolId()));
+            result.setOrder(order.findByProtocolId(sample.getProtocolId(), Calendar.getInstance().get(Calendar.YEAR)));
             result.setSampleId(sample.getSampleId());
             result.setSampleWeight(sample.getSampleWeight());
-            //result.setDate(java.sql.Date.valueOf(order.getDate()));
+
         } else {
             result = sampleRepository.findOneById(sample.getId());
-            result.setOrder(order.findByProtocolId(sample.getProtocolId()));
+            result.setOrder(order.findByProtocolId(sample.getProtocolId(),Calendar.getInstance().get(Calendar.YEAR)));
             result.setSampleId(sample.getSampleId());
             result.setSampleWeight(sample.getSampleWeight());
-            //result.setDate(java.sql.Date.valueOf(order.getDate()));
 
         }
         return result;

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +17,6 @@ public class SampleSave {
     private String protocolId;
     private String sampleId;
     private Double sampleWeight;
-    //private LocalDate date;
+    private Date date;
 }
 

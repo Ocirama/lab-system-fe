@@ -25,8 +25,7 @@ public class TotalMoistureConverter {
                 totalMoistureEntity.getTrayWeight(),
                 totalMoistureEntity.getTrayAndSampleWeightBefore(),
                 totalMoistureEntity.getTrayAndSampleWeightAfter(),
-                totalMoistureEntity.getTrayAndSampleWeightAfterPlus()
-                //order.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        );
+                totalMoistureEntity.getTrayAndSampleWeightAfterPlus(),
+                totalMoistureEntity.getDate());
     }
 }

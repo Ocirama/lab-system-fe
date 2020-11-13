@@ -9,10 +9,10 @@ import lt.ocirama.labsystem.repositories.TotalMoistureRepository;
 import lt.ocirama.labsystem.repositories.TrayRepository;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 public class TotalMoistureEntityConverter {
@@ -41,7 +41,7 @@ public class TotalMoistureEntityConverter {
             newTray = new TrayEntity();
             newTray.setTrayId(totalMoistureSave.getTrayId());
 
-            newTray.setSample(sample.findAllByProtocol(totalMoistureSave.getProtocolId()).stream()
+            newTray.setSample(sample.findAllByProtocol(totalMoistureSave.getProtocolId(), Calendar.getInstance().get(Calendar.YEAR)).stream()
                     .filter(x -> totalMoistureSave.getSampleId().equals(x.getSampleId()))
                     .findFirst()
                     .orElse(null));
@@ -51,6 +51,8 @@ public class TotalMoistureEntityConverter {
             result.setTray(newTray);
             result.setTrayWeight(totalMoistureSave.getTrayWeight());
             result.setTrayAndSampleWeightBefore(totalMoistureSave.getTrayAndSampleWeightBefore());
+            result.setTrayAndSampleWeightAfter(totalMoistureSave.getTrayAndSampleWeightAfter());
+            result.setTrayAndSampleWeightAfterPlus(totalMoistureSave.getTrayAndSampleWeightAfterPlus());
             tmList.add(result);
             newTray.setTotalMoistureEntities(tmList);
             //result.setDate(java.sql.Date.valueOf(order.getDate()));
@@ -58,6 +60,8 @@ public class TotalMoistureEntityConverter {
             result = totalMoistureRepository.findOneById(totalMoistureSave.getId());
             result.setTrayWeight(totalMoistureSave.getTrayWeight());
             result.setTrayAndSampleWeightBefore(totalMoistureSave.getTrayAndSampleWeightBefore());
+            result.setTrayAndSampleWeightAfter(totalMoistureSave.getTrayAndSampleWeightAfter());
+            result.setTrayAndSampleWeightAfterPlus(totalMoistureSave.getTrayAndSampleWeightAfterPlus());
             //result.setDate(java.sql.Date.valueOf(order.getDate()));
         }
 
@@ -70,7 +74,6 @@ public class TotalMoistureEntityConverter {
     public TotalMoistureEntity convert2(TotalMoistureSave totalMoistureSave) {
         TotalMoistureEntity result = new TotalMoistureEntity();
         TrayEntity newTray;
-
 
         newTray = totalMoistureRepository.findByTrayAndDate(totalMoistureSave.getTrayId(), DateConverter.dateInput(totalMoistureSave.getDate()));
         List<TotalMoistureEntity> as = newTray.getTotalMoistureEntities();

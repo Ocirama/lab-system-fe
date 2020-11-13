@@ -11,8 +11,8 @@ public interface OrderRepository extends Repository<OrderEntity, Integer> {
 
     OrderEntity findOneById(Integer id);
 
-    @Query("select oe from OrderEntity oe where oe.protocolId=:protocol")
-    OrderEntity findByProtocolId(String protocol);
+    @Query("select oe from OrderEntity oe where oe.protocolId=:protocol and oe.year=:current_year")
+    OrderEntity findByProtocolId(String protocol, int current_year);
 
     OrderEntity save(OrderEntity order);
 

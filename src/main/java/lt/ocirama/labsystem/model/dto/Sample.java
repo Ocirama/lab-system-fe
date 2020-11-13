@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.ocirama.labsystem.model.entities.OrderEntity;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,5 +16,5 @@ public class Sample {
     private String protocolId;
     private String sampleId;
     private Double sampleWeight;
-    //private LocalDate date;
+    private Date date;
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,4 +18,5 @@ public class TotalMoisture {
     private Double trayAndSampleWeightBefore;
     private Double  trayAndSampleWeightAfter;
     private Double  trayAndSampleWeightAfterPlus;
+    private Date date;
 }
