@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -12,14 +12,15 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatPaginatorIntl,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './auth/login/login.component';
-import { TabDirective } from './tab.directive';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {LoginComponent} from './auth/login/login.component';
+import {MatTableExporterModule} from 'mat-table-exporter';
+import {MatPaginatorIntlCro} from './shared/MatPaginatorIntlCro';
 
 
 @NgModule({
@@ -43,9 +44,9 @@ import { TabDirective } from './tab.directive';
     MatIconModule,
     MatInputModule,
     MatDialogModule,
-
+    MatTableExporterModule
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

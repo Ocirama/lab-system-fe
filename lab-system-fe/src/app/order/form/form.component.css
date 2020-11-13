@@ -3,6 +3,8 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 h1 {
   text-align: center;
+  border-color: #3f51b5;
+  border-style: none none double none;
 }
 .example-form {
   min-width: 150px;
@@ -10,6 +12,20 @@ h1 {
   width: 100%;
   margin: 0 auto;
 
+}
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 10px;
 }
 
 .example-full-width {
@@ -34,6 +50,8 @@ margin-right: 50px;
 }
 .container-fluid{
   width: 600px;
+  border-color: #3f51b5;
+  border-style: none none double none;
 }
 ol{
   font-size: 25px;
@@ -44,5 +62,14 @@ ol{
   right: 0px;
   width: 5px;
 }
+.aParent div {
+  float: left;
+  clear: none;
+}
+label{
+  font-size: 20px;
+
+}
+
 
 

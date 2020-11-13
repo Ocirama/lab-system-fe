@@ -3,28 +3,28 @@
 <div mat-dialog-content>
   <mat-form-field>
     <label>
-      <input matInput placeholder="trayWeight" [(ngModel)]="data.trayWeight" cdkFocusInitial>
+      <input matInput placeholder="Tuščio padėklo svoris" [(ngModel)]="data.trayWeight" cdkFocusInitial>
     </label>
   </mat-form-field>
   <mat-form-field>
     <label>
-      <input matInput placeholder="before" [(ngModel)]="data.trayAndSampleWeightBefore" cdkFocusInitial>
+      <input matInput placeholder="Padėklo ir ėminio svoris PRIEŠ" [(ngModel)]="data.trayAndSampleWeightBefore" cdkFocusInitial>
     </label>
   </mat-form-field>
   <mat-form-field>
     <label>
-      <input matInput placeholder="after" [(ngModel)]="data.trayAndSampleWeightAfter" cdkFocusInitial>
+      <input matInput placeholder="Padėklo ir ėminio svoris PO" [(ngModel)]="data.trayAndSampleWeightAfter" cdkFocusInitial>
     </label>
   </mat-form-field>
   <mat-form-field>
     <label>
-      <input matInput placeholder="afterPlus" [(ngModel)]="data.trayAndSampleWeightAfterPlus" cdkFocusInitial>
+      <input matInput placeholder="Padėklo ir ėminio svoris PO + n val" [(ngModel)]="data.trayAndSampleWeightAfterPlus" cdkFocusInitial>
     </label>
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data">Save</button>
+  <button mat-button (click)="onNoClick()">Atšaukti</button>
+  <button mat-button [mat-dialog-close]="data">Išsaugoti</button>
 </div>
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AshJournalComponent } from './ash-journal.component';
+import { AshTestComponent } from './ash-test.component';
 
-describe('AshJournalComponent', () => {
-  let component: AshJournalComponent;
-  let fixture: ComponentFixture<AshJournalComponent>;
+describe('TotalMoistureTestComponent', () => {
+  let component: AshTestComponent;
+  let fixture: ComponentFixture<AshTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AshJournalComponent ]
+      declarations: [ AshTestComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AshJournalComponent);
+    fixture = TestBed.createComponent(AshTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

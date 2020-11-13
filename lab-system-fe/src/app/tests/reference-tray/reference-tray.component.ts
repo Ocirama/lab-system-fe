@@ -71,39 +71,35 @@ export class ReferenceTrayComponent implements OnInit {
   addItem() {
     this.form = this.formGroup.get('form') as FormArray;
     this.form.push(this.init());
-    this.tmArray.push(
-      new class implements TotalMoistureSample {
-        date: string;
-        id: number;
-        protocolId: string;
-        sampleId: string;
-        trayAndSampleWeightAfter: number;
-        trayAndSampleWeightAfterPlus: number;
-        trayAndSampleWeightBefore: number;
+    this.refArray.push(
+      new class implements ReferenceTray {
         trayId: string;
         trayWeight: number;
+        trayWeightBefore: number;
+        trayWeightAfter: number;
+        date: string;
       });
   }
 
-  sverti(sample: TotalMoistureSample) {
+  sverti(sample: ReferenceTray) {
     this.api.get('/lei/scales')
       .subscribe((weight: any) => {
         this.weight = weight;
-        sample.trayAndSampleWeightAfter = this.weight;
+        sample.trayWeightAfter = this.weight;
         sample.date = this.date;
         console.log(this.weight);
       });
   }
 
-  action(sample: TotalMoistureSample) {
+  action(sample: ReferenceTray) {
     this.api.get(`/lei/trays/${sample.trayId}`).subscribe((tray: any) => {
-      this.tray = tray;
-      sample.trayWeight = this.tray.trayWeight;
+      this.reftray = tray;
+      sample.trayWeight = this.reftray.trayWeight;
     });
   }
 
-  onSubmit(tm: TotalMoistureSample[]) {
-    for (const sample of this.tmArray) {
+  onSubmit(tm: ReferenceTray[]) {
+    for (const sample of this.refArray) {
       console.log(sample);
       this.api.post('/lei/journals/second', sample).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
     }
@@ -131,7 +127,7 @@ export class ReferenceTrayComponent implements OnInit {
   }
 
   swalSamplesRegister() {
-    if (this.tmArray !== []) {
+    if (this.refArray !== []) {
       Swal.fire(
         ' užregistruotas!',
         '',
@@ -148,6 +144,6 @@ export class ReferenceTrayComponent implements OnInit {
   }
 
   reset() {
-    this.tmArray = [];
+    this.refArray = [];
   }
 }

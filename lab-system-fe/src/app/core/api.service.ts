@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ApiService {
 
-  private urlPrefix = 'http://localhost:8080';
+  private urlPrefix = 'http://192.168.1.84:8080';
 
   constructor(private http: HttpClient) {
   }
@@ -19,7 +19,7 @@ export class ApiService {
     return this.http.post(this.urlPrefix + url, data, this.getRequestOptions());
   }
 
-  delete(url: string) {
+    delete(url: string) {
     return this.http.delete(`${this.urlPrefix}${url}`);
   }
   private getRequestOptions() {

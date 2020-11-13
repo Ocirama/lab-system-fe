@@ -1,36 +1,46 @@
- <form class="example-form">
-  <div class="example-full-width">
-    <label>Įveskite užsakymo numerį</label>
-    <input  (ngModelChange)="childFunction(this.sampleList)" #protocol matInput="protocol" name="protocol" [(ngModel)]="samples.protocolId" class="form-control" >
-  </div>
-  <br>
-<button class="btn btn-primary"  (click)="newProtocolWeight(protocol.value)" (click)="toggleChild()" >Pateikti</button>
-  <br>
-  <div class="form-group">
+<h1>Mėginių masės svėrimas</h1>
+<button (click)="initz()" >SVARSTYKLES</button>
 
-    <label *ngIf="showVar"> Mėginių sąrašas </label>
-    <li *ngFor="let sample of sampleList; let i= index">
-      <td class="id">{{sample.sampleId}}</td>
-      <td>
-        <input  placeholder="kg"
-                type="text"
-                id="f_{{i}}"
-                name="sampleId-{{i}}"
-                [(ngModel)]="sampleList[i].sampleWeight"
-                class="form-control"
-                #samplesS="ngModel"
-                required
-                tabIndex="{{i}}"
-        ></td>
-      <div
-        class="alert alert-danger"
-        *ngIf="samplesS.touched && !samplesS.valid">
-        <small
-          *ngIf="samplesS.errors.required">
-          Pasverkite mėginį
-        </small>
-      </div>
-  </div>
-  <div *ngIf="showVar">
-  <button type="button" class=" btn btn-secondary" (click)="submitWeight(this.sampleList)"> Sverti </button>
-  </div>
+
+<div class="parent">
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper (selectionChange)="onChange($event)" #stepper formArrayName="form">
+
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel><span>Įveskite protokolo numerį </span></ng-template>
+          <mat-form-field>
+            <mat-label>Protokolo Nr.</mat-label>
+            <input matInput id="input0" [(ngModel)]="protocol" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="getSamplesByProtocol(protocol)">Sekantis</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+        <ng-template matStepLabel><span> Sverkitę {{this.sampleArray[i]?.protocolId}}
+          protokolo {{this.sampleArray[i]?.sampleId}} mėginį  </span></ng-template>
+
+
+        <mat-card class="padekloSvoris"> <span class="a">Mėginio ID </span>  {{sampleArray[i] && sampleArray[i].sampleId}}</mat-card>
+        <mat-card class="meginioSvoris"> <span class="a">Mėginio svoris </span>  {{sampleArray[i] && sampleArray[i].sampleWeight}}</mat-card>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button matStepperNext (click)="sverti(sampleArray[i]);weightSuccess()" >Sverti </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel><span>{{protocol}} protokolo mėginiai pasverti</span></ng-template>
+        <p>Pasirinkitę ką norite daryti.</p>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button (click)="stepper.reset()">Pildyti iš naujo</button>
+          <button mat-button (click)="stepper.reset();onSubmit(sampleArray);swalSamplesRegister()">Išsaugoti</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</div>
+<mat-card class="lastWeight" *ngIf="weight" > Paskutinio svėrimo svoris:<p class="weightText">{{this.weight}}</p>g</mat-card>
+

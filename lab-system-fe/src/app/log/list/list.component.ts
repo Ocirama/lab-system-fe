@@ -5,6 +5,7 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/mat
 import {ApiService} from '../../core/api.service';
 import {ModalComponent} from '../modal/modal.component';
 import Swal from 'sweetalert2';
+import {DateModalComponent} from '../../journal/total-moisture-journal/date-modal/date-modal.component';
 
 interface Order {
   id: number;
@@ -25,7 +26,7 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['no', 'protocolId', 'customer', 'test', 'sampleType', 'orderAmount', 'date', 'actions'];
   orders: Order[] = [];
   dataSource: MatTableDataSource<Order>;
-
+  excelDate: string;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -37,7 +38,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.get('/lei/orders').subscribe((data: Order[]) => this.dataSource.data = data);
+    this.getOrders();
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -51,10 +52,33 @@ export class ListComponent implements OnInit {
     }
   }
 
+  getOrders() {
+    this.api.get('/lei/orders').subscribe((data: Order[]) => this.dataSource.data = data);
+  }
+
   delete(id: number) {
-    this.api.delete(`/lei/orders/${id}`).subscribe(
-      () => this.orders = this.orders.filter(item => item.id !== id)
-    );
+    Swal.fire({
+      title: 'Ar tikrai norite ištrinti šį užsakymą?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Atšaukti',
+      confirmButtonText: 'Taip, ištrinti!'
+    }).then((result) => {
+      if (result.value) {
+        // tslint:disable-next-line:no-shadowed-variable
+        this.api.delete(`/lei/orders/${id}`).subscribe(
+          () => this.orders = this.orders.filter(item => item.id !== id)
+        );
+        Swal.fire(
+          'Ištrinta!',
+          'Užsakymas ištrintas.'
+        );
+        this.dataSource.data = [];
+        setTimeout(() => this.getOrders(), 1000);
+      }
+    });
   }
 
   openDialog(order?: Order) {
@@ -82,30 +106,66 @@ export class ListComponent implements OnInit {
               row.sampleType = result.sampleType;
               row.orderAmount = result.orderAmount;
               row.date = result.date;
+              this.dataSource.data = [];
+              setTimeout(() => this.getOrders(), 1000);
             } else {
               this.orders = [...this.orders, result];
+              this.dataSource.data = [];
+              setTimeout(() => this.getOrders(), 1000);
             }
           }
         );
       }
     });
-    this.swalOrderUpdate();
   }
 
-  swalOrderUpdate() {
-    Swal.fire(
-      'Užsakymas papildytas.',
-      '',
-      'success'
-    );
+  displayFilter(value: any) {
+    if (value === 'metai') {
+      this.api.get('/lei/orders')
+        .subscribe((data: Order[]) => this.dataSource.data = data
+          .filter(result => Number
+            .parseInt(result.date.toString()
+              .substring(0, 4)) === new Date().getFullYear()));
+    }
+    if (value === 'pilnas') {
+      this.api.get('/lei/orders');
+      this.api.get('/lei/orders').subscribe((data: Order[]) => this.dataSource.data = data);
+
+      const date = new Date();
+      console.log(date.getFullYear() + '-' + date.getMonth() + 1);
+      console.log(this.dataSource.data[1].date.toString()
+        .substring(0, 10));
+
+    }
+    if (value === 'menuo') {
+      const date = new Date();
+      this.api.get('/lei/orders')
+        .subscribe((data: Order[]) => this.dataSource.data = data
+          .filter(result => ((Number.parseInt(result.date.toString()
+            .substring(0, 5)) + Number.parseInt(result.date.toString()
+            .substring(5, 7))) === (date.getFullYear() + date.getMonth() + 1))));
+      console.log();
+    }
   }
 
-  swalOrderDelete() {
-    Swal.fire(
-      'Užsakymas ištrintas.',
-      '',
-      'success'
-    );
+  openDialog2(excelDate?: string) {
+    const dialogRef = this.dialog.open(DateModalComponent, {
+      width: '250px',
+      data: {
+        date: excelDate ? excelDate : null,
+      }
+    });
+    dialogRef.afterClosed().subscribe(dataa => {
+      if (dataa) {
+
+        this.api.get('/lei/orders')
+          // tslint:disable-next-line:no-shadowed-variable
+          .subscribe((data: Order[]) => this.dataSource.data = data
+            .filter(result => ((result.date.toString()
+              .substring(0, 10)) === dataa.date)));
+        console.log(dataa.date);
+      }
+    });
   }
 }
 

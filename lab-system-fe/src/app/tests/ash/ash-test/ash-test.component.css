@@ -1,0 +1,90 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+div {
+}
+
+span {
+  width: 200px;
+  font-size: 20px;
+}
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+  margin-left: 20px;
+  font-size: 20px;
+  width: 500px !important;
+  float: left;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+h1{
+  text-align: center;
+}
+
+.parent {
+  position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  float: left;
+}
+.mat-elevation-z8{
+ float: left;
+ }
+
+input .svoris {
+  border: 1px solid black;
+}
+mat-card {
+  display: flex;
+}
+
+.lastWeight {
+  font-size: 20px;
+  border-style: solid;
+  border-color: #3f51b5;
+  margin: 0 auto;
+  position: fixed;
+  /* center the element */
+  top: 7%;
+  left: 1%;
+
+  /* give it dimensions */
+  min-height: 3em;
+  width: 450px;
+}
+.weightText {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.padekloSvoris {
+  width: 200px;
+  border-style: solid;
+  border-color: #3f51b5;
+  margin-bottom: 10px;
+}
+
+.meginioSvoris {
+  width: 200px;
+  border-style: solid;
+  border-color: #3f51b5;
+  margin-bottom: 5px;
+  flex-direction: row;
+
+}
+
+
+.a {
+  margin-top: -10px;
+  font-size: 10px;
+  vertical-align: top;
+  margin-bottom: 5px;
+  margin-left: -10px;
+  text-align: left;
+}
+
+

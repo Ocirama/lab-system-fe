@@ -6,12 +6,19 @@ import {ApiService} from '../../core/api.service';
 import {DropdownList} from './DropdownList';
 import {customerGroups} from './Customers';
 import Swal from 'sweetalert2';
-import {MatDialog} from '@angular/material';
+import {MatDialog, ThemePalette} from '@angular/material';
 import {ModalComponent} from '../modal/modal.component';
 import 'sweetalert2/src/sweetalert2.scss';
+import {TabService} from '../../tab.service';
+import {sampleTypeGroups} from './SampleType';
 
 
 export interface CustomerGroup {
+  letter: string;
+  names: string[];
+}
+
+export interface SampleTypeGroup {
   letter: string;
   names: string[];
 }
@@ -23,6 +30,7 @@ interface Order {
   test: string;
   sampleType: string;
   orderAmount: number;
+  year: number;
 }
 
 export interface Sample {
@@ -38,6 +46,11 @@ export interface Customer {
   title: string;
 }
 
+export interface SampleType {
+  id: number;
+  title: string;
+}
+
 // tslint:disable-next-line:variable-name
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
@@ -48,23 +61,21 @@ export const _filter = (opt: string[], value: string): string[] => {
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
+  providers: [TabService],
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
-  sampleTypes = ['Skiedros', 'Granulės', 'Atliekos', 'Ligninas', 'Briketai'];
+  color: ThemePalette = 'accent';
+  checked = false;
+  disabled = false;
   orders: Order = {} as Order;
   samples: Sample = {} as Sample;
-  typeHasError = true;
-  customerss: CustomerGroup;
+  typeHasError = false;
   customers: Array<Customer> = [];
-
-
-  SampleArray: Sample[] = [];
+  sampleTypes: Array<SampleType> = [];
   sampleList: Array<Sample> = [];
   showVar = false;
-  // tslint:disable-next-line:ban-types
-  selectedOption: String;
+  selectedOption: string;
 
 
   @Input() public value: number;
@@ -77,12 +88,17 @@ export class FormComponent implements OnInit {
   customerForm: FormGroup = this._formBuilder.group({
     customerGroup: '',
   });
+  sampleTypeForm: FormGroup = this._formBuilder2.group({
+    sampleTypeGroup: '',
+  });
 
   customerGroupOptions: Observable<CustomerGroup[]>;
-
+  sampleTypeGroupOptions: Observable<SampleTypeGroup[]>;
 
   // tslint:disable-next-line:variable-name
   constructor(private _formBuilder: FormBuilder,
+              // tslint:disable-next-line:variable-name
+              private _formBuilder2: FormBuilder,
               private api: ApiService,
               public dialog: MatDialog
   ) {
@@ -91,31 +107,9 @@ export class FormComponent implements OnInit {
   submitted = false;
 
   ngOnInit() {
-    this.api.get('/lei/customers')
-      .subscribe((users: any) => {
-        this.customers = users;
-        console.log(this.customers);
-        for (const entry of this.customers) {
-          console.log(entry);
-          const letteri = entry.title.charAt(0);
-          const name = entry.title;
-          const result = customerGroups.find(({letter}) => letter === letteri);
-          result.names.push(name);
-          console.log(result);
-        }
-
-        console.log(customerGroups);
-      });
-
-
+    this.orders.year = new Date().getFullYear();
     this.selectedOption = 'Kuro rūšis';
     this.samples.sampleWeight = 0;
-    // tslint:disable-next-line:no-non-null-assertion
-    this.customerGroupOptions = this.customerForm.get('customerGroup')!.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value))
-      );
     this.dropdownList = DropdownList;
 
     // tslint:disable-next-line:no-unused-expression
@@ -126,30 +120,115 @@ export class FormComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: false
+      allowSearchFilter: true
     };
   }
 
 
+  getSampleTypes() {
+    this.sampleTypes = [];
+    sampleTypeGroups.forEach((item => item.names = []));
+    this.api.get('/lei/st')
+      .subscribe((samples: any) => {
+        this.sampleTypes = samples;
+
+        for (const entry of this.sampleTypes) {
+
+          const letteri = entry.title.charAt(0);
+          const name = entry.title;
+          const result = sampleTypeGroups.find(({letter}) => letter === letteri);
+          result.names.push(name);
+        }
+      });
+    this.sampleTypeGroupOptions = this.sampleTypeForm.get('sampleTypeGroup')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup2(value))
+      );
+  }
+
+  getCustomers() {
+    this.customers = [];
+    customerGroups.forEach(item => item.names = []);
+    this.api.get('/lei/customers')
+      .subscribe((users: any) => {
+        this.customers = users;
+        console.log(users);
+        for (const entry of this.customers) {
+          const letteri = entry.title.charAt(0);
+          const name = entry.title;
+          const result = customerGroups.find(({letter}) => letter === letteri);
+          result.names.push(name);
+        }
+      });
+
+    this.customerGroupOptions = this.customerForm.get('customerGroup')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
+  }
+
   onDropDownClose(items: any) {
-    const strings = [];
+    if (items[0].item_text === 'Miksas') {
+      this.orders.test = this.orders.orderAmount + ' - Drėgmė, 1 - Pelenai, Šilumingumas';
+    } else {
+      const strings = [];
 
-    for (const item of items) {
-      strings.push(item.item_text);
-      console.log(strings);
+      for (const item of items) {
+        strings.push(item.item_text);
+      }
+      this.orders.test = strings.join(', ');
     }
-    console.log(strings);
-    console.log(strings.join(', '));
-    this.orders.test = strings.join(', ');
-
   }
 
   delete(titlee: string) {
-    const result = this.customers.find(({title}) => title === titlee);
-    this.api.delete(`/lei/customers/${result.title}`).subscribe(
-      () => this.customers = this.customers.filter(item => item.title !== result.title)
-    );
-    customerGroups.push();
+    Swal.fire({
+      title: 'Ar tikrai norite ištrinti šį užsakovą?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Atšaukti',
+      confirmButtonText: 'Taip, ištrinti!'
+    }).then((result) => {
+      if (result.value) {
+        // tslint:disable-next-line:no-shadowed-variable
+        const result = this.customers.find(({title}) => title === titlee);
+        this.api.delete(`/lei/customers/${result.title}`).subscribe(
+          () => this.customers = this.customers.filter(item => item.title !== result.title)
+        );
+        customerGroups.push();
+        Swal.fire(
+          'Ištrinta!',
+          'Užsakovas ištrintas.'
+        );
+      }
+    });
+  }
+
+  delete2(titlee: string) {
+    Swal.fire({
+      title: 'Ar tikrai norite ištrinti šį kuro tipą?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Atšaukti',
+      confirmButtonText: 'Taip, ištrinti!'
+    }).then((result) => {
+      if (result.value) {
+        // tslint:disable-next-line:no-shadowed-variable
+        const result = this.sampleTypes.find(({title}) => title === titlee);
+        this.api.delete(`/lei/st/${result.title}`).subscribe(
+          () => this.sampleTypes = this.sampleTypes.filter(item => item.title !== result.title)
+        );
+        sampleTypeGroups.push();
+        Swal.fire(
+          'Ištrinta!'
+        );
+      }
+    });
   }
 
   public childFunction(value) {
@@ -199,33 +278,54 @@ export class FormComponent implements OnInit {
     return customerGroups;
   }
 
-  onSubmit() {
-    console.log('to orders', this.orders);
-    this.api.post('/lei/orders', this.orders).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+  private _filterGroup2(value: string): SampleTypeGroup[] {
+    if (value) {
+      return sampleTypeGroups
+        .map(group => ({
+          letter: group.letter, names: _filter(group.names, value)
+        }))
+        .filter(group => group.names.length > 0);
+    }
+    return sampleTypeGroups;
   }
 
-  onSubmit2() {
-    console.log('to samples', this.sampleList);
-    for (const sample of this.sampleList) {
-      setTimeout(() =>
-        this.api.post('/lei/samples', sample).subscribe(
-          (result: Sample) => {
-            const row = this.sampleList.find(item => item.id === result.id);
-            if (row) {
-              row.protocolId = result.protocolId;
-              row.sampleId = result.sampleId;
-              row.sampleWeight = result.sampleWeight;
-            } else {
-              this.sampleList = [...this.sampleList, result];
-            }
-          }
-        ), 1000);
-
-      this.sampleList = [];
+  onSubmit() {
+    try {
+      this.api.post('/lei/orders', this.orders).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+    } catch (e) {
+      Swal.fire(
+        'Klaida',
+        '',
+        'error'
+      );
     }
   }
 
-  openDialog() {
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async onSubmit2() {
+    for (const sample of this.sampleList) {
+      await this.delay(300);
+      this.api.post('/lei/samples', sample).subscribe(
+        (result: Sample) => {
+          const row = this.sampleList.find(item => item.id === result.id);
+          if (row) {
+            row.protocolId = result.protocolId;
+            row.sampleId = result.sampleId;
+            row.sampleWeight = result.sampleWeight;
+          } else {
+            this.sampleList = [...this.sampleList, result];
+          }
+        }
+      );
+    }
+    await this.delay(300);
+    this.sampleList = [];
+  }
+
+  addCustomer() {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '250px',
       data: {}
@@ -239,6 +339,27 @@ export class FormComponent implements OnInit {
               row.title = result.title;
             } else {
               this.customers = [...this.customers, result];
+            }
+          }
+        );
+      }
+    });
+  }
+
+  openDialog2() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '250px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.api.post('/lei/st', data).subscribe(
+          (result: Customer) => {
+            const row = this.sampleTypes.find(item => item.id === result.id);
+            if (row) {
+              row.title = result.title;
+            } else {
+              this.sampleTypes = [...this.sampleTypes, result];
             }
           }
         );

@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 interface DialogData {
   id: number;
@@ -9,12 +10,12 @@ interface DialogData {
   oldTest: string;
   oldSampleType: string;
   oldOrderAmount: number;
-  //oldDate: Date;
+  oldDate: string;
   customer: string;
   test: string;
   sampleType: string;
   orderAmount: number;
-  // date: Date;
+  date: string;
 }
 
 @Component({
@@ -33,7 +34,7 @@ export class ModalComponent implements OnInit {
     data.oldTest = data.test;
     data.oldSampleType = data.sampleType;
     data.oldOrderAmount = data.orderAmount;
-    // data.oldDate = data.date;
+    data.oldDate = data.date;
   }
 
   ngOnInit() {
@@ -41,5 +42,12 @@ export class ModalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  swalOrderUpdate() {
+    Swal.fire(
+      'Užsakymas papildytas.',
+      '',
+      'success'
+    );
   }
 }

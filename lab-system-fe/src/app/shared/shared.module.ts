@@ -10,6 +10,6 @@ import { TabDirective } from '../tab.directive';
   imports: [
     CommonModule
   ],
-  exports:[TabDirective]
+  exports: [TabDirective]
 })
 export class SharedModule { }

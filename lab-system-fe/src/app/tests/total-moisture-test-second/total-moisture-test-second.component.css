@@ -10,6 +10,7 @@ span {
 
 .mat-stepper-vertical {
   margin-top: 8px;
+  margin-left: 20px;
   font-size: 20px;
   width: 500px !important;
   float: left;
@@ -18,8 +19,12 @@ span {
 .mat-form-field {
   margin-top: 16px;
 }
+h1{
+  text-align: center;
+}
 
 .parent {
+  position: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,26 +39,38 @@ mat-card {
 }
 
 .lastWeight {
-  justify-content: center;
-  margin-top: 8px;
-  margin-left: 200px;
-  float: left;
+  font-size: 20px;
   border-style: solid;
-  border-color: lightskyblue;
+  border-color: #3f51b5;
+  margin: 0 auto;
+  position: fixed;
+  /* center the element */
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  /* give it dimensions */
+  min-height: 3em;
+  width: 450px;
+}
+.weightText {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .padekloSvoris {
   width: 200px;
   border-style: solid;
-  border-color: lightskyblue;
+  border-color: #3f51b5;
+  margin-bottom: 10px;
 }
 
 .meginioSvoris {
   width: 200px;
   border-style: solid;
-  border-color: lightskyblue;
+  border-color: #3f51b5;
   margin-bottom: 5px;
-flex-direction: row;
+  flex-direction: row;
 
 }
 

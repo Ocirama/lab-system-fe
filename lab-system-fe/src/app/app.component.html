@@ -32,13 +32,14 @@
   </mat-menu>
 
   <mat-menu #general="matMenu">
-    <button mat-menu-item>Svėrimas prieš džiovinimą</button>
+    <button mat-menu-item routerLink="general-moisture-test">Svėrimas prieš džiovinimą</button>
+    <button mat-menu-item routerLink="general-moisture-test-second">Svėrimas po džiovinimo</button>
 
   </mat-menu>
 
   <mat-menu #ash="matMenu">
-    <button mat-menu-item>Svėrimas prieš deginimą</button>
-    <button mat-menu-item>Svėrimas po deginimo</button>
+    <button mat-menu-item routerLink="ash-test">Svėrimas prieš deginimą</button>
+    <button mat-menu-item routerLink="ash-test-second">Svėrimas po deginimo</button>
   </mat-menu>
 
   <mat-menu #quality="matMenu">
@@ -51,6 +52,7 @@
     <button mat-menu-item routerLink="total-moisture-journal">Visuminė drėgmė</button>
     <button mat-menu-item routerLink="general-moisture-journal">Bendroji drėgmė</button>
     <button mat-menu-item routerLink="ash-journal">Peleningumas</button>
+<a  ></a>
 
   </mat-menu>
 

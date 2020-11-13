@@ -141,6 +141,8 @@ export class TotalMoistureTestComponent implements OnInit {
 
   onSubmit(tmarray: TotalMoistureSample[]) {
     for (const sample of this.tmArray) {
+      sample.trayAndSampleWeightAfter = 0;
+      sample.trayAndSampleWeightAfterPlus = 0;
       console.log(sample);
       this.api.post('/lei/journals', sample).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
     }

@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import Swal from "sweetalert2";
 
 interface DialogData {
   title: string;
@@ -24,5 +25,12 @@ export class ModalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  success() {
+    Swal.fire(
+      'Užsakovas pridėtas!',
+      '',
+      'success'
+    );
   }
 }

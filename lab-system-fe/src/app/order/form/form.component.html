@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div   class="container-fluid">
   <div [hidden]="submitted">
     <h1>Užsakymo forma</h1>
 
@@ -33,7 +33,7 @@
 
 
         <label for="customer"> Užsakovas </label>
-        <input [(ngModel)]="orders.customer" name="customer" type="text" class="form-control" id="customer"
+        <input (click)="this.getCustomers();" [(ngModel)]="orders.customer" name="customer" type="text" class="form-control" id="customer"
                #customer="ngModel"
                required
                [matAutocomplete]="autoGroup">
@@ -41,13 +41,19 @@
         <mat-autocomplete #autoGroup="matAutocomplete">
           <mat-optgroup *ngFor="let group of customerGroupOptions | async" [label]="group.letter">
             <mat-option *ngFor="let name of group.names" [value]="name">
-              {{name}}
-              <button type="button" mat-raised-button color="primary" (click)="swalCustomerDelete();delete(name)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <div class="aParent">
+                <div>
+                  {{name}}
+                </div>
+                <div>
+                  <button type="button" mat-raised-button color="primary" (click)="swalCustomerDelete();delete(name)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
             </mat-option>
           </mat-optgroup>
-          <button mat-menu-item (click)="openDialog()">
+          <button mat-menu-item (click)="addCustomer()">
             <mat-icon>edit</mat-icon>
             <span>Pridėti naują užsakovą</span>
           </button>
@@ -61,7 +67,30 @@
             Įveskite užsakovą
           </small>
         </div>
-        <div>
+
+        <div class="form-group">
+          <label for="sampleAmount"> Kiekis </label>
+          <input
+            (focusout)="toggleChild();childFunction(orders)"
+            required
+            [(ngModel)]="orders.orderAmount"
+            name="orderAmount"
+            #sampleAmount="ngModel"
+            pattern="^[0-9]*$"
+            class="form-control"
+            id="sampleAmount"
+          >
+          <div
+            class="alert alert-danger"
+            *ngIf="sampleAmount.touched && !sampleAmount.valid">
+            <small
+              *ngIf="sampleAmount.errors.required">
+              Įveskite mėginių kiekį
+            </small>
+          </div>
+        </div>
+
+        <div >
           <label>Tyrimai</label>
         <ng-multiselect-dropdown
           name="tests"
@@ -87,41 +116,44 @@
 
 
       <div class="form-group">
-        <label for="orderType"> Kuro rūšis </label>
-        <br>
-        <select (blur)="validateType(sampleTypeS.value)" (change)="validateType(sampleTypeS.value)"
-                #sampleTypeS="ngModel"
-                [(ngModel)]="orders.sampleType" name="sampleType" class="form-control" required id="orderType">
+        <label for="sampleType"> Kuro rūšis </label>
+        <input (click)="this.getSampleTypes()" [(ngModel)]="orders.sampleType" name="sampleType" type="text" class="form-control" id="sampleType"
+               #sampleType="ngModel"
+               required
+               [matAutocomplete]="autoGroup2">
 
-          <option *ngFor="let sampleType of sampleTypes">{{sampleType}}
-          </option>
-        </select>
-        <small class="text-danger" *ngIf="sampleTypeS.touched &&!sampleTypeS.valid">Pasirinkitę kuro rūšį</small>
-      </div>
+        <mat-autocomplete #autoGroup2="matAutocomplete">
+          <mat-optgroup *ngFor="let group of sampleTypeGroupOptions | async" [label]="group.letter">
+            <mat-option *ngFor="let name of group.names" [value]="name">
+              <div class="aParent">
+                <div>
+                  {{name}}
+                </div>
+                <div>
+                  <button type="button" mat-raised-button color="primary" (click)="swalCustomerDelete();delete2(name)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-option>
+          </mat-optgroup>
+          <button mat-menu-item (click)="openDialog2()">
+            <mat-icon>edit</mat-icon>
+            <span>Pridėti naują rūšį</span>
+          </button>
+        </mat-autocomplete>
 
-      <div class="form-group">
-        <label for="sampleAmount"> Kiekis </label>
-        <input
-          (focusout)="toggleChild();childFunction(orders)"
-          required
-          [(ngModel)]="orders.orderAmount"
-          name="orderAmount"
-          #sampleAmount="ngModel"
-          pattern="^[0-9]*$"
-          class="form-control"
-          id="sampleAmount"
-        >
         <div
           class="alert alert-danger"
-          *ngIf="sampleAmount.touched && !sampleAmount.valid">
+          *ngIf="sampleType.touched && !sampleType.valid">
           <small
-            *ngIf="sampleAmount.errors.required">
-            Įveskite mėginių kiekį
+            *ngIf="sampleType.errors.required">
+            Įveskite kuro rūšį
           </small>
         </div>
       </div>
 
-      <button mat-button [disabled]="orderForm.form.invalid || typeHasError" type="submit" class="btn btn-primary"
+      <button mat-button [disabled]="orderForm.form.invalid" type="submit" class="btn btn-primary"
               (click)="swalOrderRegister()">
         Registruoti
       </button>
@@ -131,9 +163,9 @@
       <ol class="form-group">
         <label *ngIf="showVar"> Mėginių sąrašas </label>
 
-        <li *ngFor="let sample of sampleList; let i= index">
+        <li  *ngFor="let sample of sampleList; let i= index">
           <td>
-            <input type="text" name="sampleId-{{i}}" [(ngModel)]="sampleList[i].sampleId" #ft01="ngModel"
+            <input   tabIndex="{{i+1}}"  type="text" name="sampleId-{{i}}" [(ngModel)]="sample.sampleId" #ft01="ngModel"
                    class="form-control" #samplesS="ngModel" required
             ></td>
           <div
@@ -145,6 +177,6 @@
             </small>
           </div>
       </ol>
-
     </form>
   </div>
+</div>

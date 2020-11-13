@@ -4,8 +4,9 @@ import { SampleWeightRoutingModule } from './sample-weight-routing.module';
 import { SampleWeightComponent } from './sample-weight.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import {MatCardModule, MatStepperModule} from '@angular/material';
 
 
 
@@ -18,7 +19,10 @@ import { SharedModule } from '../../shared/shared.module';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatStepperModule
 
   ]
 })

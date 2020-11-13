@@ -1,20 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TotalMoistureListComponent } from './total-moisture-list/total-moisture-list.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {TotalMoistureListComponent} from './total-moisture-list/total-moisture-list.component';
 import {
-  _MatMenuDirectivesModule, MatButtonModule, MatDialogModule,
+  _MatMenuDirectivesModule,
+  MatButtonModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule, MatPaginatorModule,
-  MatTableModule
+  MatMenuModule,
+  MatPaginatorModule,
+  MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {TotalMoistureJournalRoutingModule} from './total-moisture-journal-routing.module';
-import { TotalMoistureModalComponent } from './total-moisture-modal/total-moisture-modal.component';
+import {TotalMoistureModalComponent} from './total-moisture-modal/total-moisture-modal.component';
 import {FormsModule} from '@angular/forms';
-import {ModalComponent} from '../../log/modal/modal.component';
-
+import { MatTableExporterModule } from 'mat-table-exporter';
+import {DateModalComponent} from './date-modal/date-modal.component';
+import {LogModule} from '../../log/log.module';
 
 
 @NgModule({
@@ -32,10 +36,15 @@ import {ModalComponent} from '../../log/modal/modal.component';
     MatButtonModule,
     MatPaginatorModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatTableExporterModule,
+    LogModule
   ],
   entryComponents: [
-    TotalMoistureModalComponent
+    TotalMoistureModalComponent,
+    DateModalComponent
   ]
 })
-export class TotalMoistureJournalModule { }
+export class TotalMoistureJournalModule {
+}

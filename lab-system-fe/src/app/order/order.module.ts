@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {OrderRoutingModule} from './order-routing.module';
 import {
   MatAutocompleteModule,
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
   MatFormFieldModule,
@@ -11,13 +11,16 @@ import {
   MatInputModule,
   MatMenuModule,
   MatOptionModule,
-  MatSelectModule,
+  MatSelectModule, MatSlideToggleModule,
   MatTableModule,
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormComponent} from './form/form.component';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {ModalComponent} from './modal/modal.component';
+import {SharedModule} from '../shared/shared.module';
+
+
 
 
 
@@ -39,7 +42,10 @@ import {ModalComponent} from './modal/modal.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    SharedModule,
+    MatCardModule,
+    MatSlideToggleModule
   ],
   entryComponents: [
     ModalComponent

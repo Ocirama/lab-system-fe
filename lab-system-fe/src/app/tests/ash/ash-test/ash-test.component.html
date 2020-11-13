@@ -1,0 +1,111 @@
+<h1>Peleningumas 1</h1>
+<div class="mat-elevation-z8" (window:resize)="onResize($event)">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Nr.</th>
+      <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="protocolId">
+      <th mat-header-cell *matHeaderCellDef> Protokolas</th>
+      <td mat-cell *matCellDef="let element"> {{element.protocolId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sampleId">
+      <th mat-header-cell *matHeaderCellDef> Meginys</th>
+      <td mat-cell *matCellDef="let element"> {{element.sampleId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="trayId">
+      <th mat-header-cell *matHeaderCellDef> Padėklas</th>
+      <td mat-cell *matCellDef="let element"> {{element.trayId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dishId">
+      <th mat-header-cell *matHeaderCellDef> Indukas</th>
+      <td mat-cell *matCellDef="let element"> {{element.dishId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dishWeight">
+      <th mat-header-cell *matHeaderCellDef> Induko svoris</th>
+      <td mat-cell *matCellDef="let element"> {{element.dishWeight}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dishAndSampleWeightBefore">
+      <th mat-header-cell *matHeaderCellDef> Induko ir mėginio masė PRIEŠ</th>
+      <td mat-cell *matCellDef="let element"> {{element.dishAndSampleWeightBefore}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dishAndSampleWeightAfter">
+      <th mat-header-cell *matHeaderCellDef> Induko ir mėginio masė PO</th>
+      <td mat-cell *matCellDef="let element"> {{element.dishAndSampleWeightAfter}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 15, 20, 25, dataSource.data.length]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+<div class="parent">
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper (selectionChange)="onChange($event)" #stepper formArrayName="form">
+
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel><span> Įveskite padėklo registravimo datą yyyyMMdd </span></ng-template>
+          <mat-form-field>
+            <mat-label>Data</mat-label>
+            <input matInput id="input0" [(ngModel)]="date" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="addItem()" >Sekantis</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel><span>Įveskite protokolo numerį </span></ng-template>
+          <mat-form-field>
+            <mat-label>Protokolo Nr.</mat-label>
+            <input matInput id="{{i+1}}" [(ngModel)]="protocol" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="getSamplesByProtocol(protocol)">Sekantis</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+        <ng-template matStepLabel><span> Sverkitę {{this.aArray[i]?.protocolId}}
+          protokolo {{this.aArray[i]?.sampleId}} - {{(i % 2) + 1}} mėginį  </span></ng-template>
+        <mat-form-field>
+          <input id="input{{i+1}}" matInput placeholder="Padėklo numeris" [(ngModel)]=" aArray[i] && aArray[i].dishId"
+              (keydown.enter)="sverti(aArray[i])"   (focusout)="action(aArray[i])" formControlName="cont1" required>
+        </mat-form-field>
+
+        <mat-card class="padekloSvoris"> <span class="a">Tuščio induko svoris </span>  {{aArray[i] && aArray[i].dishWeight}}</mat-card>
+        <mat-card class="meginioSvoris"> <span class="a">Induko ir ėminio svoris </span>  {{aArray[i] && aArray[i].dishAndSampleWeightBefore}}</mat-card>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button matStepperNext>Sekantis </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel><span>{{protocol}} protokolo mėginiai pasverti</span></ng-template>
+        <p>Pasirinkitę ką norite daryti.</p>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button (click)="stepper.reset()">Pildyti iš naujo</button>
+          <button mat-button (click)="stepper.reset();onSubmit(aArray);swalSamplesRegister()">Išsaugoti</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</div>
+<mat-card class="lastWeight"> <span class="a"> Paskutinio svėrimo svoris </span>  {{this.weight}}</mat-card>
+

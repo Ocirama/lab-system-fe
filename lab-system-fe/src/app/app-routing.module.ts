@@ -59,6 +59,26 @@ const routes: Routes = [
       import('./tests/total-moisture-test-second/total-moisture-test-second.module').then(m => m.TotalMoistureTestSecondModule)
   },
   {
+    path: 'ash-test',
+    loadChildren: () =>
+      import('./tests/ash/ash-test/ash-test.module').then(m => m.AshTestModule)
+  },
+  {
+    path: 'ash-test-second',
+    loadChildren: () =>
+      import('./tests/ash/ash-test-second/ash-test-second.module').then(m => m.AshTestSecondModule)
+  },
+  {
+    path: 'general-moisture-test',
+    loadChildren: () =>
+      import('./tests/general-moisture/general-moisture-test/general-moisture-test.module').then(m => m.GeneralMoistureTestModule)
+  },
+  {
+    path: 'general-moisture-test-second',
+    loadChildren: () =>
+      import('./tests/general-moisture/general-moisture-test-second/general-moisture-test-second.module').then(m => m.GeneralMoistureTestSecondModule)
+  },
+  {
     path: 'reference-tray',
     loadChildren: () =>
       import('./tests/reference-tray/reference-tray.module').then(m => m.ReferenceTrayModule)
@@ -72,7 +92,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
