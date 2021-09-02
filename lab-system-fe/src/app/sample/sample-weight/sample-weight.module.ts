@@ -6,24 +6,27 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import {MatCardModule, MatStepperModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
 
 @NgModule({
   declarations: [SampleWeightComponent],
-  imports: [
-    CommonModule,
-    SampleWeightRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    SharedModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatStepperModule
+    imports: [
+        CommonModule,
+        SampleWeightRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        SharedModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatStepperModule,
+        MatButtonModule
 
-  ]
+    ]
 })
 export class SampleWeightModule { }

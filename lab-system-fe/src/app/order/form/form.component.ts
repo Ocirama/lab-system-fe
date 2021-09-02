@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {ApiService} from '../../core/api.service';
 import {DropdownList} from './DropdownList';
 import {customerGroups} from './Customers';
 import Swal from 'sweetalert2';
-import {MatDialog, ThemePalette} from '@angular/material';
+import {ThemePalette} from '@angular/material/core';
+import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from '../modal/modal.component';
 import 'sweetalert2/src/sweetalert2.scss';
 import {TabService} from '../../tab.service';
@@ -38,7 +39,6 @@ export interface Sample {
   protocolId: string;
   sampleId: string;
   sampleWeight: number;
-
 }
 
 export interface Customer {
@@ -66,8 +66,6 @@ export const _filter = (opt: string[], value: string): string[] => {
 })
 export class FormComponent implements OnInit {
   color: ThemePalette = 'accent';
-  checked = false;
-  disabled = false;
   orders: Order = {} as Order;
   samples: Sample = {} as Sample;
   typeHasError = false;
@@ -76,6 +74,11 @@ export class FormComponent implements OnInit {
   sampleList: Array<Sample> = [];
   showVar = false;
   selectedOption: string;
+
+  stateForm: FormGroup = this._formBuilder.group({
+    stateGroup: '',
+  });
+  stateGroupOptions: Observable<CustomerGroup[]>;
 
 
   @Input() public value: number;
@@ -100,9 +103,18 @@ export class FormComponent implements OnInit {
               // tslint:disable-next-line:variable-name
               private _formBuilder2: FormBuilder,
               private api: ApiService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private fb: FormBuilder
   ) {
   }
+  profileForm = this.fb.group({
+    protocolId: ['', Validators.required],
+    customer: ['', Validators.required],
+    test: ['', Validators.required],
+    sampleType: ['', Validators.required],
+    orderAmount: ['', Validators.required]
+  });
+
 
   submitted = false;
 
@@ -122,8 +134,19 @@ export class FormComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-  }
 
+    // tslint:disable-next-line:no-non-null-assertion
+    this.stateGroupOptions = this.customerForm.get('stateGroup')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
+    this.stateGroupOptions = this.sampleTypeForm.get('stateGroup')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup2(value))
+      );
+  }
 
   getSampleTypes() {
     this.sampleTypes = [];
@@ -147,13 +170,13 @@ export class FormComponent implements OnInit {
       );
   }
 
+
   getCustomers() {
     this.customers = [];
     customerGroups.forEach(item => item.names = []);
     this.api.get('/lei/customers')
       .subscribe((users: any) => {
         this.customers = users;
-        console.log(users);
         for (const entry of this.customers) {
           const letteri = entry.title.charAt(0);
           const name = entry.title;
@@ -171,7 +194,7 @@ export class FormComponent implements OnInit {
 
   onDropDownClose(items: any) {
     if (items[0].item_text === 'Miksas') {
-      this.orders.test = this.orders.orderAmount + ' - Drėgmė, 1 - Pelenai, Šilumingumas';
+      this.orders.test = this.orders.orderAmount + ' - D, 1 - P, Š';
     } else {
       const strings = [];
 

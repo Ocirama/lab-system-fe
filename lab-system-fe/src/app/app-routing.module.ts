@@ -88,6 +88,41 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tray/tray.module').then(m => m.TrayModule)
   },
+  {
+    path: 'litesko',
+    loadChildren: () =>
+      import('./customers/Litesko/litesko.module').then(m => m.LiteskoModule)
+  },
+  {
+    path: 'litesko-samples',
+    loadChildren: () =>
+      import('./customers/Litesko/litesko-samples/litesko-samples.module').then(m => m.LiteskoSamplesModule)
+  },
+  {
+    path: 'tm-results',
+    loadChildren: () =>
+      import('./results/tm-results/tm-results.module').then(m => m.TmResultsModule)
+  },
+  {
+    path: 'ac-results',
+    loadChildren: () =>
+      import('./results/ac-results/ac-results.module').then(m => m.AcResultsModule)
+  },
+  {
+    path: 'cv-results',
+    loadChildren: () =>
+      import('./results/cv-results/cv-results.module').then(m => m.CvResultsModule)
+  },
+  {
+    path: 'gm-results',
+    loadChildren: () =>
+      import('./results/gm-results/gm-results.module').then(m => m.GmResultsModule)
+  },
+  {
+    path: 'full-results',
+    loadChildren: () =>
+      import('./results/full-results/full-results.module').then(m => m.FullResultsModule)
+  },
   {path: '**', redirectTo: ''}
 ];
 

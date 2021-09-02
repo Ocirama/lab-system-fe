@@ -40,6 +40,7 @@ insert into user(email, password, name)
 values('a','$2a$10$fwZoqLCDOoo24U6dKKF/J.RwNRmst/jsQv6HVBDR6QwRJFIg3vG1G','a');
 
 select * from sample_log;
+
 CREATE TABLE  order_log (
 id int PRIMARY KEY AUTO_INCREMENT,
 protocol_Id varchar(50) not null,
@@ -52,6 +53,7 @@ date date not null
 ALTER TABLE order_log
     ADD year int NOT NULL;
 ALTER TABLE order_log DROP year;
+
 CREATE TABLE  sample_log (
 id int PRIMARY KEY AUTO_INCREMENT,
 sample_id varchar(50) not null,

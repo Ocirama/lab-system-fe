@@ -6,8 +6,8 @@ import lt.ocirama.labsystem.converters.SampleConverter;
 import lt.ocirama.labsystem.converters.SampleEntityConverter;
 import lt.ocirama.labsystem.model.dto.Sample;
 import lt.ocirama.labsystem.model.dto.SampleSave;
-import lt.ocirama.labsystem.model.entities.SampleEntity;
-import lt.ocirama.labsystem.repositories.SampleRepository;
+import lt.ocirama.labsystem.model.entities.local.SampleEntity;
+import lt.ocirama.labsystem.repositories.local.SampleRepository;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -2,10 +2,10 @@ package lt.ocirama.labsystem.services;
 
 import lt.ocirama.labsystem.converters.TotalMoistureConverter;
 import lt.ocirama.labsystem.converters.TotalMoistureEntityConverter;
-import lt.ocirama.labsystem.model.entities.TotalMoistureEntity;
+import lt.ocirama.labsystem.model.entities.local.TotalMoistureEntity;
 import lt.ocirama.labsystem.model.dto.TotalMoisture;
 import lt.ocirama.labsystem.model.dto.TotalMoistureSave;
-import lt.ocirama.labsystem.repositories.TotalMoistureRepository;
+import lt.ocirama.labsystem.repositories.local.TotalMoistureRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

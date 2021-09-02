@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import lt.ocirama.labsystem.model.entities.OrderEntity;
-import lt.ocirama.labsystem.model.entities.SampleEntity;
+import lt.ocirama.labsystem.model.entities.local.OrderEntity;
+import lt.ocirama.labsystem.model.entities.local.SampleEntity;
+import lt.ocirama.labsystem.repositories.local.OrderRepository;
+import lt.ocirama.labsystem.repositories.local.SampleRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

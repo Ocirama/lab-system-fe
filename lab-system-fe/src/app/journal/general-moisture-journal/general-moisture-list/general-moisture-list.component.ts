@@ -1,9 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {ApiService} from '../../../core/api.service';
 import {GeneralMoistureModalComponent} from '../general-moisture-modal/general-moisture-modal.component';
 import {DateModalComponent} from '../../total-moisture-journal/date-modal/date-modal.component';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
+
 
 interface GeneralMoistureJournal {
   id: number;
@@ -15,6 +19,7 @@ interface GeneralMoistureJournal {
   jarAndSampleWeightBefore: number;
   jarAndSampleWeightAfter: number;
   jarAndSampleWeightAfterPlus: number;
+  generalMoisture: number;
   date: Date;
 }
 
@@ -24,7 +29,7 @@ interface GeneralMoistureJournal {
   styleUrls: ['./general-moisture-list.component.css']
 })
 export class GeneralMoistureListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'jarId', 'jarWeight', 'jarAndSampleWeightBefore', 'jarAndSampleWeightAfter', 'jarAndSampleWeightAfterPlus', 'date', 'actions'];
+  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'jarId', 'jarWeight', 'jarAndSampleWeightBefore', 'jarAndSampleWeightAfter', 'jarAndSampleWeightAfterPlus', 'generalMoisture', 'date', 'actions'];
   generalMoistureJournals: GeneralMoistureJournal[] = [];
   dataSource: MatTableDataSource<GeneralMoistureJournal>;
   excelDate: string;
@@ -40,7 +45,7 @@ export class GeneralMoistureListComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.getGm();
+    this.getGm();
     this.dataSource = new MatTableDataSource();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -49,18 +54,74 @@ export class GeneralMoistureListComponent implements OnInit {
       return data.protocolId.includes(filter);
     };
   }
+
   getGm() {
-    this.api.get('/lei/journals/gm').subscribe((data: GeneralMoistureJournal[]) => this.dataSource.data = data);
+    this.api.get('/lei/journals/gm').subscribe((data: GeneralMoistureJournal[]) => {
+      for (let i = 0; i < data.length; i++) {
+        data[i].generalMoisture = +(((data[i]
+          .jarAndSampleWeightBefore - data[i]
+          .jarAndSampleWeightAfter) / (data[i]
+          .jarAndSampleWeightBefore - data[i]
+          .jarWeight)) * 100).toFixed(2);
+      }
+      const groupedData = data.reduce(function(l, r) {
+        const key = r.protocolId + '|' + r.sampleId + '|' + r.date;
+        if (typeof l[key] === 'undefined') {
+          l[key] = {
+            sum: 0,
+            count: 0
+          };
+        }
+        l[key].sum += r.generalMoisture;
+        l[key].count += 1;
+        return l;
+      }, {});
+      console.log(JSON.stringify(groupedData));
+
+      const avgGroupedData = Object.keys(groupedData)
+        .map((x => {
+          const keyParts = x.split(/\|/);
+          return {
+            protocolId: parseInt(keyParts[0], 10),
+            sampleId: keyParts[1],
+            totalMoisture: 0,
+
+            generalMoisture: (groupedData[x].sum / groupedData[x].count),
+            calorificValue: 0,
+            ash: 0,
+            date: keyParts[2]
+          };
+        }));
+      console.log(JSON.stringify(avgGroupedData));
+      // avgGroupedData.forEach(x => this.onSubmit(x));
+      /*for (let i = 2500; i < 3000; i++) {
+          this.onSubmit(avgGroupedData[i]);
+      }*/
+      // this.onSubmit(avgGroupedData[2501]);
+      this.dataSource.data = data;
+    });
   }
 
-  applyFilter(filterValue: string) {
+  onSubmit(value) {
+    this.api.post('/lei/results', value).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+  }
+
+
+  applyFilter(filterValue
+                :
+                string
+  ) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
-  delete(id: number) {
+
+  delete(id
+           :
+           number
+  ) {
     Swal.fire({
       title: 'Ar tikrai norite ištrinti šį svėrimą?',
       icon: 'warning',
@@ -85,7 +146,7 @@ export class GeneralMoistureListComponent implements OnInit {
     });
   }
 
-  openDialog(generalMoistureJournal?: GeneralMoistureJournal) {
+  openDialog(generalMoistureJournal ?: GeneralMoistureJournal) {
     const dialogRef = this.dialog.open(GeneralMoistureModalComponent, {
       width: '250px',
       data: {
@@ -120,6 +181,7 @@ export class GeneralMoistureListComponent implements OnInit {
       }
     });
   }
+
   displayFilter(value: any) {
     if (value === 'metai') {
       this.api.get('/lei/journals/gm')
@@ -148,7 +210,8 @@ export class GeneralMoistureListComponent implements OnInit {
       console.log();
     }
   }
-  openDialog2(excelDate?: string) {
+
+  openDialog2(excelDate ?: string) {
     const dialogRef = this.dialog.open(DateModalComponent, {
       width: '250px',
       data: {
@@ -159,10 +222,10 @@ export class GeneralMoistureListComponent implements OnInit {
       if (dataa) {
 
         this.api.get('/lei/journals/gm')
-        // tslint:disable-next-line:no-shadowed-variable
+          // tslint:disable-next-line:no-shadowed-variable
           .subscribe((data: GeneralMoistureJournal[]) => this.dataSource.data = data
             .filter(result => ((result.date.toString()
-              .substring(0, 10))  === dataa.date)));
+              .substring(0, 10)) === dataa.date)));
         console.log(dataa.date);
       }
     });

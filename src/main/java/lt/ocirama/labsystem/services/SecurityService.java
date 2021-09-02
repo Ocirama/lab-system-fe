@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lt.ocirama.labsystem.configs.JwtAuthFilter;
-import lt.ocirama.labsystem.model.entities.UserEntity;
-import lt.ocirama.labsystem.repositories.UserRepository;
+import lt.ocirama.labsystem.model.entities.local.UserEntity;
+import lt.ocirama.labsystem.repositories.local.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

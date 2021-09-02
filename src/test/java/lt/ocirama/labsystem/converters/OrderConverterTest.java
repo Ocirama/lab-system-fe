@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import lt.ocirama.labsystem.model.dto.Order;
-import lt.ocirama.labsystem.model.entities.OrderEntity;
+import lt.ocirama.labsystem.model.entities.local.OrderEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

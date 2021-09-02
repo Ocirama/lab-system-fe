@@ -3,10 +3,10 @@ package lt.ocirama.labsystem.services;
 import java.util.List;
 import lt.ocirama.labsystem.converters.OrderConverter;
 import lt.ocirama.labsystem.converters.OrderEntityConverter;
-import lt.ocirama.labsystem.model.entities.OrderEntity;
+import lt.ocirama.labsystem.model.entities.local.OrderEntity;
 import lt.ocirama.labsystem.model.dto.Order;
 import lt.ocirama.labsystem.model.dto.OrderSave;
-import lt.ocirama.labsystem.repositories.OrderRepository;
+import lt.ocirama.labsystem.repositories.local.OrderRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +30,6 @@ public class OrderService {
 
     public Order getOrder(Integer id) {
         OrderEntity order = orderRepository.findOneById(id);
-
         return orderConverter.convert(order);
     }
 

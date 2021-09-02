@@ -40,8 +40,8 @@ export class TrayComponent implements OnInit {
       {title: 'Sverkitę padėklą',
         text: ''},
     ]).then((result) => {
-      if (result.value) {
-        const answers = JSON.stringify(result.value)
+      if (result) {
+        const answers = JSON.stringify(result);
         Swal.fire({
           title: 'All done!',
           html: `

@@ -3,8 +3,8 @@ package lt.ocirama.labsystem.converters;
 import java.time.LocalDate;
 import java.util.Objects;
 import lt.ocirama.labsystem.model.dto.TraySave;
-import lt.ocirama.labsystem.model.entities.TrayWeightEntity;
-import lt.ocirama.labsystem.repositories.TrayRepository;
+import lt.ocirama.labsystem.model.entities.local.TrayWeightEntity;
+import lt.ocirama.labsystem.repositories.local.TrayRepository;
 import org.springframework.stereotype.Component;
 
 @Component

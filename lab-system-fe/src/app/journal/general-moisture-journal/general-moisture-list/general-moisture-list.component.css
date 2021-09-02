@@ -19,6 +19,7 @@ table th:last-child {
 .mat-row:hover {
   background-color: lightgrey;
 }
+
 .footer {
   position: fixed;
   left: 0;

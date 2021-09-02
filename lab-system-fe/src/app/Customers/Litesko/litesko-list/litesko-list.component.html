@@ -1,0 +1,104 @@
+<h3>Litesko rezultatai</h3>
+
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtruoti">
+  </mat-form-field>
+  <table mat-table matTableExporter [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="desc" class="mat-elevation-z8" #exporter="matTableExporter">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Nr.</th>
+      <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sampleId">
+      <th mat-header-cell *matHeaderCellDef> Mėginys</th>
+      <td mat-cell *matCellDef="let element"> {{element.sampleId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="testType">
+      <th mat-header-cell *matHeaderCellDef> Tyrimai</th>
+      <td mat-cell *matCellDef="let element"> {{element.testType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfReceipt">
+      <th mat-header-cell *matHeaderCellDef> Mėginių gavimo data</th>
+      <td mat-cell *matCellDef="let element"> {{formatDate(element.dateOfReceipt)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statusCode">
+      <th mat-header-cell *matHeaderCellDef> Statusas</th>
+      <td mat-cell *matCellDef="let element"> {{element.statusCode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef> Pastabos</th>
+      <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef> Tyrimų pradžios data</th>
+      <td mat-cell *matCellDef="let element"> {{formatDate(element.startDate)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef> Tyrimų pabaigos data</th>
+      <td mat-cell *matCellDef="let element"> {{formatDate(element.endDate)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="totalMoistureValue">
+      <th mat-header-cell *matHeaderCellDef> Visuminė drėgmė, %</th>
+      <td mat-cell *matCellDef="let element"> {{element.totalMoistureValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="upperCalorificValue">
+      <th mat-header-cell *matHeaderCellDef> Sauso kuro viršutinis šilumingumas, Mj/kg</th>
+      <td mat-cell *matCellDef="let element"> {{element.upperCalorificValue}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lowerCalorificValue">
+      <th mat-header-cell *matHeaderCellDef> Sauso kuro apatinis šilumingumas, Mj/kg</th>
+      <td mat-cell *matCellDef="let element"> {{element.lowerCalorificValue}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ashValue">
+      <th mat-header-cell *matHeaderCellDef> Peleningumas, %</th>
+      <td mat-cell *matCellDef="let element"> {{element.ashValue}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+
+          <button mat-menu-item (click)="openDialog2(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Redaguoti</span>
+          </button>
+          <button mat-menu-item (click)="delete(element.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Ištrinti</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="footer">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button mat-stroked-button color="primary" (click)="displayFilter('pilnas')" title="pilna lentele">Pilnas</button>
+        <button mat-stroked-button color="primary" (click)="displayFilter('metai')" title="Rodyti šių metų">Metai</button>
+        <button mat-stroked-button color="primary" (click)="displayFilter('menuo')" title="menuo">Mėnesis</button>
+        <button mat-stroked-button color="primary" (click)="openDialog2()" title="menuo">Diena</button>
+        <button mat-icon-button color="primary" (click)="exporter.exportTable('xlsx', {fileName: 'Pelenai ' + this.excelDate, sheet: 'sheet_name'})" title="Išsaugoti XSLX formatu"><mat-icon>save_alt</mat-icon></button>
+        <span class="example-spacer"></span>
+        <mat-paginator showFirstLastButtons="true" class="paginator" [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>
+

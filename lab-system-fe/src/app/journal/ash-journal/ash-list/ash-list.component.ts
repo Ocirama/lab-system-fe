@@ -1,9 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {ApiService} from '../../../core/api.service';
 import {AshModalComponent} from '../ash-modal/ash-modal.component';
 import {DateModalComponent} from '../../total-moisture-journal/date-modal/date-modal.component';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
 interface AshJournal {
   id: number;
@@ -14,7 +17,26 @@ interface AshJournal {
   dishWeight: number;
   dishAndSampleWeightBefore: number;
   dishAndSampleWeightAfter: number;
+  ashValue: number;
   date: Date;
+}
+interface GeneralMoistureJournal {
+  id: number;
+  protocolId: string;
+  sampleId: string;
+  trayId: string;
+  jarId: string;
+  jarWeight: number;
+  jarAndSampleWeightBefore: number;
+  jarAndSampleWeightAfter: number;
+  jarAndSampleWeightAfterPlus: number;
+  generalMoisture: number;
+  date: Date;
+}
+interface GmArray {
+  order: string;
+  sample: string;
+  value: number;
 }
 
 @Component({
@@ -23,10 +45,11 @@ interface AshJournal {
   styleUrls: ['./ash-list.component.css']
 })
 export class AshListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'dishId', 'dishWeight', 'dishAndSampleWeightBefore', 'dishAndSampleWeightAfter', 'date', 'actions'];
+  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'dishId', 'dishWeight', 'dishAndSampleWeightBefore', 'dishAndSampleWeightAfter', 'ashValue', 'date', 'actions'];
   ashJournals: AshJournal[] = [];
   dataSource: MatTableDataSource<AshJournal>;
   excelDate: string;
+  generalMoistureArray: GmArray[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -48,7 +71,38 @@ export class AshListComponent implements OnInit {
     };
   }
   getAsh() {
-    this.api.get('/lei/journals/ash').subscribe((data: AshJournal[]) => this.dataSource.data = data);
+    this.api.get('/lei/journals/ash').subscribe((data: AshJournal[]) => {
+      for (let i = 0; i < data.length; i++) {
+        data[i].ashValue = +(((data[i].dishAndSampleWeightBefore - data[i].dishAndSampleWeightAfter) / (data[i].dishAndSampleWeightBefore - data[i].dishWeight)) * 100).toFixed(2);
+      }
+      const groupedData = data.reduce(function(l, r) {
+        const key = r.protocolId + '|' + r.sampleId;
+        if (typeof l[key] === 'undefined') {
+          l[key] = {
+            sum: 0,
+            count: 0
+          };
+        }
+        l[key].sum += r.ashValue;
+        l[key].count += 1;
+        return l;
+      }, {});
+      console.log(JSON.stringify(groupedData));
+
+      const avgGroupedData = Object.keys(groupedData)
+        .map(function(key) {
+          const keyParts = key.split(/\|/);
+          return {
+            protocolId: parseInt(keyParts[0], 10),
+            sampleid: keyParts[1],
+            asValue: (groupedData[key].sum / groupedData[key].count)
+          };
+
+        });
+      console.log(JSON.stringify(avgGroupedData));
+
+      this.dataSource.data = data;
+    });
   }
 
   applyFilter(filterValue: string) {

@@ -1,9 +1,7 @@
 package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.dto.GeneralMoisture;
-import lt.ocirama.labsystem.model.entities.GeneralMoistureEntity;
-import lt.ocirama.labsystem.model.entities.TotalMoistureEntity;
-import lt.ocirama.labsystem.model.dto.TotalMoisture;
+import lt.ocirama.labsystem.model.entities.local.GeneralMoistureEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

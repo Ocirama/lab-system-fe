@@ -1,17 +1,11 @@
 package lt.ocirama.labsystem.services;
 
-import lt.ocirama.labsystem.converters.CustomerConverter;
-import lt.ocirama.labsystem.converters.CustomerEntityConverter;
 import lt.ocirama.labsystem.converters.SampleTypeConverter;
 import lt.ocirama.labsystem.converters.SampleTypeEntityConverter;
-import lt.ocirama.labsystem.model.dto.Customer;
-import lt.ocirama.labsystem.model.dto.CustomerSave;
 import lt.ocirama.labsystem.model.dto.SampleType;
 import lt.ocirama.labsystem.model.dto.SampleTypeSave;
-import lt.ocirama.labsystem.model.entities.CustomerEntity;
-import lt.ocirama.labsystem.model.entities.SampleTypeEntity;
-import lt.ocirama.labsystem.repositories.CustomerRepository;
-import lt.ocirama.labsystem.repositories.SampleTypeRepository;
+import lt.ocirama.labsystem.model.entities.local.SampleTypeEntity;
+import lt.ocirama.labsystem.repositories.local.SampleTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

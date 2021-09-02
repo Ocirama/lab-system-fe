@@ -1,7 +1,7 @@
 package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.dto.Order;
-import lt.ocirama.labsystem.model.entities.OrderEntity;
+import lt.ocirama.labsystem.model.entities.local.OrderEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

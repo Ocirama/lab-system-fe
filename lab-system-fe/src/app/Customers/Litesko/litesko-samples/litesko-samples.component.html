@@ -1,0 +1,154 @@
+<div   class="container-fluid">
+
+
+
+  <div [hidden]="submitted" class="formClass">
+    <h1>Mėginių registravimas</h1>
+{{this.samples|json}}
+    <form (ngSubmit)="onSubmit();" #orderForm="ngForm" novalidate id="orderForm">
+
+
+      <div class="form-group">
+        <label for="protocolId">Protokolas</label>
+        <input
+          (focusout)="getSamplesByProtocol(this.protocolId)"
+          [(ngModel)]="this.protocolId"
+          required
+          name="protocolId"
+          #protocol="ngModel"
+          id="protocolId"
+          class="form-control"
+          tabIndex="1"
+        >
+      </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="protocol.touched && !protocol.valid">
+          <small
+            *ngIf="protocol.errors.required">
+            Įveskite užsakymo numerį
+          </small>
+        </div>
+
+      <div class="form-group">
+      <label for="dateOfReceipt">Atvežimo data ir laikas</label>
+      <input
+        [(ngModel)]="this.stringDate1"
+        required
+        name="dateOfReceipt"
+        #datOfReceipt="ngModel"
+        id="dateOfReceipt"
+        class="form-control"
+        tabIndex="1"
+        placeholder="yyyy-MM-dd HH:mm:SS"
+      >
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="datOfReceipt.touched && !datOfReceipt.valid">
+    <small
+      *ngIf="datOfReceipt.errors.required">
+      Įveskite užsakymo gavimo datą
+    </small>
+  </div>
+
+
+
+      <div class="form-group">
+        <label >Statusas</label>
+        <input
+               [(ngModel)]="this.status"
+               type="text"
+               class="form-control"
+               id="status"
+               required
+               matInput
+               [matAutocomplete]="autoGroup2"
+               formControlName="orderGroup">
+        <mat-autocomplete #autoGroup2="matAutocomplete">
+            <mat-option *ngFor="let status of statuses" [value]="status.viewValue">
+                  {{status.viewValue}}
+            </mat-option>
+        </mat-autocomplete>
+      </div>
+
+
+      <div class="form-group">
+        <label for="notes">Pastabos</label>
+        <input
+          [(ngModel)]="liteskoSamples.notes"
+          name="notes"
+          #notes="ngModel"
+          id="notes"
+          class="form-control"
+          tabIndex="4"
+        >
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="notes.touched && !notes.valid">
+      </div>
+
+
+      <div class="form-group">
+        <label for="startDate">Tyrimų pradžios data</label>
+        <input
+          [(ngModel)]="this.stringDate2"
+          required
+          name="startDate"
+          #startDate="ngModel"
+          id="startDate"
+          class="form-control"
+          tabIndex="5"
+          placeholder="yyyy-MM-dd HH:mm:SS"
+        >
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="startDate.touched && !startDate.valid">
+        <small
+          *ngIf="startDate.errors.required">
+          Įveskite tyrimų pradžios datą
+        </small>
+      </div>
+
+      <button mat-button [disabled]="orderForm.form.invalid" type="submit" class="btn btn-primary"
+              (click)="swalOrderRegister()">
+        Registruoti
+      </button>
+      <button mat-button type="button" class=" btn btn-secondary" (click)="clear()">Valyti</button>
+
+    </form>
+  </div>
+  <div class="mat-elevation-z8">
+    <button mat-raised-button (click)="getSampleList()" class="new" color="primary">Mėginių sąrašas</button>
+    <button mat-raised-button (click)="clearSamples()" class="new" color="primary">Valyti</button>
+    <table mat-table [dataSource]="dataSource">
+
+
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="protocol">
+        <th mat-header-cell *matHeaderCellDef> Protokolas </th>
+        <td mat-cell *matCellDef="let element"> {{element.protocolId}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="sampleId">
+        <th mat-header-cell *matHeaderCellDef> Mėginio ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.sampleId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="testType">
+        <th mat-header-cell *matHeaderCellDef> Tyrimai </th>
+        <td mat-cell *matCellDef="let element"> {{element.testType}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator pageSize="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

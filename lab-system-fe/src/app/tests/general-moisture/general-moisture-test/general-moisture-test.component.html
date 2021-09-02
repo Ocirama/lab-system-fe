@@ -1,23 +1,24 @@
-<h1>Visuminės drėgmės svėrimas prieš džiovinimą</h1>
+<h1>Bendrosios drėgmės svėrimas Nr.1</h1>
 
 <div class="parent">
   <form [formGroup]="formGroup">
     <mat-vertical-stepper (selectionChange)="onChange($event)" #stepper formArrayName="form">
 
       <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel><span>Įveskite protokolo numerį </span></ng-template>
-          <mat-form-field>
-            <mat-label>Protokolo Nr.</mat-label>
-            <input matInput id="input0" [(ngModel)]="protocol" formControlName="firstCtrl" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperNext (click)="getSamplesByProtocol(protocol)">Sekantis</button>
-          </div>
-        </form>
-      </mat-step>
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel><span>Įveskite mėginių registravimo datą yyyyMMdd </span></ng-template>
+        <mat-form-field>
+          <mat-label>Protokolo Nr.</mat-label>
+          <input matInput id="input0" [(ngModel)]="protocol" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext (click)="getSamplesByProtocol(protocol)">Sekantis</button>
+        </div>
+      </form>
+    </mat-step>
 
-      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form['controls']; let i = index">
         <ng-template matStepLabel><span> Sverkitę {{this.tmArray[i]?.protocolId}}
           protokolo {{this.tmArray[i]?.sampleId}} - {{(i % 2) + 1}} mėginį  </span></ng-template>
         <mat-form-field>

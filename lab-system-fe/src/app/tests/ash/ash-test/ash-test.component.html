@@ -67,9 +67,9 @@
         </form>
       </mat-step>
 
-      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form['controls']; let i = index">
         <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel><span>Įveskite protokolo numerį </span></ng-template>
+          <ng-template matStepLabel><span>Skenuok </span></ng-template>
           <mat-form-field>
             <mat-label>Protokolo Nr.</mat-label>
             <input matInput id="{{i+1}}" [(ngModel)]="protocol" formControlName="firstCtrl" required>
@@ -80,7 +80,13 @@
         </form>
       </mat-step>
 
-      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form['controls']; let i = index">
+        <mat-step>
+          <div>
+            <button mat-button matStepperPrevious>Atgal</button>
+            <button mat-button matStepperNext>Sekantis </button>
+          </div>
+        </mat-step>
         <ng-template matStepLabel><span> Sverkitę {{this.aArray[i]?.protocolId}}
           protokolo {{this.aArray[i]?.sampleId}} - {{(i % 2) + 1}} mėginį  </span></ng-template>
         <mat-form-field>

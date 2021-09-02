@@ -16,6 +16,8 @@ interface DialogData {
   sampleType: string;
   orderAmount: number;
   date: string;
+  oldYear: number;
+  year: number;
 }
 
 @Component({
@@ -35,6 +37,7 @@ export class ModalComponent implements OnInit {
     data.oldSampleType = data.sampleType;
     data.oldOrderAmount = data.orderAmount;
     data.oldDate = data.date;
+    data.oldYear = data.year;
   }
 
   ngOnInit() {

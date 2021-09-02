@@ -1,8 +1,8 @@
 package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.dto.CustomerSave;
-import lt.ocirama.labsystem.model.entities.CustomerEntity;
-import lt.ocirama.labsystem.repositories.CustomerRepository;
+import lt.ocirama.labsystem.model.entities.local.CustomerEntity;
+import lt.ocirama.labsystem.repositories.local.CustomerRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

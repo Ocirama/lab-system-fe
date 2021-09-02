@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import lt.ocirama.labsystem.model.dto.Tray;
-import lt.ocirama.labsystem.model.entities.TrayWeightEntity;
+import lt.ocirama.labsystem.model.entities.local.TrayWeightEntity;
 import org.springframework.stereotype.Component;
 
 @Component

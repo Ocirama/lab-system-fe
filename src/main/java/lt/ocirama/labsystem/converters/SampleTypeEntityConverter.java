@@ -1,8 +1,8 @@
 package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.dto.SampleTypeSave;
-import lt.ocirama.labsystem.model.entities.SampleTypeEntity;
-import lt.ocirama.labsystem.repositories.SampleTypeRepository;
+import lt.ocirama.labsystem.model.entities.local.SampleTypeEntity;
+import lt.ocirama.labsystem.repositories.local.SampleTypeRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

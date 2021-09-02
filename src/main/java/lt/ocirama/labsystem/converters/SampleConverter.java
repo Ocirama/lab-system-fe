@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import lt.ocirama.labsystem.model.dto.Sample;
-import lt.ocirama.labsystem.model.entities.SampleEntity;
+import lt.ocirama.labsystem.model.entities.local.SampleEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,6 +23,7 @@ public class SampleConverter {
         return new Sample(
             sample.getId(),
             sample.getOrder().getProtocolId(),
+            sample.getOrder().getTest(),
             sample.getSampleId(),
             sample.getSampleWeight(),
             sample.getDate()

@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import Swal from "sweetalert2";
 
 interface DialogData {
   id: number;
@@ -41,6 +42,13 @@ export class GeneralMoistureModalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  swalOrderUpdate() {
+    Swal.fire(
+      'Užsakymas papildytas.',
+      '',
+      'success'
+    );
   }
 }
 

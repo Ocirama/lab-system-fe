@@ -5,8 +5,8 @@ import lt.ocirama.labsystem.converters.TrayConverter;
 import lt.ocirama.labsystem.converters.TrayWeightEntityConverter;
 import lt.ocirama.labsystem.model.dto.Tray;
 import lt.ocirama.labsystem.model.dto.TraySave;
-import lt.ocirama.labsystem.model.entities.TrayWeightEntity;
-import lt.ocirama.labsystem.repositories.TrayRepository;
+import lt.ocirama.labsystem.model.entities.local.TrayWeightEntity;
+import lt.ocirama.labsystem.repositories.local.TrayRepository;
 import org.springframework.stereotype.Service;
 
 @Service

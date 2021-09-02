@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lt.ocirama.labsystem.model.entities.SampleEntity;
 
 @Getter
 @Setter

@@ -1,12 +1,12 @@
 package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.dto.GeneralMoistureSave;
-import lt.ocirama.labsystem.model.entities.GeneralMoistureEntity;
-import lt.ocirama.labsystem.model.entities.TrayEntity;
-import lt.ocirama.labsystem.repositories.GeneralMoistureRepository;
-import lt.ocirama.labsystem.repositories.OrderRepository;
-import lt.ocirama.labsystem.repositories.SampleRepository;
-import lt.ocirama.labsystem.repositories.TrayRepository;
+import lt.ocirama.labsystem.model.entities.local.GeneralMoistureEntity;
+import lt.ocirama.labsystem.model.entities.local.TrayEntity;
+import lt.ocirama.labsystem.repositories.local.GeneralMoistureRepository;
+import lt.ocirama.labsystem.repositories.local.OrderRepository;
+import lt.ocirama.labsystem.repositories.local.SampleRepository;
+import lt.ocirama.labsystem.repositories.local.TrayRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

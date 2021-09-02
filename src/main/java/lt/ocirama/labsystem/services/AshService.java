@@ -2,16 +2,10 @@ package lt.ocirama.labsystem.services;
 
 import lt.ocirama.labsystem.converters.AshConverter;
 import lt.ocirama.labsystem.converters.AshEntityConverter;
-import lt.ocirama.labsystem.converters.GeneralMoistureConverter;
-import lt.ocirama.labsystem.converters.GeneralMoistureEntityConverter;
 import lt.ocirama.labsystem.model.dto.Ash;
 import lt.ocirama.labsystem.model.dto.AshSave;
-import lt.ocirama.labsystem.model.dto.GeneralMoisture;
-import lt.ocirama.labsystem.model.dto.GeneralMoistureSave;
-import lt.ocirama.labsystem.model.entities.AshEntity;
-import lt.ocirama.labsystem.model.entities.GeneralMoistureEntity;
-import lt.ocirama.labsystem.repositories.AshRepository;
-import lt.ocirama.labsystem.repositories.GeneralMoistureRepository;
+import lt.ocirama.labsystem.model.entities.local.AshEntity;
+import lt.ocirama.labsystem.repositories.local.AshRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

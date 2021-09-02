@@ -3,8 +3,7 @@ import {ApiService} from '../../core/api.service';
 import {TabService} from '../../tab.service';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
-/// <reference path="pathTo/chrome.d.ts"/>
-import {chrome} from '@types/chrome';
+import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 
 
 interface Sample {
@@ -24,31 +23,22 @@ interface Sample {
 
 
 export class SampleWeightComponent implements OnInit {
-  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
   forms: FormGroup[];
   weight: number;
   samples: Sample[];
   sampleArray: Sample[] = [];
   formGroup: FormGroup;
   form: FormArray;
-  newArray = [];
   public targetInput = 'input0';
   protocol: string;
-  reader: ReadableStreamDefaultReader;
-  writer: WritableStreamDefaultWriter;
-  encoder = new TextEncoder();
-  decoder = new TextDecoder();
 
 
   // tslint:disable-next-line:variable-name
   constructor(private _formBuilder: FormBuilder,
               private api: ApiService) {
-    this.encoder = new TextEncoder();
-    this.decoder = new TextDecoder();
   }
 
   ngOnInit() {
@@ -68,36 +58,6 @@ export class SampleWeightComponent implements OnInit {
     });
   }
 
-  async initz() {
-    if ('serial' in navigator) {
-      try {
-        const port = await (navigator as any).serial.requestPort();
-        await port.open({baudRate: 9600});
-        this.reader = port.readable.getReader();
-        const signals = await port.getSignals();
-        console.log(signals);
-      } catch (err) {
-        console.error('There was an error opening the serial port:', err);
-      }
-    } else {
-      console.error('Web serial doesn\'t seem to be enabled in your browser. Try enabling it by visiting:');
-      console.error('chrome://flags/#enable-experimental-web-platform-features');
-      console.error('opera://flags/#enable-experimental-web-platform-features');
-      console.error('edge://flags/#enable-experimental-web-platform-features');
-    }
-  }
-
-
-  async sverti(sample: Sample) {
-    const editorExtensionId = 'oknmcdbpofdliohfolemhjmlobndkomb';
-    chrome.runtime.sendMessage(editorExtensionId,
-      { data: 'data to pass to the chrome app' },
-      // tslint:disable-next-line:only-arrow-functions
-      function(response) {
-        alert(response);
-      });
-  }
-
 
   init() {
     return this._formBuilder.group({
@@ -109,6 +69,12 @@ export class SampleWeightComponent implements OnInit {
   addItem() {
     this.form = this.formGroup.get('form') as FormArray;
     this.form.push(this.init());
+  }
+
+  getWeight(sample: Sample) {
+    this.api.getWeight('/scales').subscribe((weight: any) => {
+      sample.sampleWeight = weight;
+    });
   }
 
   getSamplesByProtocol(protocol: any) {
@@ -171,7 +137,7 @@ export class SampleWeightComponent implements OnInit {
       icon: 'success',
       title: 'Mėginys pasvertas',
       showConfirmButton: false,
-      timer: 900
+      timer: 100
     });
   }
 

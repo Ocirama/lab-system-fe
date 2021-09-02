@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/lei/samples")
-public class SampleController {
+public class  SampleController {
 
     private final SampleService sampleService;
 
@@ -37,6 +37,7 @@ public class SampleController {
         return sampleService.getAllByProtocol(id);
     }
 
+    
     @PostMapping
     public Sample save(@RequestBody SampleSave sample) {
         return sampleService.save(sample);

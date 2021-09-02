@@ -1,9 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {ApiService} from '../../../core/api.service';
 import {TotalMoistureModalComponent} from '../total-moisture-modal/total-moisture-modal.component';
 import {DateModalComponent} from '../date-modal/date-modal.component';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
 
 interface TotalMoistureJournal {
@@ -15,6 +18,8 @@ interface TotalMoistureJournal {
   trayAndSampleWeightBefore: number;
   trayAndSampleWeightAfter: number;
   trayAndSampleWeightAfterPlus: number;
+  totalMoisture: number;
+  meanDifference: number;
   date: Date;
 }
 
@@ -24,7 +29,7 @@ interface TotalMoistureJournal {
   styleUrls: ['./total-moisture-list.component.css']
 })
 export class TotalMoistureListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'trayWeight', 'trayAndSampleWeightBefore', 'trayAndSampleWeightAfter', 'trayAndSampleWeightAfterPlus', 'date', 'actions'];
+  displayedColumns: string[] = ['id', 'protocolId', 'sampleId', 'trayId', 'trayWeight', 'trayAndSampleWeightBefore', 'trayAndSampleWeightAfter', 'trayAndSampleWeightAfterPlus', 'totalMoisture', 'meanDifference', 'date', 'actions'];
   totalMoistureJournals: TotalMoistureJournal[] = [];
   dataSource: MatTableDataSource<TotalMoistureJournal>;
   excelDate: string;
@@ -48,9 +53,47 @@ export class TotalMoistureListComponent implements OnInit {
       return data.protocolId.includes(filter);
     };
   }
+
   getTm() {
-    this.api.get('/lei/journals').subscribe((data: TotalMoistureJournal[]) => this.dataSource.data = data);
+    this.api.get('/lei/journals').subscribe((data: TotalMoistureJournal[]) => {
+      for (let i = 0; i < data.length; i++) {
+        data[i].totalMoisture = +(((data[i].trayAndSampleWeightBefore - data[i].trayAndSampleWeightAfter) / (data[i].trayAndSampleWeightBefore - data[i].trayWeight)) * 100).toFixed(2);
+      }
+      const groupedData = data.reduce(function(l, r) {
+        const key = r.protocolId + '|' + r.sampleId;
+        if (typeof l[key] === 'undefined') {
+          l[key] = {
+            sum: 0,
+            count: 0,
+            single: 0
+          };
+        }
+        l[key].sum += r.totalMoisture;
+        l[key].single = r.totalMoisture;
+        l[key].count += 1;
+        return l;
+      }, {});
+
+      const avgGroupedData = Object.keys(groupedData)
+        .map(function(key) {
+          const keyParts = key.split(/\|/);
+          return {
+            protocolId: parseInt(keyParts[0], 10),
+            sampleid: keyParts[1],
+            totalMoisture: (groupedData[key].sum / groupedData[key].count),
+            meanDifference: ((groupedData[key].single - (groupedData[key].sum / groupedData[key].count)) / groupedData[key].single) * 100
+          };
+
+        });
+      console.log(avgGroupedData[1].meanDifference);
+      for (let i = 0; i < data.length; i++) {
+        data[i].meanDifference = avgGroupedData[avgGroupedData.length - avgGroupedData.length - i].meanDifference;
+        data[i + 1].meanDifference = avgGroupedData[avgGroupedData.length - avgGroupedData.length - i].meanDifference;
+      }
+      this.dataSource.data = data;
+    });
   }
+
 
   displayFilter(value: any) {
     if (value === 'metai') {
@@ -88,6 +131,7 @@ export class TotalMoistureListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   delete(id: number) {
     Swal.fire({
       title: 'Ar tikrai norite ištrinti šį svėrimą?',
@@ -124,10 +168,10 @@ export class TotalMoistureListComponent implements OnInit {
       if (dataa) {
 
         this.api.get('/lei/journals')
-        // tslint:disable-next-line:no-shadowed-variable
+          // tslint:disable-next-line:no-shadowed-variable
           .subscribe((data: TotalMoistureJournal[]) => this.dataSource.data = data
             .filter(result => ((result.date.toString()
-              .substring(0, 10))  === dataa.date)));
+              .substring(0, 10)) === dataa.date)));
         console.log(dataa.date);
       }
     });

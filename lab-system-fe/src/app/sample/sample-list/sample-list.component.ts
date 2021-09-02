@@ -1,8 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../core/api.service';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {SampleModalComponent} from '../sample-modal/sample-modal.component';
 import Swal from 'sweetalert2';
+import {DateModalComponent} from '../../journal/total-moisture-journal/date-modal/date-modal.component';
 
 interface Sample {
   id: number;
@@ -137,5 +141,24 @@ export class SampleListComponent implements OnInit {
             .substring(5, 7))) === (date.getFullYear() + date.getMonth() + 1))));
       console.log();
     }
+  }
+  openDialog2(excelDate?: string) {
+    const dialogRef = this.dialog.open(DateModalComponent, {
+      width: '250px',
+      data: {
+        date: excelDate ? excelDate : null,
+      }
+    });
+    dialogRef.afterClosed().subscribe(dataa => {
+      if (dataa) {
+
+        this.api.get('/lei/journals/ash')
+          // tslint:disable-next-line:no-shadowed-variable
+          .subscribe((data: Sample[]) => this.dataSource.data = data
+            .filter(result => ((result.date.toString()
+              .substring(0, 10)) === dataa.date)));
+        console.log(dataa.date);
+      }
+    });
   }
 }

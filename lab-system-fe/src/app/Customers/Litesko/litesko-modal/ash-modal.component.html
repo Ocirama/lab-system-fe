@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>Mėginio nr.: {{ data.id }}</h3>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Induko ID" [(ngModel)]="data.dishId" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Induko svoris" [(ngModel)]="data.dishWeight" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Induko ir ėminio svoris PRIEŠ" [(ngModel)]="data.dishAndSampleWeightBefore" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Induko ir ėminio svoris PO" [(ngModel)]="data.dishAndSampleWeightAfter" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Atšaukti</button>
+  <button mat-button [mat-dialog-close]="data">Išsaugoti</button>
+</div>
+

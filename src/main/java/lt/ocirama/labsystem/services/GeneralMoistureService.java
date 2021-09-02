@@ -4,8 +4,8 @@ import lt.ocirama.labsystem.converters.GeneralMoistureConverter;
 import lt.ocirama.labsystem.converters.GeneralMoistureEntityConverter;
 import lt.ocirama.labsystem.model.dto.GeneralMoisture;
 import lt.ocirama.labsystem.model.dto.GeneralMoistureSave;
-import lt.ocirama.labsystem.model.entities.GeneralMoistureEntity;
-import lt.ocirama.labsystem.repositories.GeneralMoistureRepository;
+import lt.ocirama.labsystem.model.entities.local.GeneralMoistureEntity;
+import lt.ocirama.labsystem.repositories.local.GeneralMoistureRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

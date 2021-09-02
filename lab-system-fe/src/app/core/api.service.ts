@@ -6,9 +6,12 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ApiService {
 
-  private urlPrefix = 'http://192.168.1.84:8080';
+  private urlPrefix = 'http://192.168.1.84:80';
 
   constructor(private http: HttpClient) {
+  }
+  getWeight(url: string){
+    return this.http.get('http://192.168.1.84:8081' + url);
   }
 
   get(url: string) {

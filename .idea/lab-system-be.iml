@@ -19,6 +19,8 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="liteskoEntityManager" />
+          <factory-entry name="localEntityManager" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

@@ -1,7 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 
 
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../core/api.service';
 import {ModalComponent} from '../modal/modal.component';
 import Swal from 'sweetalert2';
@@ -15,6 +18,7 @@ interface Order {
   sampleType: string;
   orderAmount: number;
   date: Date;
+  year: number;
 }
 
 @Component({
@@ -91,7 +95,8 @@ export class ListComponent implements OnInit {
         test: order ? order.test : null,
         sampleType: order ? order.sampleType : null,
         orderAmount: order ? order.orderAmount : null,
-        date: order ? order.date : null
+        date: order ? order.date : null,
+        year: order ? order.year : null
       }
     });
     dialogRef.afterClosed().subscribe(data => {
@@ -106,6 +111,7 @@ export class ListComponent implements OnInit {
               row.sampleType = result.sampleType;
               row.orderAmount = result.orderAmount;
               row.date = result.date;
+              row.year = result.year;
               this.dataSource.data = [];
               setTimeout(() => this.getOrders(), 1000);
             } else {

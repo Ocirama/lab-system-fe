@@ -57,6 +57,30 @@
   </mat-menu>
 
   <button mat-button routerLink="tray">Padėklų kalibracija</button>
+  <button mat-button [matMenuTriggerFor]="results">Rezultatai</button>
+  <mat-menu #results="matMenu">
+    <button mat-menu-item routerLink="tm-results">Visuminės drėgmės rezultatai</button>
+    <button mat-menu-item routerLink="gm-results">Bendrosios drėgmės rezultatai</button>
+    <button mat-menu-item routerLink="ac-results">Peleningumo rezultatai</button>
+    <button mat-menu-item routerLink="cv-results">Šilumingumo rezultatai</button>
+    <button mat-menu-item routerLink="full-results">Pilni rezultatai</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="customers">Užsakovai</button>
+
+  <mat-menu #customers="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="litesko">Litesko</button>
+  </mat-menu>
+
+  <mat-menu #litesko="matMenu">
+    <button mat-menu-item routerLink="litesko">Rezultatai</button>
+    <button mat-menu-item routerLink="litesko-samples">Mėginių registravimas</button>
+    <button mat-menu-item [matMenuTriggerFor]="resMenu" >Rezultatų įkėlimas</button>
+  </mat-menu>
+  <mat-menu #resMenu="matMenu">
+    <button mat-menu-item routerLink="litesko-total">Visuminė drėgmė</button>
+    <button mat-menu-item routerLink="litesko-ash">Pelenai, šilumingumas</button>
+  </mat-menu>
 
 
 </mat-toolbar>

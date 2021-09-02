@@ -1,11 +1,9 @@
 package lt.ocirama.labsystem.converters;
 
-import lt.ocirama.labsystem.model.dto.Order;
-import lt.ocirama.labsystem.model.entities.OrderEntity;
-import lt.ocirama.labsystem.model.entities.SampleEntity;
+import lt.ocirama.labsystem.model.entities.local.SampleEntity;
 import lt.ocirama.labsystem.model.dto.SampleSave;
-import lt.ocirama.labsystem.repositories.OrderRepository;
-import lt.ocirama.labsystem.repositories.SampleRepository;
+import lt.ocirama.labsystem.repositories.local.OrderRepository;
+import lt.ocirama.labsystem.repositories.local.SampleRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
